@@ -15,6 +15,14 @@
 		FE988B5E2B49F34400274CD9 /* FYPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B5D2B49F34400274CD9 /* FYPTests.swift */; };
 		FE988B682B49F34400274CD9 /* FYPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B672B49F34400274CD9 /* FYPUITests.swift */; };
 		FE988B6A2B49F34400274CD9 /* FYPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B692B49F34400274CD9 /* FYPUITestsLaunchTests.swift */; };
+		FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B7C2B4B188C00274CD9 /* FYPWatchApp.swift */; };
+		FE988B7F2B4B188C00274CD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B7E2B4B188C00274CD9 /* ContentView.swift */; };
+		FE988B812B4B188E00274CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B802B4B188E00274CD9 /* Assets.xcassets */; };
+		FE988B842B4B188E00274CD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B832B4B188E00274CD9 /* Preview Assets.xcassets */; };
+		FE988B8E2B4B188F00274CD9 /* FYPWatch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B8D2B4B188F00274CD9 /* FYPWatch_Watch_AppTests.swift */; };
+		FE988B982B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */; };
+		FE988B9A2B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */; };
+		FE988B9D2B4B188F00274CD9 /* FYPWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +40,42 @@
 			remoteGlobalIDString = FE988B462B49F34200274CD9;
 			remoteInfo = FYP;
 		};
+		FE988B8A2B4B188F00274CD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE988B792B4B188C00274CD9;
+			remoteInfo = "FYPWatch Watch App";
+		};
+		FE988B942B4B188F00274CD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE988B792B4B188C00274CD9;
+			remoteInfo = "FYPWatch Watch App";
+		};
+		FE988B9B2B4B188F00274CD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE988B792B4B188C00274CD9;
+			remoteInfo = "FYPWatch Watch App";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FE988B9E2B4B188F00274CD9 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				FE988B9D2B4B188F00274CD9 /* FYPWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FE988B472B49F34200274CD9 /* FYP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +89,16 @@
 		FE988B632B49F34400274CD9 /* FYPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE988B672B49F34400274CD9 /* FYPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPUITests.swift; sourceTree = "<group>"; };
 		FE988B692B49F34400274CD9 /* FYPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FYPWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE988B7C2B4B188C00274CD9 /* FYPWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatchApp.swift; sourceTree = "<group>"; };
+		FE988B7E2B4B188C00274CD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FE988B802B4B188E00274CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE988B832B4B188E00274CD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FE988B892B4B188F00274CD9 /* FYPWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FYPWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE988B8D2B4B188F00274CD9 /* FYPWatch_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppTests.swift; sourceTree = "<group>"; };
+		FE988B932B4B188F00274CD9 /* FYPWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FYPWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +123,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE988B772B4B188C00274CD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE988B862B4B188F00274CD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE988B902B4B188F00274CD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,8 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				FE988B492B49F34200274CD9 /* FYP */,
-				FE988B5C2B49F34400274CD9 /* FYPTests */,
-				FE988B662B49F34400274CD9 /* FYPUITests */,
+				FE988B7B2B4B188C00274CD9 /* FYPWatch Watch App */,
+				FE988BA82B4B18BF00274CD9 /* Tests */,
 				FE988B482B49F34200274CD9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +163,9 @@
 				FE988B472B49F34200274CD9 /* FYP.app */,
 				FE988B592B49F34400274CD9 /* FYPTests.xctest */,
 				FE988B632B49F34400274CD9 /* FYPUITests.xctest */,
+				FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */,
+				FE988B892B4B188F00274CD9 /* FYPWatch Watch AppTests.xctest */,
+				FE988B932B4B188F00274CD9 /* FYPWatch Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +207,53 @@
 			path = FYPUITests;
 			sourceTree = "<group>";
 		};
+		FE988B7B2B4B188C00274CD9 /* FYPWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				FE988B7C2B4B188C00274CD9 /* FYPWatchApp.swift */,
+				FE988B7E2B4B188C00274CD9 /* ContentView.swift */,
+				FE988B802B4B188E00274CD9 /* Assets.xcassets */,
+				FE988B822B4B188E00274CD9 /* Preview Content */,
+			);
+			path = "FYPWatch Watch App";
+			sourceTree = "<group>";
+		};
+		FE988B822B4B188E00274CD9 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FE988B832B4B188E00274CD9 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FE988B8C2B4B188F00274CD9 /* FYPWatch Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE988B8D2B4B188F00274CD9 /* FYPWatch_Watch_AppTests.swift */,
+			);
+			path = "FYPWatch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		FE988B962B4B188F00274CD9 /* FYPWatch Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */,
+				FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "FYPWatch Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		FE988BA82B4B18BF00274CD9 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FE988B5C2B49F34400274CD9 /* FYPTests */,
+				FE988B662B49F34400274CD9 /* FYPUITests */,
+				FE988B8C2B4B188F00274CD9 /* FYPWatch Watch AppTests */,
+				FE988B962B4B188F00274CD9 /* FYPWatch Watch AppUITests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,10 +264,12 @@
 				FE988B432B49F34200274CD9 /* Sources */,
 				FE988B442B49F34200274CD9 /* Frameworks */,
 				FE988B452B49F34200274CD9 /* Resources */,
+				FE988B9E2B4B188F00274CD9 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FE988B9C2B4B188F00274CD9 /* PBXTargetDependency */,
 			);
 			name = FYP;
 			productName = FYP;
@@ -186,6 +312,59 @@
 			productReference = FE988B632B49F34400274CD9 /* FYPUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		FE988B792B4B188C00274CD9 /* FYPWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE988BA52B4B188F00274CD9 /* Build configuration list for PBXNativeTarget "FYPWatch Watch App" */;
+			buildPhases = (
+				FE988B762B4B188C00274CD9 /* Sources */,
+				FE988B772B4B188C00274CD9 /* Frameworks */,
+				FE988B782B4B188C00274CD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FYPWatch Watch App";
+			productName = "FYPWatch Watch App";
+			productReference = FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FE988B882B4B188F00274CD9 /* FYPWatch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE988BA62B4B188F00274CD9 /* Build configuration list for PBXNativeTarget "FYPWatch Watch AppTests" */;
+			buildPhases = (
+				FE988B852B4B188F00274CD9 /* Sources */,
+				FE988B862B4B188F00274CD9 /* Frameworks */,
+				FE988B872B4B188F00274CD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE988B8B2B4B188F00274CD9 /* PBXTargetDependency */,
+			);
+			name = "FYPWatch Watch AppTests";
+			productName = "FYPWatch Watch AppTests";
+			productReference = FE988B892B4B188F00274CD9 /* FYPWatch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FE988B922B4B188F00274CD9 /* FYPWatch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE988BA72B4B188F00274CD9 /* Build configuration list for PBXNativeTarget "FYPWatch Watch AppUITests" */;
+			buildPhases = (
+				FE988B8F2B4B188F00274CD9 /* Sources */,
+				FE988B902B4B188F00274CD9 /* Frameworks */,
+				FE988B912B4B188F00274CD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE988B952B4B188F00274CD9 /* PBXTargetDependency */,
+			);
+			name = "FYPWatch Watch AppUITests";
+			productName = "FYPWatch Watch AppUITests";
+			productReference = FE988B932B4B188F00274CD9 /* FYPWatch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,6 +386,17 @@
 						CreatedOnToolsVersion = 15.1;
 						TestTargetID = FE988B462B49F34200274CD9;
 					};
+					FE988B792B4B188C00274CD9 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					FE988B882B4B188F00274CD9 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = FE988B792B4B188C00274CD9;
+					};
+					FE988B922B4B188F00274CD9 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = FE988B792B4B188C00274CD9;
+					};
 				};
 			};
 			buildConfigurationList = FE988B422B49F34200274CD9 /* Build configuration list for PBXProject "FYP" */;
@@ -225,6 +415,9 @@
 				FE988B462B49F34200274CD9 /* FYP */,
 				FE988B582B49F34400274CD9 /* FYPTests */,
 				FE988B622B49F34400274CD9 /* FYPUITests */,
+				FE988B792B4B188C00274CD9 /* FYPWatch Watch App */,
+				FE988B882B4B188F00274CD9 /* FYPWatch Watch AppTests */,
+				FE988B922B4B188F00274CD9 /* FYPWatch Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +440,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FE988B612B49F34400274CD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE988B782B4B188C00274CD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE988B842B4B188E00274CD9 /* Preview Assets.xcassets in Resources */,
+				FE988B812B4B188E00274CD9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE988B872B4B188F00274CD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE988B912B4B188F00274CD9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -283,6 +499,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE988B762B4B188C00274CD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE988B7F2B4B188C00274CD9 /* ContentView.swift in Sources */,
+				FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE988B852B4B188F00274CD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE988B8E2B4B188F00274CD9 /* FYPWatch_Watch_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE988B8F2B4B188F00274CD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE988B9A2B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift in Sources */,
+				FE988B982B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -295,6 +537,21 @@
 			isa = PBXTargetDependency;
 			target = FE988B462B49F34200274CD9 /* FYP */;
 			targetProxy = FE988B642B49F34400274CD9 /* PBXContainerItemProxy */;
+		};
+		FE988B8B2B4B188F00274CD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
+			targetProxy = FE988B8A2B4B188F00274CD9 /* PBXContainerItemProxy */;
+		};
+		FE988B952B4B188F00274CD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
+			targetProxy = FE988B942B4B188F00274CD9 /* PBXContainerItemProxy */;
+		};
+		FE988B9C2B4B188F00274CD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
+			targetProxy = FE988B9B2B4B188F00274CD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -421,6 +678,7 @@
 		FE988B6E2B49F34400274CD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +708,7 @@
 		FE988B6F2B49F34400274CD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -552,6 +811,148 @@
 			};
 			name = Release;
 		};
+		FE988B9F2B4B188F00274CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FYPWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = UEE442R8A2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = FYPWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.LeeChilvers.FYP;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LeeChilvers.FYP.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		FE988BA02B4B188F00274CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FYPWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = UEE442R8A2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = FYPWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.LeeChilvers.FYP;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LeeChilvers.FYP.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
+		FE988BA12B4B188F00274CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UEE442R8A2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.LeeChilvers.FYPWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FYPWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FYPWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		FE988BA22B4B188F00274CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UEE442R8A2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.LeeChilvers.FYPWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FYPWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FYPWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
+		FE988BA32B4B188F00274CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UEE442R8A2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.LeeChilvers.FYPWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "FYPWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		FE988BA42B4B188F00274CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UEE442R8A2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.LeeChilvers.FYPWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "FYPWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -587,6 +988,33 @@
 			buildConfigurations = (
 				FE988B742B49F34400274CD9 /* Debug */,
 				FE988B752B49F34400274CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE988BA52B4B188F00274CD9 /* Build configuration list for PBXNativeTarget "FYPWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE988B9F2B4B188F00274CD9 /* Debug */,
+				FE988BA02B4B188F00274CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE988BA62B4B188F00274CD9 /* Build configuration list for PBXNativeTarget "FYPWatch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE988BA12B4B188F00274CD9 /* Debug */,
+				FE988BA22B4B188F00274CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE988BA72B4B188F00274CD9 /* Build configuration list for PBXNativeTarget "FYPWatch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE988BA32B4B188F00274CD9 /* Debug */,
+				FE988BA42B4B188F00274CD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
