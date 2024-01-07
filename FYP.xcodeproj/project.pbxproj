@@ -23,6 +23,8 @@
 		FE988B982B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */; };
 		FE988B9A2B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */; };
 		FE988B9D2B4B188F00274CD9 /* FYPWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */; };
+		FE988BAF2B4B224300274CD9 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* ConnectivityService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		FE988B932B4B188F00274CD9 /* FYPWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FYPWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionHandler.swift; sourceTree = "<group>"; };
+		FE988BAE2B4B224300274CD9 /* ConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,7 +215,10 @@
 			isa = PBXGroup;
 			children = (
 				FE988B7C2B4B188C00274CD9 /* FYPWatchApp.swift */,
-				FE988B7E2B4B188C00274CD9 /* ContentView.swift */,
+				FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */,
+				FE988BAD2B4B220000274CD9 /* Service */,
+				FE988BAB2B4B200000274CD9 /* View */,
+				FE988BAC2B4B200800274CD9 /* ViewModel */,
 				FE988B802B4B188E00274CD9 /* Assets.xcassets */,
 				FE988B822B4B188E00274CD9 /* Preview Content */,
 			);
@@ -252,6 +259,29 @@
 				FE988B962B4B188F00274CD9 /* FYPWatch Watch AppUITests */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		FE988BAB2B4B200000274CD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE988B7E2B4B188C00274CD9 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FE988BAC2B4B200800274CD9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FE988BAD2B4B220000274CD9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FE988BAE2B4B224300274CD9 /* ConnectivityService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,6 +533,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE988BAF2B4B224300274CD9 /* ConnectivityService.swift in Sources */,
+				FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */,
 				FE988B7F2B4B188C00274CD9 /* ContentView.swift in Sources */,
 				FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */,
 			);
