@@ -10,9 +10,9 @@ import CoreMotion
 final class MotionHandler {
     
     private let motionManager = CMMotionManager()
-    private let connectivityService = ConnectivityService()
+    private let connectivityService = WatchConnectivityService.shared
     
-    func startAccelerometerSession() {
+    func startAccelerometerStream() {
         guard motionManager.isAccelerometerAvailable else { return }
         
         motionManager.accelerometerUpdateInterval = 0.1
@@ -21,6 +21,19 @@ final class MotionHandler {
                   error == nil else { return }
             
             let message = ["acceleration": acceleration]
+            self.connectivityService.sendToPhone(message)
+        }
+    }
+    
+    func startGyroStream() {
+        guard motionManager.isGyroAvailable else { return }
+        
+        motionManager.gyroUpdateInterval = 0.1
+        motionManager.startGyroUpdates(to: OperationQueue.main) { (data, error) in
+            guard let rotationRate = data?.rotationRate,
+                  error == nil else { return }
+            
+            let message = ["rotation_rate": rotationRate]
             self.connectivityService.sendToPhone(message)
         }
     }

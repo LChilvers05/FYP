@@ -7,9 +7,12 @@
 
 import WatchConnectivity
 
-final class ConnectivityService {
+final class WatchConnectivityService {
     
     private let session = WCSession.default
+    
+    static let shared = WatchConnectivityService()
+    private init() {}
     
     func sendToPhone(_ message: [String: Any]) {
         guard session.isReachable else { return }

@@ -24,7 +24,8 @@
 		FE988B9A2B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */; };
 		FE988B9D2B4B188F00274CD9 /* FYPWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */; };
-		FE988BAF2B4B224300274CD9 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* ConnectivityService.swift */; };
+		FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */; };
+		FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +103,8 @@
 		FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionHandler.swift; sourceTree = "<group>"; };
-		FE988BAE2B4B224300274CD9 /* ConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
+		FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
+		FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				FE988B4A2B49F34200274CD9 /* FYPApp.swift */,
 				FE988B4C2B49F34200274CD9 /* ContentView.swift */,
 				FE988B4E2B49F34200274CD9 /* Item.swift */,
+				FEB42BA42B52EBDE00772CC7 /* Service */,
 				FE988B502B49F34400274CD9 /* Assets.xcassets */,
 				FE988B522B49F34400274CD9 /* Preview Content */,
 			);
@@ -279,7 +282,15 @@
 		FE988BAD2B4B220000274CD9 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				FE988BAE2B4B224300274CD9 /* ConnectivityService.swift */,
+				FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		FEB42BA42B52EBDE00772CC7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -509,6 +520,7 @@
 				FE988B4D2B49F34200274CD9 /* ContentView.swift in Sources */,
 				FE988B4F2B49F34200274CD9 /* Item.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
+				FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE988BAF2B4B224300274CD9 /* ConnectivityService.swift in Sources */,
+				FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */,
 				FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */,
 				FE988B7F2B4B188C00274CD9 /* ContentView.swift in Sources */,
 				FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */,
