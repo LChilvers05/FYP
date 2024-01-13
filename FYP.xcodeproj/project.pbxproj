@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4A2B49F34200274CD9 /* FYPApp.swift */; };
 		FE988B4D2B49F34200274CD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4C2B49F34200274CD9 /* ContentView.swift */; };
-		FE988B4F2B49F34200274CD9 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4E2B49F34200274CD9 /* Item.swift */; };
 		FE988B512B49F34400274CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B502B49F34400274CD9 /* Assets.xcassets */; };
 		FE988B542B49F34400274CD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B532B49F34400274CD9 /* Preview Assets.xcassets */; };
 		FE988B5E2B49F34400274CD9 /* FYPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B5D2B49F34400274CD9 /* FYPTests.swift */; };
@@ -26,6 +25,8 @@
 		FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */; };
 		FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */; };
 		FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */; };
+		FEB42BA92B52F7F400772CC7 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = FEB42BA82B52F7F400772CC7 /* AudioKit */; };
+		FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BAA2B52FA4400772CC7 /* AudioService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +85,6 @@
 		FE988B472B49F34200274CD9 /* FYP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE988B4A2B49F34200274CD9 /* FYPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPApp.swift; sourceTree = "<group>"; };
 		FE988B4C2B49F34200274CD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		FE988B4E2B49F34200274CD9 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FE988B502B49F34400274CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE988B532B49F34400274CD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FE988B592B49F34400274CD9 /* FYPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +105,7 @@
 		FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionHandler.swift; sourceTree = "<group>"; };
 		FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
 		FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityService.swift; sourceTree = "<group>"; };
+		FEB42BAA2B52FA4400772CC7 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB42BA92B52F7F400772CC7 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +183,6 @@
 			children = (
 				FE988B4A2B49F34200274CD9 /* FYPApp.swift */,
 				FE988B4C2B49F34200274CD9 /* ContentView.swift */,
-				FE988B4E2B49F34200274CD9 /* Item.swift */,
 				FEB42BA42B52EBDE00772CC7 /* Service */,
 				FE988B502B49F34400274CD9 /* Assets.xcassets */,
 				FE988B522B49F34400274CD9 /* Preview Content */,
@@ -221,7 +222,6 @@
 				FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */,
 				FE988BAD2B4B220000274CD9 /* Service */,
 				FE988BAB2B4B200000274CD9 /* View */,
-				FE988BAC2B4B200800274CD9 /* ViewModel */,
 				FE988B802B4B188E00274CD9 /* Assets.xcassets */,
 				FE988B822B4B188E00274CD9 /* Preview Content */,
 			);
@@ -272,13 +272,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		FE988BAC2B4B200800274CD9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		FE988BAD2B4B220000274CD9 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */,
+				FEB42BAA2B52FA4400772CC7 /* AudioService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -313,6 +307,9 @@
 				FE988B9C2B4B188F00274CD9 /* PBXTargetDependency */,
 			);
 			name = FYP;
+			packageProductDependencies = (
+				FEB42BA82B52F7F400772CC7 /* AudioKit */,
+			);
 			productName = FYP;
 			productReference = FE988B472B49F34200274CD9 /* FYP.app */;
 			productType = "com.apple.product-type.application";
@@ -449,6 +446,9 @@
 				Base,
 			);
 			mainGroup = FE988B3E2B49F34200274CD9;
+			packageReferences = (
+				FEB42BA72B52F7F400772CC7 /* XCRemoteSwiftPackageReference "AudioKit" */,
+			);
 			productRefGroup = FE988B482B49F34200274CD9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -517,8 +517,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */,
 				FE988B4D2B49F34200274CD9 /* ContentView.swift in Sources */,
-				FE988B4F2B49F34200274CD9 /* Item.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
 				FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */,
 			);
@@ -1064,6 +1064,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FEB42BA72B52F7F400772CC7 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FEB42BA82B52F7F400772CC7 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEB42BA72B52F7F400772CC7 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FE988B3F2B49F34200274CD9 /* Project object */;
 }
