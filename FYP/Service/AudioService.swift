@@ -5,12 +5,51 @@
 //  Created by Lee Chilvers on 13/01/2024.
 //
 
-import AudioKit
+import AVFoundation
 
 final class AudioService {
     
+    private let engine = AVAudioEngine()
+    private let session = AVAudioSession.sharedInstance()
+    
     static let shared = AudioService()
     private init() {
-        // TODO: find v5 documentation
+        // do setup
+        try? session.setCategory(.record, mode: .default, options: [])
+        let inputNode = engine.inputNode,
+            format = inputNode.inputFormat(forBus: 0),
+            bufferSize = AVAudioFrameCount(format.sampleRate)
+        // handle the stream of audio
+        inputNode.installTap(onBus: 0, bufferSize: bufferSize, format: format) { (buffer, time) in
+            self.handleAudio(buffer)
+        }
+        engine.prepare()
+    }
+    
+    func startListening() {
+        do {
+            try session.setActive(true, options: .notifyOthersOnDeactivation)
+            try engine.start()
+        } catch {
+            print("Error starting audio stream: \(error.localizedDescription)")
+        }
+    }
+    
+    func stopListening() {
+        do {
+            engine.stop()
+            try session.setActive(false)
+        } catch {
+            print("Error stopping audio stream: \(error.localizedDescription)")
+        }
+    }
+    
+    // process audio data
+    func handleAudio(_ buffer: AVAudioPCMBuffer) {
+        // TODO: 
+        // 1. process audio in real-time
+        // 2. compare to movement data
+        // 3. create MIDI events
+        // 4. compare MIDI events to MIDI file events
     }
 }
