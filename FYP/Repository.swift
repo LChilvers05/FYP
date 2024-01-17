@@ -10,22 +10,23 @@ import Foundation
 
 final class Repository {
     
-    // to fetch for the menu view
+    // instantiate rudiment objects
     func getRudiments() -> [Rudiment] {
         guard let url = getFileURL("rudiments", "json") else { return [] }
         
+        var rudiments: [Rudiment] = []
+        
         do {
             let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            // TODO: let rudiments = decode without Rudiments list object
-        } catch {
+            rudiments = try JSONDecoder().decode([Rudiment].self, from: data)
             
+        } catch {
+            debugPrint(error)
         }
         
-        return []
+        return rudiments
     }
     
-    // to featch in the detail view
     func getRudimentMIDI(_ resource: String?) -> MIDIFile? {
         guard let url = getFileURL(resource, "mid") else { return nil }
         return MIDIFile(url: url)

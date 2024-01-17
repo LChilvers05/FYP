@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4A2B49F34200274CD9 /* FYPApp.swift */; };
-		FE988B4D2B49F34200274CD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4C2B49F34200274CD9 /* ContentView.swift */; };
+		FE988B4D2B49F34200274CD9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4C2B49F34200274CD9 /* MenuView.swift */; };
 		FE988B512B49F34400274CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B502B49F34400274CD9 /* Assets.xcassets */; };
 		FE988B542B49F34400274CD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B532B49F34400274CD9 /* Preview Assets.xcassets */; };
 		FE988B5E2B49F34400274CD9 /* FYPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B5D2B49F34400274CD9 /* FYPTests.swift */; };
@@ -31,6 +31,7 @@
 		FEB42BB12B5840D900772CC7 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB02B5840D900772CC7 /* Repository.swift */; };
 		FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */ = {isa = PBXBuildFile; fileRef = FEB42BB22B58457D00772CC7 /* rudiments.json */; };
 		FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB52B5846B400772CC7 /* Rudiment.swift */; };
+		FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB82B586A6700772CC7 /* PracticeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +89,7 @@
 /* Begin PBXFileReference section */
 		FE988B472B49F34200274CD9 /* FYP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE988B4A2B49F34200274CD9 /* FYPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPApp.swift; sourceTree = "<group>"; };
-		FE988B4C2B49F34200274CD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FE988B4C2B49F34200274CD9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		FE988B502B49F34400274CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE988B532B49F34400274CD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FE988B592B49F34400274CD9 /* FYPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +116,7 @@
 		FEB42BB02B5840D900772CC7 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		FEB42BB22B58457D00772CC7 /* rudiments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rudiments.json; sourceTree = "<group>"; };
 		FEB42BB52B5846B400772CC7 /* Rudiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rudiment.swift; sourceTree = "<group>"; };
+		FEB42BB82B586A6700772CC7 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,9 +193,9 @@
 			isa = PBXGroup;
 			children = (
 				FE988B4A2B49F34200274CD9 /* FYPApp.swift */,
-				FE988B4C2B49F34200274CD9 /* ContentView.swift */,
 				FEB42BB02B5840D900772CC7 /* Repository.swift */,
 				FEB42BB42B58469B00772CC7 /* Model */,
+				FEB42BB72B58640700772CC7 /* View */,
 				FEB42BA42B52EBDE00772CC7 /* Service */,
 				FEB42BAC2B56AE1100772CC7 /* Data */,
 				FE988B522B49F34400274CD9 /* Preview Content */,
@@ -317,6 +319,15 @@
 				FEB42BB52B5846B400772CC7 /* Rudiment.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FEB42BB72B58640700772CC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE988B4C2B49F34200274CD9 /* MenuView.swift */,
+				FEB42BB82B586A6700772CC7 /* PracticeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,9 +561,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */,
-				FE988B4D2B49F34200274CD9 /* ContentView.swift in Sources */,
+				FE988B4D2B49F34200274CD9 /* MenuView.swift in Sources */,
 				FEB42BB12B5840D900772CC7 /* Repository.swift in Sources */,
 				FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */,
+				FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
 				FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */,
 			);

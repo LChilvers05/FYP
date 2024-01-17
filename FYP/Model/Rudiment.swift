@@ -8,8 +8,9 @@
 import AudioKit
 import Foundation
 
-struct Rudiment: Codable {
+struct Rudiment: Codable, Identifiable, Hashable {
+    let id: Int
     let name: String
-    let midiName: String
+    let midi: String
     let image: String
 }
