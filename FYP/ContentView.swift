@@ -10,7 +10,10 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
 
-    var body: some View { return Text("Hi") }
+    //TODO: menu view to select a rudiment from
+    var body: some View {
+        return Text("Hi")
+    }
 }
 
 #Preview {

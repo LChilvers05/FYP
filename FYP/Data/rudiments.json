@@ -1,0 +1,31 @@
+{
+    //TODO: maybe do not use this rudiments list???
+  "rudiments": [
+    {
+      "name": "Single Stroke Roll",
+      "midi": "single_stroke_roll.mid",
+      "image": "single_stroke_roll.png"
+    },
+    {
+      "name": "Double Stroke Roll",
+      "midi": "double_stroke_roll.mid",
+      "image": "double_stroke_roll.png"
+    },
+    {
+      "name": "Paradiddle",
+      "midi": "paradiddle.mid",
+      "image": "paradiddle.png"
+    },
+    {
+      "name": "Flam",
+      "midi": "flam.mid",
+      "image": "flam.png"
+    },
+    {
+      "name": "Drag",
+      "midi": "drag.mid",
+      "image": "drag.png"
+    }
+  ]
+}
+
