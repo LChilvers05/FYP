@@ -16,6 +16,10 @@ struct PracticeView: View {
                 Text("Rudiment #\(rudiment.id): \(rudiment.name)")
                 Text("MIDI: \(rudiment.midi)")
                 Text("Image: \(rudiment.image)")
+                
+                Button("Listen") {
+                    AudioService.shared.startListening()
+                }
             }
             .navigationTitle(rudiment.name)
         }
