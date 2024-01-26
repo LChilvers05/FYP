@@ -6,12 +6,15 @@
 //
 
 import AVFoundation
+import Combine
 
-final class AudioService {
+final class AudioService: ObservableObject {
     
     private let engine = AVAudioEngine()
     private let session = AVAudioSession.sharedInstance()
     private var inputNode: AVAudioInputNode?
+    // buffer of samples to subscribe to
+    @Published var stream: ([Float], AVAudioTime)? = nil
     
     static let shared = AudioService()
     private init() {
@@ -19,7 +22,7 @@ final class AudioService {
         try? session.setCategory(.record, mode: .default, options: [])
         let inputNode = engine.inputNode,
             format = inputNode.inputFormat(forBus: 0),
-            bufferSize = AVAudioFrameCount(format.sampleRate)
+            bufferSize = AVAudioFrameCount(format.sampleRate) //48000
         // handle the stream of audio
         inputNode.installTap(
             onBus: 0,
@@ -52,23 +55,13 @@ final class AudioService {
         }
     }
     
-    // TODO:
-    // 1. process audio in real-time
-    // 2. compare to movement data
-    // 3. create MIDI events
-    // 4. compare MIDI events to MIDI file events
-    
     private func handleAudio(_ buffer: AVAudioPCMBuffer, start: AVAudioTime) {
-        guard let floatChannelData = buffer.floatChannelData,
-              buffer.format.channelCount == 1 else { return } //mono
-        
+        guard let frames = buffer.floatChannelData?[0] else { return } //mono
+        var samples: [Float] = []
         // frame length = 19120
-        // sample rate = 48000
-        // 1 sample per frame (mono)
-//        for frame in 0..<Int(buffer.frameLength) {
-//            print(frame)
-//            let sample = floatChannelData[0][frame],
-//                normalisedSample = max(-1.0, min(1.0, sample))
-//        }
+        for i in 0..<Int(buffer.frameLength) {
+            // normalise
+            samples.append(max(-1.0, min(1.0, frames[i])))
+        }
     }
 }
