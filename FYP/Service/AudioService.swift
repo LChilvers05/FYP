@@ -13,6 +13,7 @@ final class AudioService: ObservableObject {
     private let engine = AVAudioEngine()
     private let session = AVAudioSession.sharedInstance()
     private var inputNode: AVAudioInputNode?
+    var sampleInterval: Double = 0.0
     // buffer of samples to subscribe to
     @Published var stream: ([Float], AVAudioTime)? = nil
     
@@ -23,6 +24,7 @@ final class AudioService: ObservableObject {
         let inputNode = engine.inputNode,
             format = inputNode.inputFormat(forBus: 0),
             bufferSize = AVAudioFrameCount(format.sampleRate) //48000
+        sampleInterval = 1/format.sampleRate
         // handle the stream of audio
         inputNode.installTap(
             onBus: 0,
@@ -63,5 +65,7 @@ final class AudioService: ObservableObject {
             // normalise
             samples.append(max(-1.0, min(1.0, frames[i])))
         }
+        // update subscribers
+        stream = (samples, start)
     }
 }

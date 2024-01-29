@@ -13,17 +13,27 @@ final class OnsetDetectionHandler {
     
     private let audioService = AudioService.shared
     private var cancellables: Set<AnyCancellable> = []
+    var didDetectOnset: ((AVAudioTime) -> Void)?
     
     //TODO: subscribes to timer (metronome)?
     
     init() {
         audioService.$stream
             .sink { [weak self] buffer in
-                if let buffer {
-                    self?.detectOnsets(within: buffer)
+                if let self,
+                   let buffer {
+                    self.detectOnsets(within: buffer)
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    func beginDetecting() {
+        audioService.startListening()
+    }
+    
+    func stopDetecting() {
+        audioService.stopListening()
     }
     
     private func detectOnsets(within buffer: ([Float], AVAudioTime)) {
@@ -47,6 +57,13 @@ final class OnsetDetectionHandler {
         let threshold: Float = 0.5
         let onsets = ampEnvelope.map { $0 > threshold ? 1 : 0 }
         
-        //TODO: how to map envelope to times there is a hit?
+        let samplesPerOnsetDetection = samples.count/onsets.count
+        for (i, onset) in onsets.enumerated() {
+            guard onset != 0 else { continue }
+            let onsetIndex = Double(i * samplesPerOnsetDetection)
+            // the time of the onset
+            let onsetTime = start.offset(seconds: audioService.sampleInterval * onsetIndex)
+            self.didDetectOnset?(onsetTime)
+        }
     }
 }
