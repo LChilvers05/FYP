@@ -5,67 +5,55 @@
 //  Created by Lee Chilvers on 13/01/2024.
 //
 
-import AVFoundation
+import AudioKit
+import AudioKitEX
 import Combine
 
 final class AudioService: ObservableObject {
     
-    private let engine = AVAudioEngine()
-    private let session = AVAudioSession.sharedInstance()
-    private var inputNode: AVAudioInputNode?
-    var sampleInterval: Double = 0.0
-    // buffer of samples to subscribe to
-    @Published var stream: ([Float], AVAudioTime)? = nil
+    @Published var stream: AmplitudeData? = nil
+    
+    private let engine = AudioEngine()
+    private var mic: AudioEngine.InputNode?
+    private var tap: AmplitudeTap?
+    private var isTapOn = false
     
     static let shared = AudioService()
     private init() {
-        // setup
-        try? session.setCategory(.record, mode: .default, options: [])
-        let inputNode = engine.inputNode,
-            format = inputNode.inputFormat(forBus: 0),
-            bufferSize = AVAudioFrameCount(format.sampleRate) //48000
-        sampleInterval = 1/format.sampleRate
-        // handle the stream of audio
-        inputNode.installTap(
-            onBus: 0,
-            bufferSize: bufferSize,
-            format: format
-        ) { (buffer, time) in
-            // in background
-            self.handleAudio(buffer, start: time)
+        guard let mic = engine.input else { return }
+        //setup
+        self.mic = mic
+        engine.output = Fader(mic, gain: 0) //silence
+        tap = AmplitudeTap(
+            mic,
+            callbackQueue: .global(qos: .userInitiated)
+        ) { [weak self] amplitude in
+            guard let self,
+                  self.isTapOn else { return }
+            self.handle(amplitude)
         }
-        engine.prepare()
-        self.inputNode = inputNode
     }
     
     func startListening() {
+        guard let tap,
+              !isTapOn else { return }
         do {
-            try session.setActive(true, options: .notifyOthersOnDeactivation)
+            //start mic and open amp tap
             try engine.start()
+            tap.start()
+            isTapOn = true
         } catch {
             print("Error starting audio stream: \(error.localizedDescription)")
         }
     }
     
     func stopListening() {
-        do {
-            engine.stop()
-            inputNode?.removeTap(onBus: 0)
-            try session.setActive(false)
-        } catch {
-            print("Error stopping audio stream: \(error.localizedDescription)")
-        }
+        engine.stop()
+        isTapOn = false
     }
     
-    private func handleAudio(_ buffer: AVAudioPCMBuffer, start: AVAudioTime) {
-        guard let frames = buffer.floatChannelData?[0] else { return } //mono
-        var samples: [Float] = []
-        // frame length = 19120
-        for i in 0..<Int(buffer.frameLength) {
-            // normalise
-            samples.append(max(-1.0, min(1.0, frames[i])))
-        }
+    private func handle(_ amplitude: AUValue) {
         // update subscribers
-        stream = (samples, start)
+        stream = AmplitudeData(amplitude: amplitude)
     }
 }

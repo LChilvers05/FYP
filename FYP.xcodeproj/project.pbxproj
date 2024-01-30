@@ -28,6 +28,8 @@
 		FE988B9D2B4B188F00274CD9 /* FYPWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */; };
 		FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */; };
+		FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = FEA7BDF02B694C480038B320 /* AudioKitEX */; };
+		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */; };
 		FEB42BA92B52F7F400772CC7 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = FEB42BA82B52F7F400772CC7 /* AudioKit */; };
 		FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BAA2B52FA4400772CC7 /* AudioService.swift */; };
@@ -116,6 +118,7 @@
 		FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionHandler.swift; sourceTree = "<group>"; };
 		FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
+		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
 		FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityService.swift; sourceTree = "<group>"; };
 		FEB42BAA2B52FA4400772CC7 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		FEB42BAF2B56D4E100772CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEB42BA92B52F7F400772CC7 /* AudioKit in Frameworks */,
+				FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +200,7 @@
 				FE988B7B2B4B188C00274CD9 /* FYPWatch Watch App */,
 				FE988BA82B4B18BF00274CD9 /* Tests */,
 				FE988B482B49F34200274CD9 /* Products */,
+				FEA7BDEF2B694C480038B320 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -320,6 +325,13 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		FEA7BDEF2B694C480038B320 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FEB42BA42B52EBDE00772CC7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				FEB42BB52B5846B400772CC7 /* Rudiment.swift */,
+				FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,6 +388,7 @@
 			name = FYP;
 			packageProductDependencies = (
 				FEB42BA82B52F7F400772CC7 /* AudioKit */,
+				FEA7BDF02B694C480038B320 /* AudioKitEX */,
 			);
 			productName = FYP;
 			productReference = FE988B472B49F34200274CD9 /* FYP.app */;
@@ -514,6 +528,7 @@
 			mainGroup = FE988B3E2B49F34200274CD9;
 			packageReferences = (
 				FEB42BA72B52F7F400772CC7 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				FE1040612B6949C400A71AF9 /* XCRemoteSwiftPackageReference "AudioKitEX" */,
 			);
 			productRefGroup = FE988B482B49F34200274CD9 /* Products */;
 			projectDirPath = "";
@@ -585,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */,
 				FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */,
 				FE988B4D2B49F34200274CD9 /* MenuView.swift in Sources */,
 				FEB42BB12B5840D900772CC7 /* Repository.swift in Sources */,
@@ -820,6 +836,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.LeeChilvers.FYP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -851,6 +870,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.LeeChilvers.FYP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1144,6 +1166,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FE1040612B6949C400A71AF9 /* XCRemoteSwiftPackageReference "AudioKitEX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitEX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
 		FEB42BA72B52F7F400772CC7 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/AudioKit";
@@ -1155,6 +1185,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FEA7BDF02B694C480038B320 /* AudioKitEX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE1040612B6949C400A71AF9 /* XCRemoteSwiftPackageReference "AudioKitEX" */;
+			productName = AudioKitEX;
+		};
 		FEB42BA82B52F7F400772CC7 /* AudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FEB42BA72B52F7F400772CC7 /* XCRemoteSwiftPackageReference "AudioKit" */;

@@ -15,14 +15,16 @@ final class OnsetDetectionHandler {
     private var cancellables: Set<AnyCancellable> = []
     var didDetectOnset: ((AVAudioTime) -> Void)?
     
+    private let threshold: Float
+    
     //TODO: subscribes to timer (metronome)?
     
-    init() {
+    init(threshold: Float = 0.1) {
+        self.threshold = threshold
         audioService.$stream
-            .sink { [weak self] buffer in
-                if let self,
-                   let buffer {
-                    self.detectOnsets(within: buffer)
+            .sink { [weak self] ampData in
+                if let self {
+                    self.detectOnset(ampData)
                 }
             }
             .store(in: &cancellables)
@@ -36,34 +38,14 @@ final class OnsetDetectionHandler {
         audioService.stopListening()
     }
     
-    private func detectOnsets(within buffer: ([Float], AVAudioTime)) {
-        let (samples, start) = buffer
-        let windowSize = 100
+    private func detectOnset(_ ampData: AmplitudeData?) {
+        guard let amplitude = ampData?.amplitude,
+              let serial =  ampData?.id else { return }
         
-        var ampEnvelope = [Float](
-            repeating: 0.0,
-            count: samples.count - windowSize + 1
-        )
-        // compute moving average with convolution
-        vDSP_conv(
-            samples, 1,
-            [Float](repeating: 1.0 / Float(windowSize),count: windowSize),
-            1, &ampEnvelope, 1,
-            vDSP_Length(ampEnvelope.count),
-            vDSP_Length(windowSize)
-        )
-        
-        //onset if over threshold
-        let threshold: Float = 0.5
-        let onsets = ampEnvelope.map { $0 > threshold ? 1 : 0 }
-        
-        let samplesPerOnsetDetection = samples.count/onsets.count
-        for (i, onset) in onsets.enumerated() {
-            guard onset != 0 else { continue }
-            let onsetIndex = Double(i * samplesPerOnsetDetection)
-            // the time of the onset
-            let onsetTime = start.offset(seconds: audioService.sampleInterval * onsetIndex)
-            self.didDetectOnset?(onsetTime)
+        if amplitude >= threshold {
+            print("\(serial): \(amplitude.magnitude)")
         }
+        
+//        didDetectOnset?()
     }
 }
