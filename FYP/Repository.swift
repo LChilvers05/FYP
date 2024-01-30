@@ -10,7 +10,6 @@ import Foundation
 
 final class Repository {
     
-    // instantiate rudiment objects
     func getRudiments() -> [Rudiment] {
         guard let url = getFileURL("rudiments", "json") else { return [] }
         

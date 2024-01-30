@@ -5,51 +5,55 @@
 //  Created by Lee Chilvers on 13/01/2024.
 //
 
-import AVFoundation
+import AudioKit
+import AudioKitEX
+import Combine
 
-final class AudioService {
+final class AudioService: ObservableObject {
     
-    private let engine = AVAudioEngine()
-    private let session = AVAudioSession.sharedInstance()
+    @Published var stream: AmplitudeData? = nil
+    
+    private let engine = AudioEngine()
+    private var mic: AudioEngine.InputNode?
+    private var tap: AmplitudeTap?
+    private var isTapOn = false
     
     static let shared = AudioService()
     private init() {
-        // do setup
-        try? session.setCategory(.record, mode: .default, options: [])
-        let inputNode = engine.inputNode,
-            format = inputNode.inputFormat(forBus: 0),
-            bufferSize = AVAudioFrameCount(format.sampleRate)
-        // handle the stream of audio
-        inputNode.installTap(onBus: 0, bufferSize: bufferSize, format: format) { (buffer, time) in
-            self.handleAudio(buffer)
+        guard let mic = engine.input else { return }
+        //setup
+        self.mic = mic
+        engine.output = Fader(mic, gain: 0) //silence
+        tap = AmplitudeTap( //TODO: experiment with BufferSize
+            mic,
+            callbackQueue: .global(qos: .userInitiated)
+        ) { [weak self] amplitude in
+            guard let self,
+                  self.isTapOn else { return }
+            self.handle(amplitude)
         }
-        engine.prepare()
     }
     
     func startListening() {
+        guard let tap,
+              !isTapOn else { return }
         do {
-            try session.setActive(true, options: .notifyOthersOnDeactivation)
+            //start mic and open amp tap
             try engine.start()
+            tap.start()
+            isTapOn = true
         } catch {
             print("Error starting audio stream: \(error.localizedDescription)")
         }
     }
     
     func stopListening() {
-        do {
-            engine.stop()
-            try session.setActive(false)
-        } catch {
-            print("Error stopping audio stream: \(error.localizedDescription)")
-        }
+        engine.stop()
+        isTapOn = false
     }
     
-    // process audio data
-    func handleAudio(_ buffer: AVAudioPCMBuffer) {
-        // TODO: 
-        // 1. process audio in real-time
-        // 2. compare to movement data
-        // 3. create MIDI events
-        // 4. compare MIDI events to MIDI file events
+    private func handle(_ amplitude: AUValue) {
+        // update subscribers
+        stream = AmplitudeData(amplitude: amplitude)
     }
 }

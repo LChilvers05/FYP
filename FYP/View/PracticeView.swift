@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct PracticeView: View {
-    var rudiment: Rudiment?
+    
+    private var rudiment: Rudiment?
+    private var viewModel: PracticeViewModel?
+    
+    init(rudiment: Rudiment) {
+        self.rudiment = rudiment
+        self.viewModel = PracticeViewModel(rudiment)
+    }
     
     var body: some View {
         if let rudiment {
@@ -16,6 +23,10 @@ struct PracticeView: View {
                 Text("Rudiment #\(rudiment.id): \(rudiment.name)")
                 Text("MIDI: \(rudiment.midi)")
                 Text("Image: \(rudiment.image)")
+                
+                Button("Listen") {
+                    self.viewModel?.beginPractice()
+                }
             }
             .navigationTitle(rudiment.name)
         }
