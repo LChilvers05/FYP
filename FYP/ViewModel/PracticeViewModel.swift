@@ -9,6 +9,12 @@ import AVFoundation
 
 final class PracticeViewModel {
     
+    //TODO: create a metronome with AppleSequencer
+    // it resets MetronomeTimer.value at end of bar
+    // use it to count in -> then do onset detection
+    
+    private let metronome = Metronome()
+    private let timer = MetronomeTimer(bpm: 90)
     private let onsetDetector = OnsetDetectionHandler()
     private let MIDIComparison: MIDIComparisonHandler
     
@@ -18,6 +24,10 @@ final class PracticeViewModel {
     }
     
     func beginPractice() {
+        //TODO: begin count in
+//        timer.start()
+        
+        
         onsetDetector.beginDetecting()
     }
     
