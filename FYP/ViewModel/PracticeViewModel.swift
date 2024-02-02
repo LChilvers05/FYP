@@ -9,34 +9,27 @@ import AVFoundation
 
 final class PracticeViewModel {
     
-    //TODO: create a metronome with AppleSequencer
-    // it resets MetronomeTimer.value at end of bar
-    // use it to count in -> then do onset detection
-    
-    private let metronome = Metronome()
-    private let timer = MetronomeTimer(bpm: 90)
-    private let onsetDetector = OnsetDetectionHandler()
-    private let MIDIComparison: MIDIComparisonHandler
+    private lazy var metronome = Metronome(tempo: 100)
+    private lazy var onsetDetector = OnsetDetectionHandler()
+    private let midiComparison: MIDIComparisonHandler
     
     init(_ rudiment: Rudiment) {
-        MIDIComparison = MIDIComparisonHandler(rudiment.midi)
+        midiComparison = MIDIComparisonHandler(rudiment.midi)
         onsetDetector.didDetectOnset = self.didDetectOnset
     }
     
     func beginPractice() {
-        //TODO: begin count in
-//        timer.start()
-        
-        
-        onsetDetector.beginDetecting()
+        metronome.start()
+//        onsetDetector.beginDetecting()
     }
     
     func endPractice() {
+        metronome.stop()
         onsetDetector.stopDetecting()
     }
     
     private func didDetectOnset(_ onsetTime: AVAudioTime) {
         //time of stroke
-        MIDIComparison.makeMIDIEvent(onsetTime: onsetTime)
+        midiComparison.makeMIDIEvent(onsetTime: onsetTime)
     }
 }

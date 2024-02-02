@@ -31,7 +31,6 @@
 		FE99073F2B6C412400A4DA76 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = FE99073E2B6C412400A4DA76 /* SoundpipeAudioKit */; };
 		FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = FEA7BDF02B694C480038B320 /* AudioKitEX */; };
 		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
-		FEA7BDF52B6964C70038B320 /* MetronomeTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF42B6964C70038B320 /* MetronomeTimer.swift */; };
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
 		FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */; };
 		FEB42BA92B52F7F400772CC7 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = FEB42BA82B52F7F400772CC7 /* AudioKit */; };
@@ -122,7 +121,6 @@
 		FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionHandler.swift; sourceTree = "<group>"; };
 		FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
 		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
-		FEA7BDF42B6964C70038B320 /* MetronomeTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeTimer.swift; sourceTree = "<group>"; };
 		FEA7BDF62B69AE360038B320 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
 		FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityService.swift; sourceTree = "<group>"; };
 		FEB42BAA2B52FA4400772CC7 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 			children = (
 				FE988B4A2B49F34200274CD9 /* FYPApp.swift */,
 				FEB42BB02B5840D900772CC7 /* Repository.swift */,
-				FEA7BDF42B6964C70038B320 /* MetronomeTimer.swift */,
 				FEA7BDF62B69AE360038B320 /* Metronome.swift */,
 				FEB42BB42B58469B00772CC7 /* Model */,
 				FEB42BB72B58640700772CC7 /* View */,
@@ -610,7 +607,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEA7BDF52B6964C70038B320 /* MetronomeTimer.swift in Sources */,
 				FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */,
 				FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */,
 				FE988B4D2B49F34200274CD9 /* MenuView.swift in Sources */,
@@ -836,6 +832,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FYP/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Enable microphone access for real-time drumming feedback";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -870,6 +867,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FYP/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Enable microphone access for real-time drumming feedback";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

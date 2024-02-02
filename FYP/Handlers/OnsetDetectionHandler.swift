@@ -9,15 +9,14 @@ import Accelerate
 import AVFoundation
 import Combine
 
+// subscribes audio amplitude data stream and detects onsets
 final class OnsetDetectionHandler {
     
     private let audioService = AudioService.shared
     private var cancellables: Set<AnyCancellable> = []
-    var didDetectOnset: ((AVAudioTime) -> Void)?
-    
     private let threshold: Float
     
-    //TODO: subscribes to timer (metronome)?
+    var didDetectOnset: ((AVAudioTime) -> Void)?
     
     init(threshold: Float = 0.1) {
         self.threshold = threshold
@@ -45,7 +44,7 @@ final class OnsetDetectionHandler {
         if amplitude >= threshold {
             print("\(serial): \(amplitude.magnitude)")
         }
-        
+        // TODO:
 //        didDetectOnset?()
     }
 }
