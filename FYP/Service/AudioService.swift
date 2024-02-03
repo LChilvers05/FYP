@@ -9,6 +9,7 @@ import AudioKit
 import AudioKitEX
 import Combine
 
+// opens audio amplitude data stream
 final class AudioService: ObservableObject {
     
     @Published var stream: AmplitudeData? = nil
@@ -37,14 +38,10 @@ final class AudioService: ObservableObject {
     func startListening() {
         guard let tap,
               !isTapOn else { return }
-        do {
-            //start mic and open amp tap
-            try engine.start()
-            tap.start()
-            isTapOn = true
-        } catch {
-            print("Error starting audio stream: \(error.localizedDescription)")
-        }
+        //start mic and open amp tap
+        try? engine.start()
+        tap.start()
+        isTapOn = true
     }
     
     func stopListening() {
