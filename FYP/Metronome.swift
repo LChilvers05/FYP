@@ -7,28 +7,29 @@
 
 import AudioKit
 import SoundpipeAudioKit
+import Combine
+import Foundation
 
 // plays click and points to current beat
-final class Metronome {
+final class Metronome: ObservableObject {
+    
+    @Published var beat: Int = 0
     
     private let engine = AudioEngine()
     private let sequencer = AppleSequencer()
     private let midiCallback = MIDICallbackInstrument()
     private let instrument = Oscillator()
     
+    // time signature
     private let numerator: Int
     private let denominator: Int
+    
     var tempo: Int {
         get { Int(sequencer.tempo) }
         set { sequencer.setTempo(Double(newValue)) }
     }
     
-    var currentBeat: Double {
-        get {
-            0.0
-            //sequencer.nearestQuantizedPosition(quantizationInBeats: <#T##Double#>)
-        }
-    }
+    private(set) var isCountingIn = true
     var isPlaying: Bool {
         get { return sequencer.isPlaying }
     }
@@ -44,14 +45,15 @@ final class Metronome {
         
         midiCallback.callback = playNote
         
-        try? Settings.session.setCategory(.playback, options: .allowBluetoothA2DP)
-        
         engine.output = instrument
         try? engine.start()
     }
     
     func start() {
         guard !isPlaying else { return }
+        beat = 0
+        isCountingIn = true
+        sequencer.rewind()
         sequencer.play()
     }
     
@@ -88,14 +90,23 @@ final class Metronome {
         }
     }
     
-    //TODO: do a count in from this
     private func playNote(status: MIDIByte, note: MIDIByte, velocity: MIDIByte) {
         if status == 144 { // note on
-            self.instrument.frequency = note.midiNoteToFrequency()
-            self.instrument.amplitude = AUValue(velocity)
-            self.instrument.play()
+            countBeat()
+            instrument.frequency = note.midiNoteToFrequency()
+            instrument.amplitude = AUValue(velocity)
+            instrument.play()
         } else if status == 128 { // note off
-            self.instrument.amplitude = 0.0
+            instrument.amplitude = 0.0
+        }
+    }
+    
+    private func countBeat() {
+        if beat == numerator {
+            beat = 1
+            isCountingIn = false
+        } else {
+            beat += 1
         }
     }
     

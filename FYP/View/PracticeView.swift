@@ -9,26 +9,34 @@ import SwiftUI
 
 struct PracticeView: View {
     
-    private var rudiment: Rudiment?
-    private var viewModel: PracticeViewModel?
+    private let rudiment: Rudiment
+    @StateObject private var viewModel: PracticeViewModel
     
     init(rudiment: Rudiment) {
         self.rudiment = rudiment
-        self.viewModel = PracticeViewModel(rudiment)
+        self._viewModel = StateObject(wrappedValue: PracticeViewModel(rudiment))
     }
     
     var body: some View {
-        if let rudiment {
-            VStack {
-                Text("Rudiment #\(rudiment.id): \(rudiment.name)")
-                Text("MIDI: \(rudiment.midi)")
-                Text("Image: \(rudiment.image)")
-                
-                Button("Listen") {
-                    self.viewModel?.beginPractice()
-                }
+        VStack {
+            MetronomeView(metronome: viewModel.metronome)
+            Text("Rudiment #\(rudiment.id): \(rudiment.name)")
+            Text("MIDI: \(rudiment.midi)")
+            Text("Image: \(rudiment.image)")
+            
+            Button("Listen") {
+                self.viewModel.beginPractice()
             }
-            .navigationTitle(rudiment.name)
         }
+        .navigationTitle(rudiment.name)
+    }
+}
+
+struct MetronomeView: View {
+    
+    @ObservedObject var metronome: Metronome
+    
+    var body: some View {
+        Text("\(metronome.beat)")
     }
 }
