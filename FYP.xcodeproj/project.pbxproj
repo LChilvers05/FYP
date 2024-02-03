@@ -191,6 +191,7 @@
 		FE0111792B63DC7C008F52D4 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				FEA7BDF62B69AE360038B320 /* Metronome.swift */,
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
 				FE10405F2B6841E500A71AF9 /* MIDIComparisonHandler.swift */,
 			);
@@ -225,8 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				FE988B4A2B49F34200274CD9 /* FYPApp.swift */,
-				FEB42BB02B5840D900772CC7 /* Repository.swift */,
-				FEA7BDF62B69AE360038B320 /* Metronome.swift */,
 				FEB42BB42B58469B00772CC7 /* Model */,
 				FEB42BB72B58640700772CC7 /* View */,
 				FE0111782B63DC3D008F52D4 /* ViewModel */,
@@ -349,6 +348,7 @@
 		FEB42BAC2B56AE1100772CC7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FEB42BB02B5840D900772CC7 /* Repository.swift */,
 				FE0111762B62BE66008F52D4 /* single_stroke_roll.mid */,
 				FEB42BB22B58457D00772CC7 /* rudiments.json */,
 			);
