@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Stroke {
+struct UserStroke {
     let positionInBeats: Double
     let sticking: Sticking
 }
