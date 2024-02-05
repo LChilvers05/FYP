@@ -13,10 +13,10 @@ final class PracticeViewModel: ObservableObject {
     @Published var metronome = Metronome(tempo: 100)
     
     private lazy var onsetDetector = OnsetDetectionHandler()
-    private let midiComparison: MIDIComparisonHandler
+    private let rudimentComparison: RudimentComparisonHandler
         
     init(_ rudiment: Rudiment) {
-        midiComparison = MIDIComparisonHandler(rudiment.midi)
+        rudimentComparison = RudimentComparisonHandler(rudiment)
         onsetDetector.didDetectOnset = self.didDetectOnset
     }
     
