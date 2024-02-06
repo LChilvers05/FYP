@@ -31,6 +31,9 @@
 		FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */; };
 		FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */; };
 		FE99073F2B6C412400A4DA76 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = FE99073E2B6C412400A4DA76 /* SoundpipeAudioKit */; };
+		FEA04B4B2B724A580058C8B4 /* single_stroke_four.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEA04B492B724A580058C8B4 /* single_stroke_four.mid */; };
+		FEA04B4C2B724A580058C8B4 /* single_stroke_seven.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */; };
+		FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA04B4D2B7264900058C8B4 /* Extensions.swift */; };
 		FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = FEA7BDF02B694C480038B320 /* AudioKitEX */; };
 		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
@@ -124,6 +127,9 @@
 		FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionHandler.swift; sourceTree = "<group>"; };
 		FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
+		FEA04B492B724A580058C8B4 /* single_stroke_four.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = single_stroke_four.mid; sourceTree = "<group>"; };
+		FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = single_stroke_seven.mid; sourceTree = "<group>"; };
+		FEA04B4D2B7264900058C8B4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
 		FEA7BDF62B69AE360038B320 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
 		FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityService.swift; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				FE988B4A2B49F34200274CD9 /* FYPApp.swift */,
+				FEA04B4D2B7264900058C8B4 /* Extensions.swift */,
 				FEB42BB42B58469B00772CC7 /* Model */,
 				FEB42BB72B58640700772CC7 /* View */,
 				FE0111782B63DC3D008F52D4 /* ViewModel */,
@@ -354,6 +361,8 @@
 			children = (
 				FEB42BB02B5840D900772CC7 /* Repository.swift */,
 				FE0111762B62BE66008F52D4 /* single_stroke_roll.mid */,
+				FEA04B492B724A580058C8B4 /* single_stroke_four.mid */,
+				FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */,
 				FEB42BB22B58457D00772CC7 /* rudiments.json */,
 			);
 			path = Data;
@@ -564,8 +573,10 @@
 			files = (
 				FE988B542B49F34400274CD9 /* Preview Assets.xcassets in Resources */,
 				FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */,
+				FEA04B4C2B724A580058C8B4 /* single_stroke_seven.mid in Resources */,
 				FE988B512B49F34400274CD9 /* Assets.xcassets in Resources */,
 				FE0111772B62BE66008F52D4 /* single_stroke_roll.mid in Resources */,
+				FEA04B4B2B724A580058C8B4 /* single_stroke_four.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +634,7 @@
 				FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */,
 				FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */,
 				FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */,
+				FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */,
 				FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
 				FE1040602B6841E500A71AF9 /* RudimentComparisonHandler.swift in Sources */,

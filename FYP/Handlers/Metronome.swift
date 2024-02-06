@@ -34,10 +34,10 @@ final class Metronome: ObservableObject {
         get { return sequencer.isPlaying }
     }
     
-    init(tempo: Int, numerator: Int = 4, denominator: Int = 4) {
+    init(bpm: Int, numerator: Int = 4, denominator: Int = 4) {
         self.numerator = numerator
         self.denominator = denominator
-        self.tempo = tempo
+        self.tempo = bpm
         
         // setup
         createTrack()
