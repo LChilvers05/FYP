@@ -19,24 +19,26 @@ final class PracticeViewModel: ObservableObject {
     init(_ rudiment: Rudiment) {
         metronome = Metronome(bpm: tempo)
         rudimentComparison = RudimentComparisonHandler(rudiment, tempo)
+        metronome.didCountIn = self.didCountIn
         onsetDetector.didDetectOnset = self.didDetectOnset
     }
     
     func beginPractice() {
-//        onsetDetector.beginDetecting()
+        onsetDetector.beginDetecting()
         metronome.start()
-        rudimentComparison.beginComparison()
     }
     
     func endPractice() {
-//        onsetDetector.stopDetecting()
+        onsetDetector.stopDetecting()
         metronome.stop()
         rudimentComparison.stopComparison()
     }
     
+    private func didCountIn() {
+        rudimentComparison.beginComparison()
+    }
+    
     private func didDetectOnset(_ onsetTime: AmplitudeData?) {
-        //TODO: 
-        print(metronome.isCountingIn)
         guard !metronome.isCountingIn else { return } // ignore count in
     }
 }

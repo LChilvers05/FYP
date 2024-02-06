@@ -7,8 +7,6 @@
 
 import AVFoundation
 import AudioKit
-import AudioKitEX
-import SoundpipeAudioKit
 
 // compare players input to rudiment data and return result
 final class RudimentComparisonHandler {
@@ -22,18 +20,26 @@ final class RudimentComparisonHandler {
     private var strokes: [RudimentStroke] = []
     private var focus = -1
     
-    init(_ rudiment: Rudiment, _ tempo: Int) {
-        let midiFile = repository.getRudimentMIDI(rudiment.midi)
+    var isPlaying: Bool {
+        get { return sequencer.isPlaying }
+    }
+    
+    init(_ rudiment: Rudiment,
+         _ tempo: Int,
+         length: Duration = Duration(beats: 4.0)) {
         
-        setupSequencer(rudiment, tempo)
+        let midiFile = repository.getRudimentMIDI(rudiment.midi)
+        setupSequencer(rudiment, tempo, length)
         createStrokes(from: rudiment, and: midiFile)
     }
     
     func beginComparison() {
+        guard !isPlaying else { return }
         sequencer.play()
     }
     
     func stopComparison() {
+        guard isPlaying else { return }
         sequencer.rewind()
         sequencer.stop()
     }
@@ -64,19 +70,19 @@ final class RudimentComparisonHandler {
     }
     
     private func playStroke(status: MIDIByte, _: MIDIByte, _: MIDIByte) {
-        guard status == 144 else { return } // note on //TODO: sequencer will have double!
+        guard let type = MIDIStatus(byte: status)?.type,
+              type == .noteOn else { return } // note on
         // check for missed strokes
         if focus >= 0 && results[focus] == nil {
             results[focus] = .missed
         }
-        print(focus)
         // next event
         focus += 1
         
         // reset feedback results
         if focus == strokes.count {
             focus = 0
-            print(results)
+            repository.savePractice(results)
             results = Array(repeating: nil, count: strokes.count)
         }
     }
@@ -122,10 +128,13 @@ final class RudimentComparisonHandler {
         results = Array(repeating: nil, count: strokes.count)
     }
     
-    private func setupSequencer(_ rudiment: Rudiment, _ tempo: Int) {
+    private func setupSequencer(_ rudiment: Rudiment, 
+                                _ tempo: Int,
+                                _ length: Duration) {
         sequencer.loadMIDIFile(rudiment.midi)
         sequencer.setTempo(Double(tempo))
         sequencer.setGlobalMIDIOutput(midiCallback.midiIn)
+        sequencer.setLength(length)
         sequencer.enableLooping()
         midiCallback.callback = playStroke
     }
