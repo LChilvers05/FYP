@@ -13,4 +13,32 @@ struct Rudiment: Codable, Identifiable, Hashable {
     let name: String
     let midi: String
     let image: String
+    let pattern: String
+    let patternRepeats: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, midi, image, pattern
+        case patternRepeats = "pattern_repeats"
+    }
+}
+
+extension Rudiment {
+    func getStickingPattern() -> [Sticking] {
+        var sticking: [Sticking] = []
+        for s in pattern {
+            switch s {
+            case "R":
+                sticking.append(.right)
+            case "L":
+                sticking.append(.left)
+            default:
+                continue
+            }
+        }
+        
+        return Array(
+            repeating: sticking,
+            count: patternRepeats
+        ).flatMap { $0 }
+    }
 }

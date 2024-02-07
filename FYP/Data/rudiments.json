@@ -2,32 +2,42 @@
     {
         "id": 1,
         "name": "Single Stroke Roll",
-        "midi": "single_stroke_roll.mid",
-        "image": "single_stroke_roll.png"
+        "midi": "single_stroke_roll",
+        "image": "single_stroke_roll.png",
+        "pattern": "RL",
+        "pattern_repeats": 8
     },
     {
         "id": 2,
         "name": "Double Stroke Roll",
-        "midi": "double_stroke_roll.mid",
-        "image": "double_stroke_roll.png"
+        "midi": "double_stroke_roll",
+        "image": "double_stroke_roll.png",
+        "pattern": "RRLL",
+        "pattern_repeats": 4
     },
     {
         "id": 3,
         "name": "Paradiddle",
-        "midi": "paradiddle.mid",
-        "image": "paradiddle.png"
+        "midi": "paradiddle",
+        "image": "paradiddle.png",
+        "pattern": "RLRRLRLL",
+        "pattern_repeats": 2
     },
     {
         "id": 4,
         "name": "Flam",
-        "midi": "flam.mid",
-        "image": "flam.png"
+        "midi": "flam",
+        "image": "flam.png",
+        "pattern": "none",
+        "pattern_repeats": 0
     },
     {
         "id": 5,
         "name": "Drag",
-        "midi": "drag.mid",
-        "image": "drag.png"
+        "midi": "drag",
+        "image": "drag.png",
+        "pattern": "none",
+        "pattern_repeats": 0
     }
 ]
  

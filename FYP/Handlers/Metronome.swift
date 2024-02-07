@@ -29,15 +29,18 @@ final class Metronome: ObservableObject {
         set { sequencer.setTempo(Double(newValue)) }
     }
     
+    // used after first bar
     private(set) var isCountingIn = true
+    var didCountIn: (() -> Void)?
+    
     var isPlaying: Bool {
         get { return sequencer.isPlaying }
     }
     
-    init(tempo: Int, numerator: Int = 4, denominator: Int = 4) {
+    init(bpm: Int, numerator: Int = 4, denominator: Int = 4) {
         self.numerator = numerator
         self.denominator = denominator
-        self.tempo = tempo
+        self.tempo = bpm
         
         // setup
         createTrack()
@@ -91,19 +94,24 @@ final class Metronome: ObservableObject {
     }
     
     private func playNote(status: MIDIByte, note: MIDIByte, velocity: MIDIByte) {
-        if status == 144 { // note on
+        guard let type = MIDIStatus(byte: status)?.type else { return }
+        switch type {
+        case .noteOff:
+            instrument.amplitude = 0.0
+        case .noteOn:
             countBeat()
             instrument.frequency = note.midiNoteToFrequency()
             instrument.amplitude = AUValue(velocity)
             instrument.play()
-        } else if status == 128 { // note off
-            instrument.amplitude = 0.0
+        default:
+            break
         }
     }
     
     private func countBeat() {
         if beat == numerator {
             beat = 1
+            if isCountingIn { didCountIn?() }
             isCountingIn = false
         } else {
             beat += 1

@@ -31,6 +31,10 @@ final class Repository {
         return MIDIFile(url: url)
     }
     
+    func savePractice(_ results: [Feedback?]) {
+        // TODO: save in some file or DB
+    }
+    
     private func getFileURL(_ resource: String?, _ type: String?) -> URL? {
         return Bundle.main.url(forResource: resource, withExtension: type)
     }
