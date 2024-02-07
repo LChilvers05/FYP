@@ -40,5 +40,11 @@ final class PracticeViewModel: ObservableObject {
     
     private func didDetectOnset(_ onsetTime: AmplitudeData?) {
         guard !metronome.isCountingIn else { return } // ignore count in
+        
+        let stroke = UserStroke(
+            positionInBeats: metronome.positionInBeats, // TODO: -offset?
+            sticking: .right
+        )
+        rudimentComparison.compare(userStroke: stroke)
     }
 }

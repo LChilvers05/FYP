@@ -37,6 +37,10 @@ final class Metronome: ObservableObject {
         get { return sequencer.isPlaying }
     }
     
+    var positionInBeats: Double {
+        get { sequencer.currentPosition.beats }
+    }
+    
     init(bpm: Int, numerator: Int = 4, denominator: Int = 4) {
         self.numerator = numerator
         self.denominator = denominator
