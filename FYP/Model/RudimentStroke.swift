@@ -27,7 +27,8 @@ extension RudimentStroke {
         } else if beat >= early && beat <= nextPositionInBeats {
             return .nextSuccess
         } else {
-            return .missed
+            //TODO: if it is outside the bounds, update neighbouring strokes
+            return .error
         }
     }
 }

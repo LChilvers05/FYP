@@ -33,6 +33,7 @@ final class Repository {
     
     func savePractice(_ results: [Feedback?]) {
         // TODO: save in some file or DB
+        print(results)
     }
     
     private func getFileURL(_ resource: String?, _ type: String?) -> URL? {

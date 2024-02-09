@@ -33,12 +33,15 @@ final class Metronome: ObservableObject {
     private(set) var isCountingIn = true
     var didCountIn: (() -> Void)?
     
-    var isPlaying: Bool {
+    private var isPlaying: Bool {
         get { return sequencer.isPlaying }
     }
     
     var positionInBeats: Double {
-        get { sequencer.currentPosition.beats }
+        get { 
+            sequencer.currentPosition.beats
+                .truncatingRemainder(dividingBy: Double(numerator))
+        }
     }
     
     init(bpm: Int, numerator: Int = 4, denominator: Int = 4) {

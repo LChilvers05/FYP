@@ -13,21 +13,30 @@ final class RudimentComparisonHandler {
     
     private let repository = Repository()
     
+    // Improvement: same sequencer object as metronome and add track
     private var sequencer = AppleSequencer() // play rudiment
     private let midiCallback = MIDICallbackInstrument()
+    private let sequencerLength: Double // of sequencer
     
     private var results: [Feedback?] = []
     private var strokes: [RudimentStroke] = []
     private var focus = -1
     
-    var isPlaying: Bool {
+    private var isPlaying: Bool {
         get { return sequencer.isPlaying }
+    }
+    
+    var positionInBeats: Double {
+        get {
+            sequencer.currentPosition.beats
+                .truncatingRemainder(dividingBy: sequencerLength)
+        }
     }
     
     init(_ rudiment: Rudiment,
          _ tempo: Int,
          length: Duration = Duration(beats: 4.0)) {
-        
+        sequencerLength = length.beats
         let midiFile = repository.getRudimentMIDI(rudiment.midi)
         setupSequencer(rudiment, tempo, length)
         createStrokes(from: rudiment, and: midiFile)
@@ -44,29 +53,35 @@ final class RudimentComparisonHandler {
         sequencer.stop()
     }
     
+    //TODO: issue is when I strike on beat one,
+    // get feedback on beat 2 and
+    // beat 1 is marked as .missed
+    
     // stroke input from user
     func compare(userStroke: UserStroke) {
         guard focus >= 0 else { return }
         let stroke = strokes[focus]
-        let nextStroke = strokes[(focus+1) % strokes.count]
+//TODO:        let nextStroke = strokes[(focus+1) % strokes.count]
         // compare rhythm
         let rhythmResult = stroke.checkRhythm(for: userStroke.positionInBeats)
         
-        var i = focus // for marking feedback
-        var feedback: Feedback?
+        let next = min(focus+1, results.count-1)
         switch rhythmResult { // after this stroke
         case .success, .late:
-            feedback = (stroke.sticking == userStroke.sticking) ?
-            rhythmResult : .sticking
+            // mark feedback
+            results[focus] = rhythmResult
+//TODO:            (stroke.sticking == userStroke.sticking) ?
+//            rhythmResult : .sticking
+            
         case .early, .nextSuccess: // before next stroke
-            feedback = (nextStroke.sticking == userStroke.sticking) ?
-            rhythmResult : .sticking
-            i += 1 // mark next
+            if results[focus] == nil { results[focus] = .late }
+            results[next] = (rhythmResult == .nextSuccess) ? .success : rhythmResult
+//TODO:            (nextStroke.sticking == userStroke.sticking) ?
+//            rhythmResult : .sticking
+            
         default:
-            feedback = rhythmResult
+            results[focus] = rhythmResult
         }
-        // mark result
-        results[i] = feedback
     }
     
     private func playStroke(status: MIDIByte, _: MIDIByte, _: MIDIByte) {

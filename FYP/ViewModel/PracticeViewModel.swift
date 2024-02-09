@@ -14,7 +14,7 @@ final class PracticeViewModel: ObservableObject {
     
     private lazy var onsetDetector = OnsetDetectionHandler()
     private let rudimentComparison: RudimentComparisonHandler
-    private let tempo = 50
+    private let tempo = 100
         
     init(_ rudiment: Rudiment) {
         metronome = Metronome(bpm: tempo)
@@ -42,7 +42,7 @@ final class PracticeViewModel: ObservableObject {
         guard !metronome.isCountingIn else { return } // ignore count in
         
         let stroke = UserStroke(
-            positionInBeats: metronome.positionInBeats, // TODO: -offset?
+            positionInBeats: rudimentComparison.positionInBeats, //TODO: latency?
             sticking: .right,
             amplitude: ampData
         )
