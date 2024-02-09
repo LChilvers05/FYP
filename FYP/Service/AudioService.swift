@@ -27,6 +27,7 @@ final class AudioService: ObservableObject {
         engine.output = Fader(mic, gain: 0) //silence
         tap = AmplitudeTap( //TODO: experiment with BufferSize
             mic,
+            analysisMode: .peak,
             callbackQueue: .global(qos: .userInitiated)
         ) { [weak self] amplitude in
             guard let self,

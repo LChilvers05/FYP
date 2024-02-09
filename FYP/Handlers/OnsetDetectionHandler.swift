@@ -14,9 +14,12 @@ final class OnsetDetectionHandler {
     private var cancellables: Set<AnyCancellable> = []
     private let threshold: Float
     
-    var didDetectOnset: ((AmplitudeData?) -> Void)?
+    // prevent multiple detections per stroke
+    private var previous = 0
     
-    init(threshold: Float = 0.1) {
+    var didDetectOnset: ((AmplitudeData) -> Void)?
+    
+    init(threshold: Float = 0.3) {
         self.threshold = threshold
         audioService.$stream
             .sink { [weak self] ampData in
@@ -32,16 +35,15 @@ final class OnsetDetectionHandler {
     
     func stopDetecting() {
         audioService.stopListening()
+        previous = 0
     }
     
     private func detectOnset(_ ampData: AmplitudeData?) {
-        guard let amplitude = ampData?.amplitude,
-              let serial =  ampData?.id else { return }
+        guard let ampData,
+              ampData.id != previous + 1,
+              ampData.amplitude >= threshold else { return }
         
-        //TODO: 
-        if amplitude >= threshold {
-            print("\(serial): \(amplitude.magnitude)")
-            didDetectOnset?(ampData)
-        }
+        didDetectOnset?(ampData)
+        previous = ampData.id
     }
 }

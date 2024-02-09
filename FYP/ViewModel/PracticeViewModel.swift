@@ -38,12 +38,13 @@ final class PracticeViewModel: ObservableObject {
         rudimentComparison.beginComparison()
     }
     
-    private func didDetectOnset(_ onsetTime: AmplitudeData?) {
+    private func didDetectOnset(_ ampData: AmplitudeData) {
         guard !metronome.isCountingIn else { return } // ignore count in
         
         let stroke = UserStroke(
             positionInBeats: metronome.positionInBeats, // TODO: -offset?
-            sticking: .right
+            sticking: .right,
+            amplitude: ampData
         )
         rudimentComparison.compare(userStroke: stroke)
     }

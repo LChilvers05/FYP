@@ -10,6 +10,7 @@ import Foundation
 struct UserStroke {
     let positionInBeats: Double
     let sticking: Sticking
+    let amplitude: AmplitudeData
 }
 
 enum Sticking {
