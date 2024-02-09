@@ -18,16 +18,17 @@ struct RudimentStroke {
 
 extension RudimentStroke {
     func checkRhythm(for beat: Double) -> Feedback {
-        if beat >= positionInBeats && beat <= success {
+        if beat < positionInBeats {
+            return .early
+        } else if beat >= positionInBeats && beat <= success {
             return .success
         } else if beat >= success && beat <= late {
             return .late
         } else if beat >= late && beat <= early {
-            return .early
+            return .nextEarly
         } else if beat >= early && beat <= nextPositionInBeats {
             return .nextSuccess
         } else {
-            //TODO: if it is outside the bounds, update neighbouring strokes
             return .error
         }
     }

@@ -34,10 +34,6 @@ final class RudimentPlayer {
         createStrokes(from: rudiment, and: midiFile)
     }
     
-    //TODO: issue is when I strike on beat one,
-    // get feedback on beat 2 and
-    // beat 1 is marked as .missed
-    
     // stroke input from user
     func compare(userStroke: UserStroke) {
         guard focus >= 0 else { return }
@@ -48,15 +44,15 @@ final class RudimentPlayer {
         
         let next = min(focus+1, results.count-1)
         switch rhythmResult { // after this stroke
-        case .success, .late:
+        case .early, .success, .late:
             // mark feedback
             results[focus] = rhythmResult
 //STICKING:            (stroke.sticking == userStroke.sticking) ?
 //            rhythmResult : .sticking
             
-        case .early, .nextSuccess: // before next stroke
+        case .nextEarly, .nextSuccess: // before next stroke
             if results[focus] == nil { results[focus] = .late }
-            results[next] = (rhythmResult == .nextSuccess) ? .success : rhythmResult
+            results[next] = (rhythmResult == .nextSuccess) ? .success : .early
 //STICKING:            (nextStroke.sticking == userStroke.sticking) ?
 //            rhythmResult : .sticking
             
@@ -107,10 +103,9 @@ final class RudimentPlayer {
             let sticking = stickingPattern[i]
             
             // rhythm check windows
-            let n = 0.3
-            let late = (pos + nextPos)/2.0
-            let success = pos + n*(late - pos)
-            let early = late + (1.0-n)*(nextPos - late)
+            let late = 0.5*(pos + nextPos)
+            let success = 0.5*(pos + late)
+            let early = 0.5*(late + nextPos)
             
             strokes.append(RudimentStroke(
                 sticking: sticking,
@@ -137,9 +132,10 @@ final class RudimentPlayer {
 }
 
 enum Feedback {
-    case success,
+    case early,
+         success,
          late,
-         early,
+         nextEarly,
          nextSuccess,
          missed,
          sticking,
