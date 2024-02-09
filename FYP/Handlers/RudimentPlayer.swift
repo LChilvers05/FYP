@@ -9,12 +9,11 @@ import AVFoundation
 import AudioKit
 
 // compare players input to rudiment data and return result
-final class RudimentComparisonHandler {
+final class RudimentPlayer {
     
     private let repository = Repository()
     
-    // Improvement: same sequencer object as metronome and add track
-    private var sequencer = AppleSequencer() // play rudiment
+    let sequencer = AppleSequencer() // play rudiment
     private let midiCallback = MIDICallbackInstrument()
     private let sequencerLength: Double // of sequencer
     
@@ -26,13 +25,6 @@ final class RudimentComparisonHandler {
         get { return sequencer.isPlaying }
     }
     
-    var positionInBeats: Double {
-        get {
-            sequencer.currentPosition.beats
-                .truncatingRemainder(dividingBy: sequencerLength)
-        }
-    }
-    
     init(_ rudiment: Rudiment,
          _ tempo: Int,
          length: Duration = Duration(beats: 4.0)) {
@@ -40,17 +32,6 @@ final class RudimentComparisonHandler {
         let midiFile = repository.getRudimentMIDI(rudiment.midi)
         setupSequencer(rudiment, tempo, length)
         createStrokes(from: rudiment, and: midiFile)
-    }
-    
-    func beginComparison() {
-        guard !isPlaying else { return }
-        sequencer.play()
-    }
-    
-    func stopComparison() {
-        guard isPlaying else { return }
-        sequencer.rewind()
-        sequencer.stop()
     }
     
     //TODO: issue is when I strike on beat one,
@@ -61,7 +42,7 @@ final class RudimentComparisonHandler {
     func compare(userStroke: UserStroke) {
         guard focus >= 0 else { return }
         let stroke = strokes[focus]
-//TODO:        let nextStroke = strokes[(focus+1) % strokes.count]
+//STICKING:        let nextStroke = strokes[(focus+1) % strokes.count]
         // compare rhythm
         let rhythmResult = stroke.checkRhythm(for: userStroke.positionInBeats)
         
@@ -70,13 +51,13 @@ final class RudimentComparisonHandler {
         case .success, .late:
             // mark feedback
             results[focus] = rhythmResult
-//TODO:            (stroke.sticking == userStroke.sticking) ?
+//STICKING:            (stroke.sticking == userStroke.sticking) ?
 //            rhythmResult : .sticking
             
         case .early, .nextSuccess: // before next stroke
             if results[focus] == nil { results[focus] = .late }
             results[next] = (rhythmResult == .nextSuccess) ? .success : rhythmResult
-//TODO:            (nextStroke.sticking == userStroke.sticking) ?
+//STICKING:            (nextStroke.sticking == userStroke.sticking) ?
 //            rhythmResult : .sticking
             
         default:
@@ -146,16 +127,12 @@ final class RudimentComparisonHandler {
     private func setupSequencer(_ rudiment: Rudiment, 
                                 _ tempo: Int,
                                 _ length: Duration) {
+        // plays at metronome start
         sequencer.loadMIDIFile(rudiment.midi)
         sequencer.setTempo(Double(tempo))
         sequencer.setGlobalMIDIOutput(midiCallback.midiIn)
         sequencer.setLength(length)
-        sequencer.enableLooping()
         midiCallback.callback = playStroke
-    }
-    
-    deinit {
-        stopComparison()
     }
 }
 

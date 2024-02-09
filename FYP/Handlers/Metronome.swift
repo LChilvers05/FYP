@@ -16,44 +16,28 @@ final class Metronome: ObservableObject {
     @Published var beat: Int = 0
     
     private let engine = AudioEngine()
-    private let sequencer = AppleSequencer()
     private let midiCallback = MIDICallbackInstrument()
     private let instrument = Oscillator()
-    
-    // time signature
-    private let numerator: Int
-    private let denominator: Int
-    
-    var tempo: Int {
-        get { Int(sequencer.tempo) }
-        set { sequencer.setTempo(Double(newValue)) }
-    }
+    private let sequencer: AppleSequencer
     
     // used after first bar
     private(set) var isCountingIn = true
-    var didCountIn: (() -> Void)?
     
     private var isPlaying: Bool {
         get { return sequencer.isPlaying }
     }
-    
     var positionInBeats: Double {
-        get { 
+        get {
             sequencer.currentPosition.beats
-                .truncatingRemainder(dividingBy: Double(numerator))
+                .truncatingRemainder(dividingBy: sequencer.length.beats)
         }
     }
     
-    init(bpm: Int, numerator: Int = 4, denominator: Int = 4) {
-        self.numerator = numerator
-        self.denominator = denominator
-        self.tempo = bpm
+    init(sequencer: AppleSequencer) {
+        self.sequencer = sequencer
         
         // setup
         createTrack()
-        sequencer.enableLooping()
-        
-        midiCallback.callback = playNote
         
         engine.output = instrument
         try? engine.start()
@@ -79,7 +63,7 @@ final class Metronome: ObservableObject {
         
         track.clear()
         track.setMIDIOutput(midiCallback.midiIn)
-        track.setLength(Duration(beats: Double(numerator)))
+        track.setLength(sequencer.length)
         
         // downbeat
         track.add(
@@ -90,7 +74,7 @@ final class Metronome: ObservableObject {
         )
         
         // remaining beats
-        for beat in 1..<numerator {
+        for beat in 1..<Int(sequencer.length.beats) {
             track.add(
                 noteNumber: MIDINoteNumber(70),
                 velocity: beatVelocity,
@@ -98,6 +82,9 @@ final class Metronome: ObservableObject {
                 duration: Duration(beats: 0.05)
             )
         }
+        
+        sequencer.enableLooping()
+        midiCallback.callback = playNote
     }
     
     private func playNote(status: MIDIByte, note: MIDIByte, velocity: MIDIByte) {
@@ -116,9 +103,8 @@ final class Metronome: ObservableObject {
     }
     
     private func countBeat() {
-        if beat == numerator {
+        if beat == Int(sequencer.length.beats) {
             beat = 1
-            if isCountingIn { didCountIn?() }
             isCountingIn = false
         } else {
             beat += 1

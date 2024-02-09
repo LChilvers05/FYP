@@ -22,7 +22,7 @@ struct PracticeView: View {
             Spacer()
             MetronomeView(metronome: viewModel.metronome)
             ControlsView(
-                playAction: viewModel.beginPractice,
+                playAction: viewModel.startPractice,
                 stopAction: viewModel.endPractice
             )
             
