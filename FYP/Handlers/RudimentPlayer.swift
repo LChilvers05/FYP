@@ -43,53 +43,61 @@ final class RudimentPlayer {
     
     // score feedback
     private func compare(_ userStroke: UserStroke, curr: Int, next: Int) {
-        // results list pointer
-        var i = 1
-        if curr < 0 { i = 0 }
-        if next >= strokes.count { i = 2 }
-        
-        // stroke pointers
-        let curr = (curr + strokes.count) % strokes.count // wrap
-        let next = (next + strokes.count) % strokes.count
-        
-        let stroke = strokes[curr]
-        // compare rhythm
-        let rhythm = stroke.checkRhythm(for: userStroke.positionInBeats)
-        
-        switch rhythm {
-        case .early:
-            // feedback for previous stroke
-            compare(userStroke, curr: curr-1, next: curr)
-        case .success, .late:
-            // feedback for current stroke
-            results[i][curr] = rhythm
-        case .nextEarly, .nextSuccess:
-            // feedback for next stroke
-            results[i][next] = (rhythm == .nextEarly) ? .early : .success
-        default:
-            results[i][curr] = rhythm
+        Task {
+            await MainActor.run {
+                // results list pointer
+                var i = 1
+                if curr < 0 { i = 0 }
+                if next >= strokes.count { i = 2 }
+                
+                // stroke pointers
+                let curr = (curr + strokes.count) % strokes.count // wrap
+                let next = (next + strokes.count) % strokes.count
+                
+                let stroke = strokes[curr]
+                // compare rhythm
+                let rhythm = stroke.checkRhythm(for: userStroke.positionInBeats)
+                
+                switch rhythm {
+                case .early:
+                    // feedback for previous stroke
+                    compare(userStroke, curr: curr-1, next: curr)
+                case .success, .late:
+                    // feedback for current stroke
+                    results[i][curr] = rhythm
+                case .nextEarly, .nextSuccess:
+                    // feedback for next stroke
+                    results[i][next] = (rhythm == .nextEarly) ? .early : .success
+                default:
+                    results[i][curr] = rhythm
+                }
+            }
         }
     }
     
     private func playStroke(status: MIDIByte, _: MIDIByte, _: MIDIByte) {
         guard let type = MIDIStatus(byte: status)?.type,
               type == .noteOn else { return } // note on
-        // check for missed strokes
-        if focus >= 0 && results[1][focus] == nil {
-            results[1][focus] = .missed
-        }
-        // next event
-        focus += 1
-        
-        // reset feedback results
-        if focus == strokes.count {
-            focus = 0
-            // save prev feedback
-            repository.savePractice(results[0])
-            // shift along results buffer
-            results[0] = results[1]
-            results[1] = results[2]
-            results[2] = Array(repeating: nil, count: strokes.count)
+        Task {
+            await MainActor.run {
+                // check for missed strokes
+                if focus >= 0 && results[1][focus] == nil {
+                    results[1][focus] = .missed
+                }
+                // next event
+                focus += 1
+                
+                // reset feedback results
+                if focus == strokes.count {
+                    focus = 0
+                    // save prev feedback
+                    repository.savePractice(results[0])
+                    // shift along results buffer
+                    results[0] = results[1]
+                    results[1] = results[2]
+                    results[2] = Array(repeating: nil, count: strokes.count)
+                }
+            }
         }
     }
     
