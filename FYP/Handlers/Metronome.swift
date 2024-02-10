@@ -28,7 +28,12 @@ final class Metronome: ObservableObject {
     }
     var positionInBeats: Double {
         get {
-            sequencer.currentPosition.beats
+            // TODO: formula?
+            // adjust success windows relative to tempo too
+            let k = 1.9/1000
+            let latency = k*Double(sequencer.tempo)
+            
+            return (sequencer.currentPosition.beats - latency)
                 .truncatingRemainder(dividingBy: sequencer.length.beats)
         }
     }

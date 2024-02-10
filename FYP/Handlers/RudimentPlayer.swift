@@ -17,7 +17,8 @@ final class RudimentPlayer {
     private let midiCallback = MIDICallbackInstrument()
     private let sequencerLength: Double // of sequencer
     
-    private var results: [Feedback?] = []
+    // nx3 for results buffer
+    private var results: [[Feedback?]] = []
     private var strokes: [RudimentStroke] = []
     private var focus = -1
     
@@ -35,29 +36,38 @@ final class RudimentPlayer {
     }
     
     // stroke input from user
-    func compare(userStroke: UserStroke) {
-        guard focus >= 0 else { return }
-        let stroke = strokes[focus]
-//STICKING:        let nextStroke = strokes[(focus+1) % strokes.count]
-        // compare rhythm
-        let rhythmResult = stroke.checkRhythm(for: userStroke.positionInBeats)
+    func score(_ userStroke: UserStroke) {
+        guard isPlaying else { return }
+        compare(userStroke, curr: focus, next: focus+1)
+    }
+    
+    // score feedback
+    private func compare(_ userStroke: UserStroke, curr: Int, next: Int) {
+        // results list pointer
+        var i = 1
+        if curr < 0 { i = 0 }
+        if next >= strokes.count { i = 2 }
         
-        let next = min(focus+1, results.count-1)
-        switch rhythmResult { // after this stroke
-        case .early, .success, .late:
-            // mark feedback
-            results[focus] = rhythmResult
-//STICKING:            (stroke.sticking == userStroke.sticking) ?
-//            rhythmResult : .sticking
-            
-        case .nextEarly, .nextSuccess: // before next stroke
-            if results[focus] == nil { results[focus] = .late }
-            results[next] = (rhythmResult == .nextSuccess) ? .success : .early
-//STICKING:            (nextStroke.sticking == userStroke.sticking) ?
-//            rhythmResult : .sticking
-            
+        // stroke pointers
+        let curr = (curr + strokes.count) % strokes.count // wrap
+        let next = (next + strokes.count) % strokes.count
+        
+        let stroke = strokes[curr]
+        // compare rhythm
+        let rhythm = stroke.checkRhythm(for: userStroke.positionInBeats)
+        
+        switch rhythm {
+        case .early:
+            // feedback for previous stroke
+            compare(userStroke, curr: curr-1, next: curr)
+        case .success, .late:
+            // feedback for current stroke
+            results[i][curr] = rhythm
+        case .nextEarly, .nextSuccess:
+            // feedback for next stroke
+            results[i][next] = (rhythm == .nextEarly) ? .early : .success
         default:
-            results[focus] = rhythmResult
+            results[i][curr] = rhythm
         }
     }
     
@@ -65,8 +75,8 @@ final class RudimentPlayer {
         guard let type = MIDIStatus(byte: status)?.type,
               type == .noteOn else { return } // note on
         // check for missed strokes
-        if focus >= 0 && results[focus] == nil {
-            results[focus] = .missed
+        if focus >= 0 && results[1][focus] == nil {
+            results[1][focus] = .missed
         }
         // next event
         focus += 1
@@ -74,8 +84,12 @@ final class RudimentPlayer {
         // reset feedback results
         if focus == strokes.count {
             focus = 0
-            repository.savePractice(results)
-            results = Array(repeating: nil, count: strokes.count)
+            // save prev feedback
+            repository.savePractice(results[0])
+            // shift along results buffer
+            results[0] = results[1]
+            results[1] = results[2]
+            results[2] = Array(repeating: nil, count: strokes.count)
         }
     }
     
@@ -116,7 +130,11 @@ final class RudimentPlayer {
                 nextPositionInBeats: nextPos
             ))
         }
-        results = Array(repeating: nil, count: strokes.count)
+        
+        results = Array(
+            repeating: Array(repeating: nil, count: strokes.count),
+            count: 3
+        )
     }
     
     private func setupSequencer(_ rudiment: Rudiment, 
