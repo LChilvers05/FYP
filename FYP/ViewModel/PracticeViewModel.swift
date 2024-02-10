@@ -12,30 +12,37 @@ final class PracticeViewModel: ObservableObject {
     
     @Published var metronome: Metronome
     
-    private lazy var onsetDetector = OnsetDetectionHandler()
+    private lazy var onsetDetection = OnsetDetectionHandler()
+    private lazy var gestureRecognition = GestureRecognitionHandler()
     private let player: RudimentPlayer
     private let tempo = 70
         
     init(_ rudiment: Rudiment) {
+        
+        // TODO: TEST
+        let repository = Repository()
+        repository.writeToCSV("", path: "ML/test.csv")
+        
+        
         player = RudimentPlayer(rudiment, tempo)
         metronome = Metronome(sequencer: player.sequencer)
         
-        onsetDetector.didDetectOnset = self.didDetectOnset
+        onsetDetection.didDetectOnset = self.didDetectOnset
     }
     
     func startPractice() {
-        onsetDetector.beginDetecting()
+        onsetDetection.beginDetecting()
         metronome.start()
     }
     
     func endPractice() {
-        onsetDetector.stopDetecting()
+        onsetDetection.stopDetecting()
         metronome.stop()
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
         guard !metronome.isCountingIn else { return }
-        
+// TODO:        let sticking = gesture.recognition.getSticking()
         let stroke = UserStroke(
             positionInBeats: metronome.positionInBeats,
             sticking: .right,

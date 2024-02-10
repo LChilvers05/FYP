@@ -41,6 +41,45 @@ final class Repository {
         print(printables)
     }
     
+    func logGesture(snapshot: [MovementData]) {
+        let features = [
+            "Time Stamp",
+            "Rotation Rate X",
+            "Rotation Rate Y",
+            "Rotation Rate Z",
+            "Acceleration X",
+            "Acceleration Y",
+            "Acceleration Z"
+        ]
+        
+        var contents = ""
+        
+        // write features
+        let featuresRow = features.joined(separator: ",")
+        contents.append(featuresRow + "\n")
+        
+        // write data
+        for datum in snapshot {
+            let row = "\(datum.time),\(datum.acceleration.x),\(datum.acceleration.y),\(datum.acceleration.z),\(datum.rotation.x),\(datum.rotation.y),\(datum.rotation.z)"
+            contents.append(row + "\n")
+        }
+        
+        writeToCSV(contents, path: "")
+    }
+    
+    func writeToCSV(_ contents: String, path: String) {
+        
+        let fileManager = FileManager.default
+        do {
+            //TODO: 
+//            let directory = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+//            let fileURL = directory.appendingPathComponent(path)
+//            try contents.write(toFile: fileURL, atomically: true, encoding: .utf8)
+        } catch {
+            print("Error writing to CSV file: \(error.localizedDescription)")
+        }
+    }
+    
     private func getFileURL(_ resource: String?, _ type: String?) -> URL? {
         return Bundle.main.url(forResource: resource, withExtension: type)
     }

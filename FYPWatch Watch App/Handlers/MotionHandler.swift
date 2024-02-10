@@ -15,7 +15,7 @@ final class MotionHandler {
     func startAccelerometerStream() {
         guard motionManager.isAccelerometerAvailable else { return }
         
-        motionManager.accelerometerUpdateInterval = 0.1
+        motionManager.accelerometerUpdateInterval = 1.0/1000.0 //1000hz
         motionManager.startAccelerometerUpdates(to: OperationQueue.main) { (data, error) in
             guard let acceleration = data?.acceleration,
                   error == nil else { return }
@@ -28,7 +28,7 @@ final class MotionHandler {
     func startGyroStream() {
         guard motionManager.isGyroAvailable else { return }
         
-        motionManager.gyroUpdateInterval = 0.1
+        motionManager.gyroUpdateInterval = 1.0/1000.0 //1000hz
         motionManager.startGyroUpdates(to: OperationQueue.main) { (data, error) in
             guard let rotationRate = data?.rotationRate,
                   error == nil else { return }
