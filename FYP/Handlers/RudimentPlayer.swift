@@ -38,40 +38,39 @@ final class RudimentPlayer {
     // stroke input from user
     func score(_ userStroke: UserStroke) {
         guard isPlaying else { return }
-        compare(userStroke, curr: focus, next: focus+1)
+        Task {
+            await compare(userStroke, curr: focus, next: focus+1)
+        }
     }
     
     // score feedback
+    @MainActor
     private func compare(_ userStroke: UserStroke, curr: Int, next: Int) {
-        Task {
-            await MainActor.run {
-                // results list pointer
-                var i = 1
-                if curr < 0 { i = 0 }
-                if next >= strokes.count { i = 2 }
-                
-                // stroke pointers
-                let curr = (curr + strokes.count) % strokes.count // wrap
-                let next = (next + strokes.count) % strokes.count
-                
-                let stroke = strokes[curr]
-                // compare rhythm
-                let rhythm = stroke.checkRhythm(for: userStroke.positionInBeats)
-                
-                switch rhythm {
-                case .early:
-                    // feedback for previous stroke
-                    compare(userStroke, curr: curr-1, next: curr)
-                case .success, .late:
-                    // feedback for current stroke
-                    results[i][curr] = rhythm
-                case .nextEarly, .nextSuccess:
-                    // feedback for next stroke
-                    results[i][next] = (rhythm == .nextEarly) ? .early : .success
-                default:
-                    results[i][curr] = rhythm
-                }
-            }
+        // results list pointer
+        var i = 1
+        if curr < 0 { i = 0 }
+        if next >= strokes.count { i = 2 }
+        
+        // stroke pointers
+        let curr = (curr + strokes.count) % strokes.count // wrap
+        let next = (next + strokes.count) % strokes.count
+        
+        let stroke = strokes[curr]
+        // compare rhythm
+        let rhythm = stroke.checkRhythm(for: userStroke.positionInBeats)
+        
+        switch rhythm {
+        case .early:
+            // feedback for previous stroke
+            compare(userStroke, curr: curr-1, next: curr)
+        case .success, .late:
+            // feedback for current stroke
+            results[i][curr] = rhythm
+        case .nextEarly, .nextSuccess:
+            // feedback for next stroke
+            results[i][next] = (rhythm == .nextEarly) ? .early : .success
+        default:
+            results[i][curr] = rhythm
         }
     }
     
