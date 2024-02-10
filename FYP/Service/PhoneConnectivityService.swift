@@ -10,6 +10,9 @@ import CoreMotion
 
 final class PhoneConnectivityService {
     
+    @Published var stream: MovementData? = nil
+    
+    private var movement: MovementData? = nil
     private var session: WCSession?
     
     static let shared = PhoneConnectivityService()
@@ -30,12 +33,24 @@ final class PhoneConnectivityService {
     
     // process acceleration data
     func handle(_ acceleration: CMAcceleration) {
-        print(acceleration)
+        if movement == nil { movement = MovementData(time: 0.0) } // TODO: how to get time
+        movement?.acceleration = acceleration
+        handle(movement)
     }
     
     // process gyro data
     func handle(_ rotationRate: CMRotationRate) {
-        print(rotationRate)
+        if movement == nil { movement = MovementData(time: 0.0) }
+        movement?.rotation = rotationRate
+        handle(movement)
+    }
+    
+    private func handle(_ movement: MovementData?) {
+        guard movement?.acceleration != nil,
+              movement?.rotation != nil else { return }
+        // update subscribers
+        stream = movement
+        self.movement = nil
     }
     
     var description: String = ""

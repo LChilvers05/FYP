@@ -7,6 +7,8 @@
 
 import AudioKit
 import Combine
+import Foundation
+import CoreMotion
 
 final class PracticeViewModel: ObservableObject {
     
@@ -18,12 +20,6 @@ final class PracticeViewModel: ObservableObject {
     private let tempo = 70
         
     init(_ rudiment: Rudiment) {
-        
-        // TODO: TEST
-        let repository = Repository()
-        repository.writeToCSV("", path: "ML/test.csv")
-        
-        
         player = RudimentPlayer(rudiment, tempo)
         metronome = Metronome(sequencer: player.sequencer)
         

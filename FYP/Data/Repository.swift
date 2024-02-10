@@ -60,24 +60,14 @@ final class Repository {
         
         // write data
         for datum in snapshot {
-            let row = "\(datum.time),\(datum.acceleration.x),\(datum.acceleration.y),\(datum.acceleration.z),\(datum.rotation.x),\(datum.rotation.y),\(datum.rotation.z)"
+            guard let rotation = datum.rotation,
+                  let acceleration = datum.acceleration else { continue }
+            
+            let row = "\(datum.time),\(rotation.x),\(rotation.y),\(rotation.z),\(acceleration.x),\(acceleration.y),\(acceleration.z)"
             contents.append(row + "\n")
         }
         
-        writeToCSV(contents, path: "")
-    }
-    
-    func writeToCSV(_ contents: String, path: String) {
-        
-        let fileManager = FileManager.default
-        do {
-            //TODO: 
-//            let directory = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
-//            let fileURL = directory.appendingPathComponent(path)
-//            try contents.write(toFile: fileURL, atomically: true, encoding: .utf8)
-        } catch {
-            print("Error writing to CSV file: \(error.localizedDescription)")
-        }
+        print(contents)
     }
     
     private func getFileURL(_ resource: String?, _ type: String?) -> URL? {
