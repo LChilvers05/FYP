@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */; };
 		FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */; };
-		FE1040602B6841E500A71AF9 /* RudimentComparisonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentComparisonHandler.swift */; };
+		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
 		FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
 		FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B22B71427C00E42FBD /* RudimentStroke.swift */; };
 		FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4A2B49F34200274CD9 /* FYPApp.swift */; };
@@ -101,7 +101,7 @@
 /* Begin PBXFileReference section */
 		FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnsetDetectionHandler.swift; sourceTree = "<group>"; };
 		FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
-		FE10405F2B6841E500A71AF9 /* RudimentComparisonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentComparisonHandler.swift; sourceTree = "<group>"; };
+		FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentPlayer.swift; sourceTree = "<group>"; };
 		FE7154B02B70F02300E42FBD /* UserStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStroke.swift; sourceTree = "<group>"; };
 		FE7154B22B71427C00E42FBD /* RudimentStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentStroke.swift; sourceTree = "<group>"; };
 		FE988B472B49F34200274CD9 /* FYP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,7 +203,7 @@
 			children = (
 				FEA7BDF62B69AE360038B320 /* Metronome.swift */,
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
-				FE10405F2B6841E500A71AF9 /* RudimentComparisonHandler.swift */,
+				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -637,7 +637,7 @@
 				FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */,
 				FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
-				FE1040602B6841E500A71AF9 /* RudimentComparisonHandler.swift in Sources */,
+				FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */,
 				FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

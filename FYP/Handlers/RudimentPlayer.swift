@@ -9,72 +9,74 @@ import AVFoundation
 import AudioKit
 
 // compare players input to rudiment data and return result
-final class RudimentComparisonHandler {
+final class RudimentPlayer {
     
     private let repository = Repository()
     
-    private var sequencer = AppleSequencer() // play rudiment
+    let sequencer = AppleSequencer() // play rudiment
     private let midiCallback = MIDICallbackInstrument()
+    private let sequencerLength: Double // of sequencer
     
-    private var results: [Feedback?] = []
+    // nx3 for results buffer
+    private var results: [[Feedback?]] = []
     private var strokes: [RudimentStroke] = []
     private var focus = -1
     
-    var isPlaying: Bool {
+    private var isPlaying: Bool {
         get { return sequencer.isPlaying }
     }
     
     init(_ rudiment: Rudiment,
          _ tempo: Int,
          length: Duration = Duration(beats: 4.0)) {
-        
+        sequencerLength = length.beats
         let midiFile = repository.getRudimentMIDI(rudiment.midi)
         setupSequencer(rudiment, tempo, length)
         createStrokes(from: rudiment, and: midiFile)
     }
     
-    func beginComparison() {
-        guard !isPlaying else { return }
-        sequencer.play()
-    }
-    
-    func stopComparison() {
-        guard isPlaying else { return }
-        sequencer.rewind()
-        sequencer.stop()
-    }
-    
     // stroke input from user
-    func compare(userStroke: UserStroke) {
-        guard focus >= 0 else { return }
-        let stroke = strokes[focus]
-        let nextStroke = strokes[(focus+1) % strokes.count]
-        // compare rhythm
-        let rhythmResult = stroke.checkRhythm(for: userStroke.positionInBeats)
+    func score(_ userStroke: UserStroke) {
+        guard isPlaying else { return }
+        compare(userStroke, curr: focus, next: focus+1)
+    }
+    
+    // score feedback
+    private func compare(_ userStroke: UserStroke, curr: Int, next: Int) {
+        // results list pointer
+        var i = 1
+        if curr < 0 { i = 0 }
+        if next >= strokes.count { i = 2 }
         
-        var i = focus // for marking feedback
-        var feedback: Feedback?
-        switch rhythmResult { // after this stroke
+        // stroke pointers
+        let curr = (curr + strokes.count) % strokes.count // wrap
+        let next = (next + strokes.count) % strokes.count
+        
+        let stroke = strokes[curr]
+        // compare rhythm
+        let rhythm = stroke.checkRhythm(for: userStroke.positionInBeats)
+        
+        switch rhythm {
+        case .early:
+            // feedback for previous stroke
+            compare(userStroke, curr: curr-1, next: curr)
         case .success, .late:
-            feedback = (stroke.sticking == userStroke.sticking) ?
-            rhythmResult : .sticking
-        case .early, .nextSuccess: // before next stroke
-            feedback = (nextStroke.sticking == userStroke.sticking) ?
-            rhythmResult : .sticking
-            i += 1 // mark next
+            // feedback for current stroke
+            results[i][curr] = rhythm
+        case .nextEarly, .nextSuccess:
+            // feedback for next stroke
+            results[i][next] = (rhythm == .nextEarly) ? .early : .success
         default:
-            feedback = rhythmResult
+            results[i][curr] = rhythm
         }
-        // mark result
-        results[i] = feedback
     }
     
     private func playStroke(status: MIDIByte, _: MIDIByte, _: MIDIByte) {
         guard let type = MIDIStatus(byte: status)?.type,
               type == .noteOn else { return } // note on
         // check for missed strokes
-        if focus >= 0 && results[focus] == nil {
-            results[focus] = .missed
+        if focus >= 0 && results[1][focus] == nil {
+            results[1][focus] = .missed
         }
         // next event
         focus += 1
@@ -82,8 +84,12 @@ final class RudimentComparisonHandler {
         // reset feedback results
         if focus == strokes.count {
             focus = 0
-            repository.savePractice(results)
-            results = Array(repeating: nil, count: strokes.count)
+            // save prev feedback
+            repository.savePractice(results[0])
+            // shift along results buffer
+            results[0] = results[1]
+            results[1] = results[2]
+            results[2] = Array(repeating: nil, count: strokes.count)
         }
     }
     
@@ -111,10 +117,9 @@ final class RudimentComparisonHandler {
             let sticking = stickingPattern[i]
             
             // rhythm check windows
-            let n = 0.3
-            let late = (pos + nextPos)/2.0
-            let success = pos + n*(late - pos)
-            let early = late + (1.0-n)*(nextPos - late)
+            let late = 0.5*(pos + nextPos)
+            let success = 0.5*(pos + late)
+            let early = 0.5*(late + nextPos)
             
             strokes.append(RudimentStroke(
                 sticking: sticking,
@@ -125,29 +130,30 @@ final class RudimentComparisonHandler {
                 nextPositionInBeats: nextPos
             ))
         }
-        results = Array(repeating: nil, count: strokes.count)
+        
+        results = Array(
+            repeating: Array(repeating: nil, count: strokes.count),
+            count: 3
+        )
     }
     
     private func setupSequencer(_ rudiment: Rudiment, 
                                 _ tempo: Int,
                                 _ length: Duration) {
+        // plays at metronome start
         sequencer.loadMIDIFile(rudiment.midi)
         sequencer.setTempo(Double(tempo))
         sequencer.setGlobalMIDIOutput(midiCallback.midiIn)
         sequencer.setLength(length)
-        sequencer.enableLooping()
         midiCallback.callback = playStroke
-    }
-    
-    deinit {
-        stopComparison()
     }
 }
 
 enum Feedback {
-    case success,
+    case early,
+         success,
          late,
-         early,
+         nextEarly,
          nextSuccess,
          missed,
          sticking,

@@ -23,11 +23,11 @@ extension RudimentStroke {
         } else if beat >= success && beat <= late {
             return .late
         } else if beat >= late && beat <= early {
-            return .early
+            return .nextEarly
         } else if beat >= early && beat <= nextPositionInBeats {
             return .nextSuccess
         } else {
-            return .missed
+            return .early
         }
     }
 }

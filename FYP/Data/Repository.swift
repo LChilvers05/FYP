@@ -33,6 +33,12 @@ final class Repository {
     
     func savePractice(_ results: [Feedback?]) {
         // TODO: save in some file or DB
+        var printables: [Feedback] = []
+        for result in results {
+            guard let result else { break }
+            printables.append(result)
+        }
+        print(printables)
     }
     
     private func getFileURL(_ resource: String?, _ type: String?) -> URL? {

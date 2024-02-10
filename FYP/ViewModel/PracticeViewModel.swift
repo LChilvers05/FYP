@@ -13,17 +13,17 @@ final class PracticeViewModel: ObservableObject {
     @Published var metronome: Metronome
     
     private lazy var onsetDetector = OnsetDetectionHandler()
-    private let rudimentComparison: RudimentComparisonHandler
-    private let tempo = 50
+    private let player: RudimentPlayer
+    private let tempo = 70
         
     init(_ rudiment: Rudiment) {
-        metronome = Metronome(bpm: tempo)
-        rudimentComparison = RudimentComparisonHandler(rudiment, tempo)
-        metronome.didCountIn = self.didCountIn
+        player = RudimentPlayer(rudiment, tempo)
+        metronome = Metronome(sequencer: player.sequencer)
+        
         onsetDetector.didDetectOnset = self.didDetectOnset
     }
     
-    func beginPractice() {
+    func startPractice() {
         onsetDetector.beginDetecting()
         metronome.start()
     }
@@ -31,14 +31,16 @@ final class PracticeViewModel: ObservableObject {
     func endPractice() {
         onsetDetector.stopDetecting()
         metronome.stop()
-        rudimentComparison.stopComparison()
     }
     
-    private func didCountIn() {
-        rudimentComparison.beginComparison()
-    }
-    
-    private func didDetectOnset(_ onsetTime: AmplitudeData?) {
-        guard !metronome.isCountingIn else { return } // ignore count in
+    private func didDetectOnset(_ ampData: AmplitudeData) {
+        guard !metronome.isCountingIn else { return }
+        
+        let stroke = UserStroke(
+            positionInBeats: metronome.positionInBeats,
+            sticking: .right,
+            amplitude: ampData
+        )
+        player.score(stroke)
     }
 }
