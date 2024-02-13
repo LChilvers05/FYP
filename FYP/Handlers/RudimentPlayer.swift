@@ -43,6 +43,11 @@ final class RudimentPlayer {
         }
     }
     
+    // search feedback and update sticking
+    func updateSticking(_ userStroke: UserStroke) {
+        guard isPlaying else { return }
+    }
+    
     // score feedback
     @MainActor
     private func compare(_ userStroke: UserStroke, curr: Int, next: Int) {

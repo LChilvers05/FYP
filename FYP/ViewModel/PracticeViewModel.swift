@@ -24,26 +24,36 @@ final class PracticeViewModel: ObservableObject {
         metronome = Metronome(sequencer: player.sequencer)
         
         onsetDetection.didDetectOnset = self.didDetectOnset
+        gestureRecognition.didGetSticking = self.didGetSticking
     }
     
     func startPractice() {
-        onsetDetection.beginDetecting()
+        // TODO: begin watch movement stream (start timer on watch)
+        onsetDetection.startDetecting()
         metronome.start()
     }
     
     func endPractice() {
+        // TODO: stop watch movement stream
         onsetDetection.stopDetecting()
         metronome.stop()
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
         guard !metronome.isCountingIn else { return }
-// TODO:        let sticking = gesture.recognition.getSticking()
         let stroke = UserStroke(
             positionInBeats: metronome.positionInBeats,
-            sticking: .right,
-            amplitude: ampData
+            amplitude: ampData,
+            time: 0.0
         )
+        // register sticking request
+        gestureRecognition.enqueue(stroke)
+        // do rhythm analysis
         player.score(stroke)
+    }
+    
+    private func didGetSticking(for stroke: UserStroke) {
+        // TODO: update the user stroke in the results array with sticking
+        player.updateSticking(stroke)
     }
 }

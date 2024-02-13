@@ -8,10 +8,10 @@
 import CoreMotion
 
 struct MovementData {
+    var id: Int = 0
     var acceleration: CMAcceleration?
     var rotation: CMRotationRate?
     var time: Double
-    var id: Int = 0
     
     static var count: Int = 0
     
@@ -19,5 +19,13 @@ struct MovementData {
         self.time = time
         self.id = MovementData.count
         MovementData.count += 1
+    }
+    
+    func isInitialised() -> Bool {
+        return (
+            id != 0 &&
+            acceleration != nil &&
+            rotation != nil
+        )
     }
 }

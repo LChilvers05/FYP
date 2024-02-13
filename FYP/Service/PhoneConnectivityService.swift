@@ -27,30 +27,9 @@ final class PhoneConnectivityService {
     
     // get watch motion data
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let acceleration = message["acceleration"] as? CMAcceleration { handle(acceleration) }
-        if let rotationRate = message["rotation_rate"] as? CMRotationRate { handle(rotationRate) }
-    }
-    
-    // process acceleration data
-    func handle(_ acceleration: CMAcceleration) {
-        if movement == nil { movement = MovementData(time: 0.0) } // TODO: how to get time
-        movement?.acceleration = acceleration
-        handle(movement)
-    }
-    
-    // process gyro data
-    func handle(_ rotationRate: CMRotationRate) {
-        if movement == nil { movement = MovementData(time: 0.0) }
-        movement?.rotation = rotationRate
-        handle(movement)
-    }
-    
-    private func handle(_ movement: MovementData?) {
-        guard movement?.acceleration != nil,
-              movement?.rotation != nil else { return }
-        // update subscribers
+        guard let movement = message["movement"] as? MovementData else { return }
+        // publish movement data
         stream = movement
-        self.movement = nil
     }
     
     var description: String = ""

@@ -11,30 +11,49 @@ final class MotionHandler {
     
     private let motionManager = CMMotionManager()
     private let connectivityService = WatchConnectivityService.shared
+    private let updateInterval = 1.0/1000.0 //1000hz
+    // bundle into a common object
+    private var movement: MovementData?
     
-    func startAccelerometerStream() {
-        guard motionManager.isAccelerometerAvailable else { return }
+    func startMovementStream() {
+        guard motionManager.isAccelerometerAvailable,
+              motionManager.isGyroAvailable else { return }
+        motionManager.accelerometerUpdateInterval = updateInterval
+        motionManager.gyroUpdateInterval = updateInterval
         
-        motionManager.accelerometerUpdateInterval = 1.0/1000.0 //1000hz
+        // update common movement object
         motionManager.startAccelerometerUpdates(to: OperationQueue.main) { (data, error) in
             guard let acceleration = data?.acceleration,
                   error == nil else { return }
             
-            let message = ["acceleration": acceleration]
-            self.connectivityService.sendToPhone(message)
+            if self.movement == nil {
+                self.movement = MovementData(time: 0.0)
+            }
+            
+            self.movement?.acceleration = acceleration
+            self.send(self.movement)
+        }
+        
+        motionManager.startGyroUpdates(to: OperationQueue.main) { (data, error) in
+            guard let rotation = data?.rotationRate,
+                  error == nil else { return }
+            
+            if self.movement == nil {
+                self.movement = MovementData(time: 0.0)
+            }
+            
+            self.movement?.rotation = rotation
+            self.send(self.movement)
         }
     }
     
-    func startGyroStream() {
-        guard motionManager.isGyroAvailable else { return }
+    // send to phone when movement initialised
+    private func send(_ movement: MovementData?) {
+        guard let movement, movement.isInitialised() else { return }
         
-        motionManager.gyroUpdateInterval = 1.0/1000.0 //1000hz
-        motionManager.startGyroUpdates(to: OperationQueue.main) { (data, error) in
-            guard let rotationRate = data?.rotationRate,
-                  error == nil else { return }
-            
-            let message = ["rotation_rate": rotationRate]
-            self.connectivityService.sendToPhone(message)
-        }
+        let message = ["movement": movement]
+        connectivityService.sendToPhone(message)
+        
+        self.movement = nil
     }
 }

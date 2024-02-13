@@ -8,8 +8,8 @@
 import AudioKit
 
 struct AmplitudeData {
-    var amplitude: AUValue = 0.0
     var id: Int = 0
+    var amplitude: AUValue = 0.0
     
     static var count: Int = 0
     

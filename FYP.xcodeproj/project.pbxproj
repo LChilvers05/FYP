@@ -37,6 +37,8 @@
 		FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = FEA7BDF02B694C480038B320 /* AudioKitEX */; };
 		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
+		FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAE515A2B7C0B18000DEEE0 /* Queue.swift */; };
+		FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
 		FEAF90922B77B92B00E01F27 /* GestureRecognitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */; };
 		FEAF90942B77C0A300E01F27 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
 		FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */; };
@@ -134,6 +136,7 @@
 		FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = single_stroke_roll.mid; sourceTree = "<group>"; };
 		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
 		FEA7BDF62B69AE360038B320 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
+		FEAE515A2B7C0B18000DEEE0 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureRecognitionHandler.swift; sourceTree = "<group>"; };
 		FEAF90932B77C0A300E01F27 /* MovementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementData.swift; sourceTree = "<group>"; };
 		FEB42BA52B52EC3300772CC7 /* PhoneConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityService.swift; sourceTree = "<group>"; };
@@ -241,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				FE988B4A2B49F34200274CD9 /* FYPApp.swift */,
-				FEA04B4D2B7264900058C8B4 /* Extensions.swift */,
 				FEB42BB42B58469B00772CC7 /* Model */,
 				FEB42BB72B58640700772CC7 /* View */,
 				FE0111782B63DC3D008F52D4 /* ViewModel */,
@@ -249,6 +251,7 @@
 				FEB42BA42B52EBDE00772CC7 /* Service */,
 				FEB42BAC2B56AE1100772CC7 /* Data */,
 				FE988B522B49F34400274CD9 /* Preview Content */,
+				FEAE51592B7C0AF3000DEEE0 /* Helpers */,
 				FEB42BAF2B56D4E100772CC7 /* Info.plist */,
 				FE988B502B49F34400274CD9 /* Assets.xcassets */,
 			);
@@ -350,6 +353,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FEAE51592B7C0AF3000DEEE0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FEA04B4D2B7264900058C8B4 /* Extensions.swift */,
+				FEAE515A2B7C0B18000DEEE0 /* Queue.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		FEAF90902B77AF1400E01F27 /* Handlers */ = {
@@ -645,6 +657,7 @@
 				FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */,
 				FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */,
 				FEB42BB12B5840D900772CC7 /* Repository.swift in Sources */,
+				FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */,
 				FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */,
 				FEAF90922B77B92B00E01F27 /* GestureRecognitionHandler.swift in Sources */,
 				FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */,
@@ -679,6 +692,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */,
 				FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */,
 				FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */,
 				FE988B7F2B4B188C00274CD9 /* ContentView.swift in Sources */,

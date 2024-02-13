@@ -7,10 +7,25 @@
 
 import Foundation
 
-struct UserStroke {
+struct UserStroke { //TODO: use User stroke to fill feedback DS
+    var id: Int = 0
+    var feedback: Feedback?
+    var sticking: Sticking?
     let positionInBeats: Double
-    let sticking: Sticking
     let amplitude: AmplitudeData
+    let time: Double
+    
+    static var count: Int = 0
+    
+    init(positionInBeats: Double,
+         amplitude: AmplitudeData,
+         time: Double) {
+        self.positionInBeats = positionInBeats
+        self.amplitude = amplitude
+        self.time = time
+        self.id = UserStroke.count
+        UserStroke.count += 1
+    }
 }
 
 enum Sticking {
