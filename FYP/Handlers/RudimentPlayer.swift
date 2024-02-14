@@ -46,6 +46,7 @@ final class RudimentPlayer {
     // search feedback and update sticking
     func updateSticking(_ userStroke: UserStroke) {
         guard isPlaying else { return }
+        // TODO: update the user stroke in the results array with sticking
     }
     
     // score feedback

@@ -15,6 +15,7 @@ final class Metronome: ObservableObject {
     
     @Published var beat: Int = 0
     
+    private let audioService = AudioService.shared
     private let engine = AudioEngine()
     private let midiCallback = MIDICallbackInstrument()
     private let instrument = Oscillator()
@@ -24,17 +25,27 @@ final class Metronome: ObservableObject {
     private(set) var isCountingIn = true
     
     private var isPlaying: Bool {
-        get { return sequencer.isPlaying }
+        get { sequencer.isPlaying }
+    }
+    private var latency: Double {
+        get { // TODO: let x = audioService.mic?.avAudioNode.latency
+            let k = 1.9/1000
+            return k*Double(sequencer.tempo)
+        }
     }
     var positionInBeats: Double {
         get {
-            // TODO: formula?
-            // adjust success windows relative to tempo too
-            let k = 1.9/1000
-            let latency = k*Double(sequencer.tempo)
-            
-            return (sequencer.currentPosition.beats - latency)
+            (sequencer.currentPosition.beats - latency)
                 .truncatingRemainder(dividingBy: sequencer.length.beats)
+        }
+    }
+    var timeElapsed: Double {
+        get {
+            sequencer.seconds(
+                duration: Duration(
+                    beats: sequencer.currentPosition.beats - latency
+                )
+            )
         }
     }
     

@@ -11,12 +11,12 @@ struct MovementData {
     var id: Int = 0
     var acceleration: CMAcceleration?
     var rotation: CMRotationRate?
-    var time: Double
+    var timestamp: TimeInterval
     
     static var count: Int = 0
     
-    init(time: Double) {
-        self.time = time
+    init(_ timestamp: TimeInterval) {
+        self.timestamp = timestamp
         self.id = MovementData.count
         MovementData.count += 1
     }

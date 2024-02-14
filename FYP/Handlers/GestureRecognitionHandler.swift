@@ -11,18 +11,18 @@ import Combine
 final class GestureRecognitionHandler {
     
     private let state: MLState = .train
-    private let watch = PhoneConnectivityService.shared
+    private let connectivityService = PhoneConnectivityService.shared
     private var cancellables: Set<AnyCancellable> = []
     private let repository = Repository()
     
-    private var strokeQueue = Queue<UserStroke>()
+    private var strokeQueue = Queue<UserStroke>() // thread safe
     private var buffer: [MovementData] = []
     private var prevOnsetTime = 0.0
     
     var didGetSticking: ((UserStroke) -> Void)?
     
     init() {
-        watch.$stream
+        connectivityService.$stream
             .sink { [weak self] movementData in
                 guard let self else { return }
                 Task {
@@ -32,27 +32,36 @@ final class GestureRecognitionHandler {
             .store(in: &cancellables)
     }
     
+    func startRecognition() {
+        connectivityService.activateSession()
+        connectivityService.sendToWatch(["is_playing": true])
+    }
+    
+    func endRecognition() {
+        connectivityService.sendToWatch(["is_playing": false])
+    }
+    
     func enqueue(_ stroke: UserStroke) {
-        // TODO: also do on same background thread
-        strokeQueue.enqueue(stroke)
+        Task { await strokeQueue.enqueue(stroke) }
     }
     
     // predict using model
     private func getSticking(for stroke: UserStroke) {
         // TODO: classification of sticking
+        // stroke.sticking = .left
         didGetSticking?(stroke)
     }
     
     // console print for training data
     private func logGesture(for stroke: UserStroke) {
-        let snapshot = getSnapshot(onsetTime: stroke.time)
+        let snapshot = getSnapshot(onsetTime: stroke.timestamp)
         repository.logGesture(snapshot: snapshot)
     }
     
     private func getSnapshot(onsetTime: Double) -> [MovementData] {
         // movement window for analysis
         let snapshot = buffer.filter {
-            $0.time >= prevOnsetTime && $0.time <= onsetTime
+            $0.timestamp >= prevOnsetTime && $0.timestamp <= onsetTime
         }
         
         prevOnsetTime = onsetTime
@@ -61,10 +70,10 @@ final class GestureRecognitionHandler {
     }
     
     // check if sufficient movement to dequeue stroke
-    private func checkQueue(_ movementData: MovementData) {
-        guard var stroke = strokeQueue.peek(),
-              stroke.time <= movementData.time else { return }
-        stroke = strokeQueue.dequeue()!
+    private func checkQueue(_ movementData: MovementData) async {
+        guard var stroke = await strokeQueue.peek(),
+              stroke.timestamp <= movementData.timestamp else { return }
+        stroke = await strokeQueue.dequeue()!
         
         // perform ML task
         switch state {
@@ -76,14 +85,15 @@ final class GestureRecognitionHandler {
     }
     
     // keep fixed length movement data buffer
-    @MainActor //TODO: use same thread as enqueue()
-    private func updateBuffer(_ movementData: MovementData?) {
+    private func updateBuffer(_ movementData: MovementData?) async {
         guard let movementData else { return }
-        let bufferSize = 300
+        let bufferSize = 1000
         buffer.append(movementData)
         if buffer.count > bufferSize { buffer.removeFirst() }
         
-        checkQueue(movementData)
+        print(movementData.timestamp)
+        
+        await checkQueue(movementData)
     }
 }
 

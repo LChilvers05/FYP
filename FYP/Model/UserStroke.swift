@@ -13,16 +13,16 @@ struct UserStroke { //TODO: use User stroke to fill feedback DS
     var sticking: Sticking?
     let positionInBeats: Double
     let amplitude: AmplitudeData
-    let time: Double
+    let timestamp: TimeInterval
     
     static var count: Int = 0
     
     init(positionInBeats: Double,
          amplitude: AmplitudeData,
-         time: Double) {
+         timestamp: TimeInterval) {
         self.positionInBeats = positionInBeats
         self.amplitude = amplitude
-        self.time = time
+        self.timestamp = timestamp
         self.id = UserStroke.count
         UserStroke.count += 1
     }

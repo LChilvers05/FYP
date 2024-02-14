@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Queue<T> {
+// a thread safe queue
+actor Queue<T> {
     
     private var elements = [T]()
 
@@ -19,11 +20,11 @@ struct Queue<T> {
         return elements.count
     }
 
-    mutating func enqueue(_ element: T) {
+    func enqueue(_ element: T) {
         elements.append(element)
     }
 
-    mutating func dequeue() -> T? {
+    func dequeue() -> T? {
         return isEmpty ? nil : elements.removeFirst()
     }
 

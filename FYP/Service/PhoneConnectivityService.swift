@@ -25,10 +25,20 @@ final class PhoneConnectivityService {
         session?.activate()
     }
     
-    // get watch motion data
+    // send message to watch
+    func sendToWatch(_ message: [String: Any]) {
+        guard let session,
+              session.isReachable else { return }
+        
+        session.sendMessage(message, replyHandler: nil) { error in
+            print("Failed to send message to Apple Watch")
+        }
+    }
+    
+    // receive watch motion data
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         guard let movement = message["movement"] as? MovementData else { return }
-        // publish movement data
+        // update subscribers
         stream = movement
     }
     

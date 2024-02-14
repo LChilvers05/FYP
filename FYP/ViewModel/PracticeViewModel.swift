@@ -28,15 +28,15 @@ final class PracticeViewModel: ObservableObject {
     }
     
     func startPractice() {
-        // TODO: begin watch movement stream (start timer on watch)
-        onsetDetection.startDetecting()
-        metronome.start()
+        gestureRecognition.startRecognition()
+//        onsetDetection.startDetecting()
+//        metronome.start() // starts player
     }
     
     func endPractice() {
-        // TODO: stop watch movement stream
-        onsetDetection.stopDetecting()
-        metronome.stop()
+        gestureRecognition.endRecognition()
+//        onsetDetection.stopDetecting()
+//        metronome.stop() // stops player
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
@@ -44,7 +44,7 @@ final class PracticeViewModel: ObservableObject {
         let stroke = UserStroke(
             positionInBeats: metronome.positionInBeats,
             amplitude: ampData,
-            time: 0.0
+            timestamp: metronome.timeElapsed
         )
         // register sticking request
         gestureRecognition.enqueue(stroke)
@@ -53,7 +53,6 @@ final class PracticeViewModel: ObservableObject {
     }
     
     private func didGetSticking(for stroke: UserStroke) {
-        // TODO: update the user stroke in the results array with sticking
         player.updateSticking(stroke)
     }
 }
