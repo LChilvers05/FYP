@@ -33,7 +33,6 @@ final class GestureRecognitionHandler {
     }
     
     func startRecognition() {
-        connectivityService.activateSession()
         connectivityService.sendToWatch(["is_playing": true])
     }
     
