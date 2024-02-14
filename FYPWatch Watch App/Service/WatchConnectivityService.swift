@@ -9,17 +9,27 @@ import WatchConnectivity
 
 final class WatchConnectivityService {
     
-    private let session = WCSession.default
+    private var session: WCSession?
     
     static let shared = WatchConnectivityService()
-    private init() {}
+    private init() {
+        activateSession()
+    }
     
     var didStartPlaying: (() -> Void)?
     var didStopPlaying: (() -> Void)?
     
+    private func activateSession() {
+        guard WCSession.isSupported() else { return }
+        session = WCSession.default
+        session?.delegate = self
+        session?.activate()
+    }
+    
     // send message to phone
     func sendToPhone(_ message: [String: Any]) {
-        guard session.isReachable else { return }
+        guard let session,
+              session.isReachable else { return }
         
         session.sendMessage(message, replyHandler: nil) { error in
             print("Failed to send message to iPhone")

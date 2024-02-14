@@ -63,7 +63,7 @@ final class Repository {
             guard let rotation = datum.rotation,
                   let acceleration = datum.acceleration else { continue }
             
-            let row = "\(datum.time),\(rotation.x),\(rotation.y),\(rotation.z),\(acceleration.x),\(acceleration.y),\(acceleration.z)"
+            let row = "\(datum.timestamp),\(rotation.x),\(rotation.y),\(rotation.z),\(acceleration.x),\(acceleration.y),\(acceleration.z)"
             contents.append(row + "\n")
         }
         
