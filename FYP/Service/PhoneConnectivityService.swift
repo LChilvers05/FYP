@@ -34,23 +34,27 @@ final class PhoneConnectivityService: NSObject {
               session.isReachable else { return }
         
         session.sendMessage(message, replyHandler: nil) { error in
-            print("Failed to send message to Apple Watch")
+            print("Failed to send message to Apple Watch \(error.localizedDescription)")
         }
     }
     
     // receive watch motion data
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        print(message)
-        guard let movement = message["movement"] as? MovementData else { return }
-        // update subscribers
-        stream = movement
+        guard let data = message["movement"] as? Data else { return }
+        do {
+            let movement = try JSONDecoder().decode(MovementData.self, from: data)
+            // update subscribers
+            stream = movement
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 
 extension PhoneConnectivityService: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        if let error { print(error) }
+        if let error { debugPrint(error) }
     }
 
     func sessionDidDeactivate(_ session: WCSession) {

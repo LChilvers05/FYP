@@ -60,10 +60,7 @@ final class Repository {
         
         // write data
         for datum in snapshot {
-            guard let rotation = datum.rotation,
-                  let acceleration = datum.acceleration else { continue }
-            
-            let row = "\(datum.timestamp),\(rotation.x),\(rotation.y),\(rotation.z),\(acceleration.x),\(acceleration.y),\(acceleration.z)"
+            let row = "\(datum.timestamp),\(datum.rotX),\(datum.rotY),\(datum.rotZ),\(datum.accX),\(datum.accY),\(datum.accZ)"
             contents.append(row + "\n")
         }
         

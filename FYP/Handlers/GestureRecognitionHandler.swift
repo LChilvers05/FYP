@@ -16,7 +16,7 @@ final class GestureRecognitionHandler {
     private let repository = Repository()
     
     private var strokeQueue = Queue<UserStroke>() // thread safe
-    private var buffer: [MovementData] = []
+    private var buffer = Queue<MovementData>()
     private var prevOnsetTime = 0.0
     
     var didGetSticking: ((UserStroke) -> Void)?
@@ -52,14 +52,14 @@ final class GestureRecognitionHandler {
     }
     
     // console print for training data
-    private func logGesture(for stroke: UserStroke) {
-        let snapshot = getSnapshot(onsetTime: stroke.timestamp)
+    private func logGesture(for stroke: UserStroke) async  {
+        let snapshot = await getSnapshot(onsetTime: stroke.timestamp)
         repository.logGesture(snapshot: snapshot)
     }
     
-    private func getSnapshot(onsetTime: Double) -> [MovementData] {
+    private func getSnapshot(onsetTime: Double) async -> [MovementData] {
         // movement window for analysis
-        let snapshot = buffer.filter {
+        let snapshot = await buffer.elements.filter {
             $0.timestamp >= prevOnsetTime && $0.timestamp <= onsetTime
         }
         
@@ -77,7 +77,7 @@ final class GestureRecognitionHandler {
         // perform ML task
         switch state {
         case .train:
-            logGesture(for: stroke)
+            await logGesture(for: stroke)
         case .predict:
             getSticking(for: stroke)
         }
@@ -87,10 +87,10 @@ final class GestureRecognitionHandler {
     private func updateBuffer(_ movementData: MovementData?) async {
         guard let movementData else { return }
         let bufferSize = 1000
-        buffer.append(movementData)
-        if buffer.count > bufferSize { buffer.removeFirst() }
-        
-        print(movementData.timestamp)
+        await buffer.enqueue(movementData)
+        if await buffer.count > bufferSize {
+            let _ = await buffer.dequeue()
+        }
         
         await checkQueue(movementData)
     }

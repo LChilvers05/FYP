@@ -33,7 +33,7 @@ final class WatchConnectivityService: NSObject {
               session.isReachable else { return }
         
         session.sendMessage(message, replyHandler: nil) { error in
-            print("Failed to send message to iPhone")
+            print("Failed to send message to iPhone \(error.localizedDescription)")
         }
     }
     
@@ -52,6 +52,6 @@ final class WatchConnectivityService: NSObject {
 extension WatchConnectivityService: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("Watch session activated")
+        if let error { debugPrint(error) }
     }
 }

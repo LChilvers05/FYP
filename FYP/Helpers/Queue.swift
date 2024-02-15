@@ -10,7 +10,7 @@ import Foundation
 // a thread safe queue
 actor Queue<T> {
     
-    private var elements = [T]()
+    private(set) var elements = [T]()
 
     var isEmpty: Bool {
         return elements.isEmpty

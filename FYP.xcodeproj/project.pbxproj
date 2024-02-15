@@ -27,7 +27,7 @@
 		FE988B982B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */; };
 		FE988B9A2B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */; };
 		FE988B9D2B4B188F00274CD9 /* FYPWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */; };
+		FE988BAA2B4B1FEE00274CD9 /* MovementHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MovementHandler.swift */; };
 		FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */; };
 		FE99073F2B6C412400A4DA76 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = FE99073E2B6C412400A4DA76 /* SoundpipeAudioKit */; };
 		FEA04B4B2B724A580058C8B4 /* single_stroke_four.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEA04B492B724A580058C8B4 /* single_stroke_four.mid */; };
@@ -129,7 +129,7 @@
 		FE988B932B4B188F00274CD9 /* FYPWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FYPWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionHandler.swift; sourceTree = "<group>"; };
+		FE988BA92B4B1FEE00274CD9 /* MovementHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementHandler.swift; sourceTree = "<group>"; };
 		FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
 		FEA04B492B724A580058C8B4 /* single_stroke_four.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = single_stroke_four.mid; sourceTree = "<group>"; };
 		FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = single_stroke_seven.mid; sourceTree = "<group>"; };
@@ -373,7 +373,7 @@
 		FEAF90902B77AF1400E01F27 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				FE988BA92B4B1FEE00274CD9 /* MotionHandler.swift */,
+				FE988BA92B4B1FEE00274CD9 /* MovementHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -700,7 +700,7 @@
 			files = (
 				FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */,
 				FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */,
-				FE988BAA2B4B1FEE00274CD9 /* MotionHandler.swift in Sources */,
+				FE988BAA2B4B1FEE00274CD9 /* MovementHandler.swift in Sources */,
 				FE988B7F2B4B188C00274CD9 /* ContentView.swift in Sources */,
 				FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */,
 			);
