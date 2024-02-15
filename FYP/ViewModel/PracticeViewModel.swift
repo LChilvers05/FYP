@@ -29,14 +29,14 @@ final class PracticeViewModel: ObservableObject {
     
     func startPractice() {
         gestureRecognition.startRecognition()
-//        onsetDetection.startDetecting()
-//        metronome.start() // starts player
+        onsetDetection.startDetecting()
+        metronome.start() // starts player
     }
     
     func endPractice() {
         gestureRecognition.endRecognition()
-//        onsetDetection.stopDetecting()
-//        metronome.stop() // stops player
+        onsetDetection.stopDetecting()
+        metronome.stop() // stops player
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {

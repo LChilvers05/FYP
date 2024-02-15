@@ -14,6 +14,7 @@ final class MovementHandler: ObservableObject {
     private let motionManager = CMMotionManager()
     private let connectivityService = WatchConnectivityService.shared
     private let updateInterval = 1.0/1000.0 //1000hz
+    private var startTimeStamp: TimeInterval?
     
     init() {
         connectivityService.didStartPlaying = didStartPlaying
@@ -26,6 +27,7 @@ final class MovementHandler: ObservableObject {
     
     private func didStopPlaying() {
         isStreamingMovement = false
+        startTimeStamp = nil
         motionManager.stopAccelerometerUpdates()
         motionManager.stopGyroUpdates()
     }
@@ -33,14 +35,23 @@ final class MovementHandler: ObservableObject {
     private func startMovementStream() {
         guard motionManager.isDeviceMotionAvailable else { return }
         motionManager.deviceMotionUpdateInterval = updateInterval
-        isStreamingMovement = true
+        Task { await MainActor.run { isStreamingMovement = true }}
         
         // get acceleration, rotation and timestamp every interval
         motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (data, error) in
             guard let acceleration = data?.userAcceleration,
                   let rotation = data?.rotationRate,
-                  let timestamp = data?.timestamp,
+                  let deviceTimestamp = data?.timestamp,
                   error == nil else { return }
+            
+            // get time since motion update started
+            var timestamp = deviceTimestamp
+            if self.startTimeStamp == nil {
+                self.startTimeStamp = timestamp
+            }
+            timestamp -= self.startTimeStamp ?? timestamp
+            
+            // encode for iPhone
             do {
                 let movement = try JSONEncoder().encode(
                     MovementData(
@@ -49,7 +60,6 @@ final class MovementHandler: ObservableObject {
                         timestamp: timestamp
                     )
                 )
-                // send to iPhone
                 self.connectivityService.sendToPhone(["movement": movement])
             } catch {
                 print("Failed to encode MovementData: \(error.localizedDescription)")
