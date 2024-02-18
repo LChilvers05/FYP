@@ -43,13 +43,13 @@ final class Repository {
     
     func logGesture(snapshot: [MovementData]) {
         let features = [
-            "Time Stamp",
-            "Rotation Rate X",
-            "Rotation Rate Y",
-            "Rotation Rate Z",
-            "Acceleration X",
-            "Acceleration Y",
-            "Acceleration Z"
+            "timestamp",
+            "rotationRateX",
+            "rotationRateY",
+            "rotationRateZ",
+            "accelerationX",
+            "accelerationY",
+            "accelerationZ"
         ]
         
         var contents = ""

@@ -10,6 +10,8 @@
 		FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */; };
 		FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */; };
 		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
+		FE3C4B1E2B827BF10051A4E8 /* DrumStrokeClassifier 1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1D2B827BF10051A4E8 /* DrumStrokeClassifier 1.mlmodel */; };
+		FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
 		FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
 		FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B22B71427C00E42FBD /* RudimentStroke.swift */; };
 		FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4A2B49F34200274CD9 /* FYPApp.swift */; };
@@ -106,6 +108,8 @@
 		FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnsetDetectionHandler.swift; sourceTree = "<group>"; };
 		FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentPlayer.swift; sourceTree = "<group>"; };
+		FE3C4B1D2B827BF10051A4E8 /* DrumStrokeClassifier 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "DrumStrokeClassifier 1.mlmodel"; path = "../../../FYP-ML/DrumStrokeClassifier 1.mlmodel"; sourceTree = "<group>"; };
+		FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingClassifierHandler.swift; sourceTree = "<group>"; };
 		FE7154B02B70F02300E42FBD /* UserStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStroke.swift; sourceTree = "<group>"; };
 		FE7154B22B71427C00E42FBD /* RudimentStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentStroke.swift; sourceTree = "<group>"; };
 		FE878EF42B7D31DE00190FA2 /* FYPWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FYPWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -212,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				FEA7BDF62B69AE360038B320 /* Metronome.swift */,
+				FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */,
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
 				FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */,
 				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
@@ -391,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				FEB42BB02B5840D900772CC7 /* Repository.swift */,
+				FE3C4B1D2B827BF10051A4E8 /* DrumStrokeClassifier 1.mlmodel */,
 				FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */,
 				FEA04B492B724A580058C8B4 /* single_stroke_four.mid */,
 				FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */,
@@ -657,6 +663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */,
+				FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */,
 				FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */,
 				FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */,
 				FE988B4D2B49F34200274CD9 /* MenuView.swift in Sources */,
@@ -674,6 +681,7 @@
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
 				FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */,
 				FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */,
+				FE3C4B1E2B827BF10051A4E8 /* DrumStrokeClassifier 1.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
