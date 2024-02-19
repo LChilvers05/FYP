@@ -6,6 +6,7 @@
 //
 
 import CoreMotion
+import WatchKit
 
 final class MovementHandler: ObservableObject {
     
@@ -26,10 +27,9 @@ final class MovementHandler: ObservableObject {
     }
     
     private func didStopPlaying() {
-        isStreamingMovement = false
+        Task { await MainActor.run { isStreamingMovement = true }}
         startTimeStamp = nil
-        motionManager.stopAccelerometerUpdates()
-        motionManager.stopGyroUpdates()
+        motionManager.stopDeviceMotionUpdates()
     }
     
     private func startMovementStream() {
