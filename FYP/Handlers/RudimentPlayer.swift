@@ -19,6 +19,9 @@ final class RudimentPlayer {
     
     // nx3 for results buffer
     private var results: [[Feedback?]] = []
+    // [UserStroke.id: (Expected Sticking, Results Index)]
+    private var lookup: [Int: (Sticking, (Int, Int))] = [:]
+    
     private var strokes: [RudimentStroke] = []
     private var focus = -1
     
@@ -35,23 +38,43 @@ final class RudimentPlayer {
         createStrokes(from: rudiment, and: midiFile)
     }
     
-    // stroke input from user
-    func score(_ userStroke: UserStroke) {
+    // check user rhythm
+    func scoreRhythm(for userStroke: UserStroke) {
         guard isPlaying else { return }
         Task {
-            await compare(userStroke, curr: focus, next: focus+1)
+            await compareRhythm(
+                for: userStroke,
+                curr: focus,
+                next: focus+1
+            )
         }
     }
     
-    // search feedback and update sticking
-    func updateSticking(_ userStroke: UserStroke) {
+    // check user sticking faults
+    func checkSticking(for userStroke: UserStroke) {
         guard isPlaying else { return }
-        // TODO: update the user stroke in the results array with sticking
+        Task {
+            await compareSticking(for: userStroke)
+        }
     }
     
-    // score feedback
+    // mark feedback
     @MainActor
-    private func compare(_ userStroke: UserStroke, curr: Int, next: Int) {
+    private func compareSticking(for userStroke: UserStroke) {
+        guard let stroke = lookup[userStroke.id] else { return }
+        
+        if userStroke.sticking != stroke.0 {
+            let i = stroke.1.0
+            let j = stroke.1.1
+            // mark sticking fault
+            results[i][j] = .sticking
+        }
+        lookup.removeValue(forKey: userStroke.id)
+    }
+    
+    // mark feedback
+    @MainActor
+    private func compareRhythm(for userStroke: UserStroke, curr: Int, next: Int) {
         // results list pointer
         var i = 1
         if curr < 0 { i = 0 }
@@ -61,6 +84,9 @@ final class RudimentPlayer {
         let curr = (curr + strokes.count) % strokes.count // wrap
         let next = (next + strokes.count) % strokes.count
         
+        // index in results
+        var resultsIndex = (i, curr)
+        
         let stroke = strokes[curr]
         // compare rhythm
         let rhythm = stroke.checkRhythm(for: userStroke.positionInBeats)
@@ -68,18 +94,22 @@ final class RudimentPlayer {
         switch rhythm {
         case .early:
             // feedback for previous stroke
-            compare(userStroke, curr: curr-1, next: curr)
+            compareRhythm(for: userStroke, curr: curr-1, next: curr)
         case .success, .late:
             // feedback for current stroke
             results[i][curr] = rhythm
         case .nextEarly, .nextSuccess:
             // feedback for next stroke
             results[i][next] = (rhythm == .nextEarly) ? .early : .success
+            resultsIndex.1 = next
         default:
             results[i][curr] = rhythm
         }
+        // update lookup table to use when sticking predicted
+        lookup[userStroke.id] = (stroke.sticking, resultsIndex)
     }
     
+    // shift focus stroke as sequencer plays rudiment
     private func playStroke(status: MIDIByte, _: MIDIByte, _: MIDIByte) {
         guard let type = MIDIStatus(byte: status)?.type,
               type == .noteOn else { return } // note on
@@ -101,6 +131,16 @@ final class RudimentPlayer {
                     results[0] = results[1]
                     results[1] = results[2]
                     results[2] = Array(repeating: nil, count: strokes.count)
+                    
+                    // update pointers in sticking lookup
+                    for (userStrokeId, value) in lookup {
+                        let i = value.1.0 - 1
+                        if i < 0 {
+                            lookup.removeValue(forKey: userStrokeId)
+                            continue
+                        }
+                        lookup[userStrokeId]?.1.0 = i
+                    }
                 }
             }
         }
@@ -170,6 +210,5 @@ enum Feedback {
          nextSuccess,
          missed,
          sticking,
-         volume,
          error
 }

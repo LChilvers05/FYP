@@ -49,10 +49,10 @@ final class PracticeViewModel: ObservableObject {
         // register sticking request
         gestureRecognition.enqueue(stroke)
         // do rhythm analysis
-        player.score(stroke)
+        player.scoreRhythm(for: stroke)
     }
     
     private func didGetSticking(for stroke: UserStroke) {
-        player.updateSticking(stroke)
+        player.checkSticking(for: stroke)
     }
 }

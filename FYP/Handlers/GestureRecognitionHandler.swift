@@ -54,7 +54,7 @@ final class GestureRecognitionHandler {
         guard let stickingHandler,
               let sticking = stickingHandler.classifySticking(from: snapshot)
         else { return }
-//        didGetSticking?(stroke)
+        didGetSticking?(stroke)
     }
     
     // movement snapshot for classification

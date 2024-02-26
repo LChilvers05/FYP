@@ -14,7 +14,7 @@ final class MovementHandler: ObservableObject {
     
     private let motionManager = CMMotionManager()
     private let connectivityService = WatchConnectivityService.shared
-    private let updateInterval = 1.0/1000.0 //1000hz
+    private let updateInterval = 1.0/100.0 //100hz
     private var startTimeStamp: TimeInterval?
     
     init() {

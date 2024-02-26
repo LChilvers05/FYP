@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserStroke { //TODO: use User stroke to fill feedback DS
+struct UserStroke {
     var id: Int = 0
     var feedback: Feedback?
     var sticking: Sticking?
