@@ -29,7 +29,7 @@ final class OnsetDetectionHandler {
             .store(in: &cancellables)
     }
     
-    func beginDetecting() {
+    func startDetecting() {
         audioService.startListening()
     }
     

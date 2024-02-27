@@ -15,9 +15,9 @@ final class AudioService: ObservableObject {
     @Published var stream: AmplitudeData? = nil
     
     private let engine = AudioEngine()
-    private var mic: AudioEngine.InputNode?
     private var tap: AmplitudeTap?
     private var isTapOn = false
+    private(set) var mic: AudioEngine.InputNode?
     
     static let shared = AudioService()
     private init() {

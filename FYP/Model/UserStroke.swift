@@ -8,9 +8,24 @@
 import Foundation
 
 struct UserStroke {
+    var id: Int = 0
+    var feedback: Feedback?
+    var sticking: Sticking?
     let positionInBeats: Double
-    let sticking: Sticking
     let amplitude: AmplitudeData
+    let timestamp: TimeInterval
+    
+    static var count: Int = 0
+    
+    init(positionInBeats: Double,
+         amplitude: AmplitudeData,
+         timestamp: TimeInterval) {
+        self.positionInBeats = positionInBeats
+        self.amplitude = amplitude
+        self.timestamp = timestamp
+        self.id = UserStroke.count
+        UserStroke.count += 1
+    }
 }
 
 enum Sticking {

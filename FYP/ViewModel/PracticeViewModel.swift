@@ -7,12 +7,15 @@
 
 import AudioKit
 import Combine
+import Foundation
+import CoreMotion
 
 final class PracticeViewModel: ObservableObject {
     
     @Published var metronome: Metronome
     
-    private lazy var onsetDetector = OnsetDetectionHandler()
+    private lazy var onsetDetection = OnsetDetectionHandler()
+    private lazy var gestureRecognition = GestureRecognitionHandler()
     private let player: RudimentPlayer
     private let tempo = 70
         
@@ -20,27 +23,36 @@ final class PracticeViewModel: ObservableObject {
         player = RudimentPlayer(rudiment, tempo)
         metronome = Metronome(sequencer: player.sequencer)
         
-        onsetDetector.didDetectOnset = self.didDetectOnset
+        onsetDetection.didDetectOnset = self.didDetectOnset
+        gestureRecognition.didGetSticking = self.didGetSticking
     }
     
     func startPractice() {
-        onsetDetector.beginDetecting()
-        metronome.start()
+        gestureRecognition.startRecognition()
+        onsetDetection.startDetecting()
+        metronome.start() // starts player
     }
     
     func endPractice() {
-        onsetDetector.stopDetecting()
-        metronome.stop()
+        gestureRecognition.endRecognition()
+        onsetDetection.stopDetecting()
+        metronome.stop() // stops player
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
         guard !metronome.isCountingIn else { return }
-        
         let stroke = UserStroke(
             positionInBeats: metronome.positionInBeats,
-            sticking: .right,
-            amplitude: ampData
+            amplitude: ampData,
+            timestamp: metronome.timeElapsed
         )
-        player.score(stroke)
+        // register sticking request
+        gestureRecognition.enqueue(stroke)
+        // do rhythm analysis
+        player.scoreRhythm(for: stroke)
+    }
+    
+    private func didGetSticking(for stroke: UserStroke) {
+        player.checkSticking(for: stroke)
     }
 }

@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var motion = MovementHandler()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            if motion.isStreamingMovement {
+                Text("Playing")
+            } else {
+                Text("Start on iPhone")
+            }
         }
         .padding()
     }
