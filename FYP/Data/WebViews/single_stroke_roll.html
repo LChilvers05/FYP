@@ -1,36 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.3/build/cjs/vexflow.js"></script>
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #rudiment {
+            width: 100vw;
+            height: 200px;
+            overflow: hidden;
+        }
+    </style>
+
 </head>
 <body>
-    <div id="music"></div>
+    <div id="rudiment"></div>
     <script>
-        // TODO: Create a single stroke roll image
-        const VF = Vex.Flow;
+        // create VexFlow renderer and context
+        var div = document.getElementById("rudiment");
+        var vf = Vex.Flow
+        var renderer = new vf.Renderer(
+            div,
+            vf.Renderer.Backends.SVG
+        );
+        renderer.resize(1000, 150)
+        var context = renderer.getContext();
+        
+        var stave = new vf.Stave(80, 10, 500);
+        stave.setContext(context).draw();
 
-        // Create an SVG renderer and attach it to the container element
-        const div = document.getElementById("music");
-        const renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
-        renderer.resize(200, 100);
-        const context = renderer.getContext();
+        var notes1 = [
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            })
+        ];
+        var notes2 = [
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            })
+        ];
+        var notes3 = [
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            })
+        ];
+        var notes4 = [
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            }),
+            new vf.StaveNote({
+                keys: ["c/5"],
+                duration: "16",
+                stem_direction: 1
+            })
+        ];
+        
+        var beam1 = new vf.Beam(notes1);
+        var beam2 = new vf.Beam(notes2);
+        var beam3 = new vf.Beam(notes3);
+        var beam4 = new vf.Beam(notes4);
 
-        // Create a voice with semiquavers
-        const voice = new VF.Voice().setStrict(false);
-        voice.addTickables([
-            new VF.StaveNote({ keys: ["c/4"], duration: "16" }),
-            new VF.StaveNote({ keys: ["d/4"], duration: "16" }),
-            new VF.StaveNote({ keys: ["e/4"], duration: "16" }),
-            new VF.StaveNote({ keys: ["f/4"], duration: "16" }),
-        ]);
-
-        // Format and justify the notes to fit within the width
-        const formatter = new VF.Formatter().joinVoices([voice]).format([voice], 200);
-
-        // Draw the notes without the stave
-        voice.draw(context);
+        // draw notes
+        vf.Formatter.FormatAndDraw(
+            context, 
+            stave, 
+            notes1
+            .concat(notes2)
+            .concat(notes3)
+            .concat(notes4)
+        );
+        // each group of semiquavers
+        beam1.setContext(context).draw();
+        beam2.setContext(context).draw();
+        beam3.setContext(context).draw();
+        beam4.setContext(context).draw();
     </script>
+
 </body>
 </html>
