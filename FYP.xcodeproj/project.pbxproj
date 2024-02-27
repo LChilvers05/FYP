@@ -235,6 +235,9 @@
 		FE4448812B8E25B0002FF71A /* MIDI */ = {
 			isa = PBXGroup;
 			children = (
+				FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */,
+				FEA04B492B724A580058C8B4 /* single_stroke_four.mid */,
+				FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */,
 			);
 			path = MIDI;
 			sourceTree = "<group>";
@@ -431,9 +434,6 @@
 			children = (
 				FEB42BB02B5840D900772CC7 /* Repository.swift */,
 				FEE465BF2B83889600C278A3 /* StickingClassifier.mlmodel */,
-				FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */,
-				FEA04B492B724A580058C8B4 /* single_stroke_four.mid */,
-				FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */,
 				FEB42BB22B58457D00772CC7 /* rudiments.json */,
 				FE4448812B8E25B0002FF71A /* MIDI */,
 				FE4448822B8E25C0002FF71A /* WebViews */,

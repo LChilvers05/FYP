@@ -3,17 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.3/build/cjs/vexflow.js"></script>
 </head>
 <body>
-    <h1 id="name">Lee Chilvers</h1>
+    <div id="music"></div>
+    <script>
+        // TODO: Create a single stroke roll image
+        const VF = Vex.Flow;
+
+        // Create an SVG renderer and attach it to the container element
+        const div = document.getElementById("music");
+        const renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+        renderer.resize(200, 100);
+        const context = renderer.getContext();
+
+        // Create a voice with semiquavers
+        const voice = new VF.Voice().setStrict(false);
+        voice.addTickables([
+            new VF.StaveNote({ keys: ["c/4"], duration: "16" }),
+            new VF.StaveNote({ keys: ["d/4"], duration: "16" }),
+            new VF.StaveNote({ keys: ["e/4"], duration: "16" }),
+            new VF.StaveNote({ keys: ["f/4"], duration: "16" }),
+        ]);
+
+        // Format and justify the notes to fit within the width
+        const formatter = new VF.Formatter().joinVoices([voice]).format([voice], 200);
+
+        // Draw the notes without the stave
+        voice.draw(context);
+    </script>
 </body>
 </html>

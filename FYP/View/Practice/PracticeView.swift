@@ -35,6 +35,7 @@ struct PracticeView: View {
             
             // tester
             Button {
+                // TODO: update rudiment view with feedback in realtime
                 javaScript = "document.getElementById('name').innerText = \"John Appleseed\";"
             } label: {
                 Text("Change name")
