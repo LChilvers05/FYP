@@ -11,7 +11,7 @@ import AudioKit
 // compare players input to rudiment data and return result
 final class RudimentPlayer {
     
-    private let repository = Repository()
+    private let repository: Repository
     
     let sequencer = AppleSequencer() // play rudiment
     private let midiCallback = MIDICallbackInstrument()
@@ -31,7 +31,9 @@ final class RudimentPlayer {
     
     init(_ rudiment: Rudiment,
          _ tempo: Int,
-         length: Duration = Duration(beats: 4.0)) {
+         length: Duration = Duration(beats: 4.0),
+         _ repository: Repository) {
+        self.repository = repository
         sequencerLength = length.beats
         let midiFile = repository.getRudimentMIDI(rudiment.midi)
         setupSequencer(rudiment, tempo, length)

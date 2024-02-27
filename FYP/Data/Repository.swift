@@ -27,8 +27,19 @@ final class Repository {
     }
     
     func getRudimentMIDI(_ resource: String?) -> MIDIFile? {
-        guard let url = getFileURL(resource, "mid") else { return nil }
+        guard let url = getFileURL(resource, "mid") else {
+            print("Failed to fetch rudiment MIDI file")
+            return nil
+        }
         return MIDIFile(url: url)
+    }
+    
+    func getRudimentViewRequest(_ resource: String?) -> URLRequest? {
+        guard let url = getFileURL(resource, "html") else {
+            print("Failed to fetch rudiment HTML file")
+            return nil
+        }
+        return URLRequest(url: url)
     }
     
     func savePractice(_ results: [Feedback?]) {

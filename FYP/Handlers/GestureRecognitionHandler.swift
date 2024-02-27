@@ -12,7 +12,7 @@ final class GestureRecognitionHandler {
     
     private let connectivityService = PhoneConnectivityService.shared
     private var cancellables: Set<AnyCancellable> = []
-    private let repository = Repository()
+    private let repository: Repository
     
     private let state: MLState = .predict
     private let stickingHandler: StickingClassifierHandler?
@@ -23,7 +23,8 @@ final class GestureRecognitionHandler {
     
     var didGetSticking: ((UserStroke) -> Void)?
     
-    init() {
+    init(_ repository: Repository) {
+        self.repository = repository
         stickingHandler = try? StickingClassifierHandler()
         connectivityService.$stream
             .sink { [weak self] movementData in

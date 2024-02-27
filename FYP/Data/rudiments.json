@@ -3,7 +3,7 @@
         "id": 1,
         "name": "Single Stroke Roll",
         "midi": "single_stroke_roll",
-        "image": "single_stroke_roll.png",
+        "view": "single_stroke_roll",
         "pattern": "RL",
         "pattern_repeats": 8
     },
@@ -11,7 +11,7 @@
         "id": 2,
         "name": "Double Stroke Roll",
         "midi": "double_stroke_roll",
-        "image": "double_stroke_roll.png",
+        "view": "double_stroke_roll",
         "pattern": "RRLL",
         "pattern_repeats": 4
     },
@@ -19,7 +19,7 @@
         "id": 3,
         "name": "Paradiddle",
         "midi": "paradiddle",
-        "image": "paradiddle.png",
+        "view": "paradiddle",
         "pattern": "RLRRLRLL",
         "pattern_repeats": 2
     },
@@ -27,7 +27,7 @@
         "id": 4,
         "name": "Flam",
         "midi": "flam",
-        "image": "flam.png",
+        "view": "flam",
         "pattern": "none",
         "pattern_repeats": 0
     },
@@ -35,7 +35,7 @@
         "id": 5,
         "name": "Drag",
         "midi": "drag",
-        "image": "drag.png",
+        "view": "drag",
         "pattern": "none",
         "pattern_repeats": 0
     }

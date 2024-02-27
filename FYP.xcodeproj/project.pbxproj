@@ -11,6 +11,10 @@
 		FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */; };
 		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
 		FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
+		FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */; };
+		FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */; };
+		FE4448872B8E27F3002FF71A /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4448862B8E27F3002FF71A /* ControlsView.swift */; };
+		FE4448892B8E285C002FF71A /* MetronomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4448882B8E285C002FF71A /* MetronomeView.swift */; };
 		FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
 		FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B22B71427C00E42FBD /* RudimentStroke.swift */; };
 		FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4A2B49F34200274CD9 /* FYPApp.swift */; };
@@ -109,6 +113,10 @@
 		FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentPlayer.swift; sourceTree = "<group>"; };
 		FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingClassifierHandler.swift; sourceTree = "<group>"; };
+		FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentRepresentable.swift; sourceTree = "<group>"; };
+		FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = single_stroke_roll.html; sourceTree = "<group>"; };
+		FE4448862B8E27F3002FF71A /* ControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
+		FE4448882B8E285C002FF71A /* MetronomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeView.swift; sourceTree = "<group>"; };
 		FE7154B02B70F02300E42FBD /* UserStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStroke.swift; sourceTree = "<group>"; };
 		FE7154B22B71427C00E42FBD /* RudimentStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentStroke.swift; sourceTree = "<group>"; };
 		FE878EF42B7D31DE00190FA2 /* FYPWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FYPWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -222,6 +230,32 @@
 				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
 			);
 			path = Handlers;
+			sourceTree = "<group>";
+		};
+		FE4448812B8E25B0002FF71A /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
+		FE4448822B8E25C0002FF71A /* WebViews */ = {
+			isa = PBXGroup;
+			children = (
+				FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */,
+			);
+			path = WebViews;
+			sourceTree = "<group>";
+		};
+		FE4448832B8E27CD002FF71A /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				FEB42BB82B586A6700772CC7 /* PracticeView.swift */,
+				FE4448882B8E285C002FF71A /* MetronomeView.swift */,
+				FE4448862B8E27F3002FF71A /* ControlsView.swift */,
+				FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */,
+			);
+			path = Practice;
 			sourceTree = "<group>";
 		};
 		FE988B3E2B49F34200274CD9 = {
@@ -401,6 +435,8 @@
 				FEA04B492B724A580058C8B4 /* single_stroke_four.mid */,
 				FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */,
 				FEB42BB22B58457D00772CC7 /* rudiments.json */,
+				FE4448812B8E25B0002FF71A /* MIDI */,
+				FE4448822B8E25C0002FF71A /* WebViews */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -421,7 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				FE988B4C2B49F34200274CD9 /* MenuView.swift */,
-				FEB42BB82B586A6700772CC7 /* PracticeView.swift */,
+				FE4448832B8E27CD002FF71A /* Practice */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -612,6 +648,7 @@
 				FE988B542B49F34400274CD9 /* Preview Assets.xcassets in Resources */,
 				FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */,
 				FEA04B4C2B724A580058C8B4 /* single_stroke_seven.mid in Resources */,
+				FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */,
 				FE988B512B49F34400274CD9 /* Assets.xcassets in Resources */,
 				FEA04B4B2B724A580058C8B4 /* single_stroke_four.mid in Resources */,
 				FEA04B502B728D4B0058C8B4 /* single_stroke_roll.mid in Resources */,
@@ -663,6 +700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */,
+				FE4448892B8E285C002FF71A /* MetronomeView.swift in Sources */,
 				FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */,
 				FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */,
 				FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */,
@@ -673,8 +711,10 @@
 				FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */,
 				FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */,
 				FEAF90922B77B92B00E01F27 /* GestureRecognitionHandler.swift in Sources */,
+				FE4448872B8E27F3002FF71A /* ControlsView.swift in Sources */,
 				FEE465C02B83889600C278A3 /* StickingClassifier.mlmodel in Sources */,
 				FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */,
+				FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */,
 				FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */,
 				FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */,
 				FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */,
