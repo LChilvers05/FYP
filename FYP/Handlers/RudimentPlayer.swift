@@ -12,7 +12,7 @@ import AudioKit
 final class RudimentPlayer: ObservableObject {
     
     // nx3 for results buffer
-    @Published var results: [[Feedback?]] = []
+    @Published var feedback: [[Feedback?]] = []
     // [UserStroke.id: (Expected Sticking, Results Index)]
     private var lookup: [Int: (Sticking, (Int, Int))] = [:]
     private var strokes: [RudimentStroke] = []
@@ -68,7 +68,7 @@ final class RudimentPlayer: ObservableObject {
             let i = stroke.1.0
             let j = stroke.1.1
             // mark sticking fault
-            results[i][j] = .sticking
+            feedback[i][j] = .sticking
         }
         lookup.removeValue(forKey: userStroke.id)
     }
@@ -98,13 +98,13 @@ final class RudimentPlayer: ObservableObject {
             compareRhythm(for: userStroke, curr: curr-1, next: curr)
         case .success, .late:
             // feedback for current stroke
-            results[i][curr] = rhythm
+            feedback[i][curr] = rhythm
         case .nextEarly, .nextSuccess:
             // feedback for next stroke
-            results[i][next] = (rhythm == .nextEarly) ? .early : .success
+            feedback[i][next] = (rhythm == .nextEarly) ? .early : .success
             resultsIndex.1 = next
         default:
-            results[i][curr] = rhythm
+            feedback[i][curr] = rhythm
         }
         // update lookup table to use when sticking predicted
         lookup[userStroke.id] = (stroke.sticking, resultsIndex)
@@ -117,8 +117,8 @@ final class RudimentPlayer: ObservableObject {
         Task {
             await MainActor.run {
                 // check for missed strokes
-                if focus >= 0 && results[1][focus] == nil {
-                    results[1][focus] = .missed
+                if focus >= 0 && feedback[1][focus] == nil {
+                    feedback[1][focus] = .missed
                 }
                 // next event
                 focus += 1
@@ -127,11 +127,11 @@ final class RudimentPlayer: ObservableObject {
                 if focus == strokes.count {
                     focus = 0
                     // save prev feedback
-                    repository.savePractice(results[0])
+                    repository.savePractice(feedback[0])
                     // shift along results buffer
-                    results[0] = results[1]
-                    results[1] = results[2]
-                    results[2] = Array(repeating: nil, count: strokes.count)
+                    feedback[0] = feedback[1]
+                    feedback[1] = feedback[2]
+                    feedback[2] = Array(repeating: nil, count: strokes.count)
                     
                     // update pointers in sticking lookup
                     for (userStrokeId, value) in lookup {
@@ -160,7 +160,7 @@ final class RudimentPlayer: ObservableObject {
         }
         
         strokes.removeAll()
-        results.removeAll()
+        feedback.removeAll()
         
         for (i, event) in events.enumerated() {
             let nextEvent = events[(i + 1) % events.count] //wrap to first
@@ -185,7 +185,7 @@ final class RudimentPlayer: ObservableObject {
             ))
         }
         
-        results = Array(
+        feedback = Array(
             repeating: Array(repeating: nil, count: strokes.count),
             count: 3
         )

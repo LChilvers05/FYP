@@ -12,7 +12,6 @@ struct PracticeView: View {
     private let rudiment: Rudiment
     @StateObject private var viewModel: PracticeViewModel
     @State private var isLoading = true
-    @State private var javaScript = ""
     
     init(rudiment: Rudiment) {
         self.rudiment = rudiment
@@ -22,28 +21,27 @@ struct PracticeView: View {
     var body: some View {
         VStack {
             
+            // prev attempt
+            RudimentRepresentable(
+                rudimentViewRequest: viewModel.rudimentViewRequest,
+                isLoading: $isLoading,
+                javaScript: $viewModel.prevAttemptUpdates
+            )
+            .padding(40)
+            .frame(height: 240)
+            .opacity(0.5)
+            .onAppear { isLoading = false }
+            
             // rudiment view
             RudimentRepresentable(
                 rudimentViewRequest: viewModel.rudimentViewRequest,
                 isLoading: $isLoading,
-                javaScript: $javaScript
+                javaScript: $viewModel.attemptUpdates
             )
+            .frame(height: 200)
             .onAppear { isLoading = false }
             
             Spacer()
-            
-            // tester
-            Button {
-                // TODO: update rudiment view with feedback in realtime
-                javaScript = """
-notes[0].setStyle({fillStyle: 'red', strokeStyle: 'red'});
-context.clear();
-draw();
-"""
-            } label: {
-                Text("Test Colour Change")
-            }
-
             
             // metronome and playback controls
             MetronomeView(metronome: viewModel.metronome)
