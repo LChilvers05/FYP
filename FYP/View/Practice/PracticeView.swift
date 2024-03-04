@@ -21,7 +21,6 @@ struct PracticeView: View {
     
     var body: some View {
         VStack {
-            Spacer()
             
             // rudiment view
             RudimentRepresentable(
@@ -36,9 +35,13 @@ struct PracticeView: View {
             // tester
             Button {
                 // TODO: update rudiment view with feedback in realtime
-                javaScript = "document.getElementById('name').innerText = \"John Appleseed\";"
+                javaScript = """
+notes[0].setStyle({fillStyle: 'red', strokeStyle: 'red'});
+context.clear();
+draw();
+"""
             } label: {
-                Text("Change name")
+                Text("Test Colour Change")
             }
 
             

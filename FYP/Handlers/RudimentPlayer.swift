@@ -9,21 +9,20 @@ import AVFoundation
 import AudioKit
 
 // compare players input to rudiment data and return result
-final class RudimentPlayer {
+final class RudimentPlayer: ObservableObject {
+    
+    // nx3 for results buffer
+    @Published var results: [[Feedback?]] = []
+    // [UserStroke.id: (Expected Sticking, Results Index)]
+    private var lookup: [Int: (Sticking, (Int, Int))] = [:]
+    private var strokes: [RudimentStroke] = []
+    private var focus = -1
     
     private let repository: Repository
     
     let sequencer = AppleSequencer() // play rudiment
     private let midiCallback = MIDICallbackInstrument()
     private let sequencerLength: Double // of sequencer
-    
-    // nx3 for results buffer
-    private var results: [[Feedback?]] = []
-    // [UserStroke.id: (Expected Sticking, Results Index)]
-    private var lookup: [Int: (Sticking, (Int, Int))] = [:]
-    
-    private var strokes: [RudimentStroke] = []
-    private var focus = -1
     
     private var isPlaying: Bool {
         get { return sequencer.isPlaying }

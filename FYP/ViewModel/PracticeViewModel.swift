@@ -13,13 +13,17 @@ import CoreMotion
 final class PracticeViewModel: ObservableObject {
     
     @Published var metronome: Metronome
+    @Published var javaScript: String = ""
     let rudimentViewRequest: URLRequest?
     
     private let repository = Repository()
+    private let jsBuilder = JavaScriptBuilder()
     private lazy var onsetDetection = OnsetDetectionHandler()
     private let gestureRecognition: GestureRecognitionHandler
     private let player: RudimentPlayer
     private let tempo = 70
+    
+    private var cancellables: Set<AnyCancellable> = []
         
     init(_ rudiment: Rudiment) {
         player = RudimentPlayer(rudiment, tempo, repository)
@@ -29,6 +33,14 @@ final class PracticeViewModel: ObservableObject {
         
         onsetDetection.didDetectOnset = self.didDetectOnset
         gestureRecognition.didGetSticking = self.didGetSticking
+        
+        player.$results
+            .sink { [weak self] results in
+                guard let self else { return }
+                // update rudiment view with JS
+                javaScript = self.jsBuilder.build(from: results)
+            }
+            .store(in: &cancellables)
     }
     
     func startPractice() {

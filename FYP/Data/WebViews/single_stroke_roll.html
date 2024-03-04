@@ -5,22 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.3/build/cjs/vexflow.js"></script>
-
+            
     <style>
         body,
         html {
-            margin: 0;
-            padding: 0;
             overflow: hidden;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #rudiment {
-            width: 100vw;
-            height: 200px;
-            overflow: hidden;
+            /* Set a max-width if needed */
+            max-width: 100%;
+            max-height: 100%;
         }
     </style>
-
 </head>
 
 <body>
@@ -29,17 +30,20 @@
         var vf = Vex.Flow
         var WorkspaceInformation = {
             canvas: document.getElementById("rudiment"),
-            canvasWidth: 1000,
-            canvasHeight: 500
+            canvasWidth: window.innerWidth,
+            canvasHeight: window.innerHeight
         };
         var renderer = new vf.Renderer(
             WorkspaceInformation.canvas,
             vf.Renderer.Backends.CANVAS
         );
-        renderer.resize(WorkspaceInformation.canvasWidth, WorkspaceInformation.canvasHeight)
+        renderer.resize(WorkspaceInformation.canvasWidth, WorkspaceInformation.canvasHeight);
         var context = renderer.getContext();
-        var stave = new vf.Stave(80, 10, 500);
-        stave.setContext(context).draw();
+        var stave = new vf.Stave(
+            0,
+            WorkspaceInformation.canvasHeight/2,
+            window.innerWidth
+        );
 
         // all strokes
         var notes = [
@@ -72,14 +76,17 @@
         var beam2 = new vf.Beam([notes[4], notes[5], notes[6], notes[7]]);
         var beam3 = new vf.Beam([notes[8], notes[9], notes[10], notes[11]]);
         var beam4 = new vf.Beam([notes[12], notes[13], notes[14], notes[15]]);
-
-        // draw notes
-        vf.Formatter.FormatAndDraw(context, stave, notes);
-        // each group of semiquavers
-        beam1.setContext(context).draw();
-        beam2.setContext(context).draw();
-        beam3.setContext(context).draw();
-        beam4.setContext(context).draw();
+        
+        function draw() {
+            // draw notes
+            stave.setContext(context).draw();
+            vf.Formatter.FormatAndDraw(context, stave, notes);
+            beam1.setContext(context).draw();
+            beam2.setContext(context).draw();
+            beam3.setContext(context).draw();
+            beam4.setContext(context).draw();
+        }
+        draw()
 
     </script>
 </body>

@@ -10,6 +10,7 @@
 		FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */; };
 		FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */; };
 		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
+		FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */; };
 		FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
 		FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */; };
 		FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */; };
@@ -112,6 +113,7 @@
 		FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnsetDetectionHandler.swift; sourceTree = "<group>"; };
 		FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentPlayer.swift; sourceTree = "<group>"; };
+		FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptBuilder.swift; sourceTree = "<group>"; };
 		FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingClassifierHandler.swift; sourceTree = "<group>"; };
 		FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentRepresentable.swift; sourceTree = "<group>"; };
 		FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = single_stroke_roll.html; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
 				FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */,
 				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
+				FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */,
 				FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */,
 				FE4448892B8E285C002FF71A /* MetronomeView.swift in Sources */,
 				FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */,
