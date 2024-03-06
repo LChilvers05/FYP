@@ -88,9 +88,4 @@ final class PracticeViewModel: ObservableObject {
     private func didGetSticking(for stroke: UserStroke) {
         player.checkSticking(for: stroke)
     }
-    
-    func tester(feedback: [[Feedback?]]) {
-        attemptUpdates = self.jsBuilder.build(from: feedback[1])
-        prevAttemptUpdates = self.jsBuilder.build(from: feedback[0])
-    }
 }

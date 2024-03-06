@@ -12,6 +12,7 @@ struct PracticeView: View {
     private let rudiment: Rudiment
     @StateObject private var viewModel: PracticeViewModel
     @State private var isLoading = true
+    @State private var isShowingKey = false
     
     init(rudiment: Rudiment) {
         self.rudiment = rudiment
@@ -20,14 +21,16 @@ struct PracticeView: View {
     
     var body: some View {
         VStack {
+            Spacer()
+            if isShowingKey { FeedbackKeyView() }
             // prev attempt
             RudimentRepresentable(
                 rudimentViewRequest: viewModel.rudimentViewRequest,
                 isLoading: $isLoading,
                 javaScript: $viewModel.prevAttemptUpdates
             )
-            .padding(40)
-            .frame(height: 240)
+            .padding(EdgeInsets(top: .zero, leading: 40.0, bottom: .zero, trailing: 40.0))
+            .frame(height: 120)
             .opacity(0.5)
             .onAppear { isLoading = false }
             
@@ -37,20 +40,10 @@ struct PracticeView: View {
                 isLoading: $isLoading,
                 javaScript: $viewModel.attemptUpdates
             )
-            .frame(height: 200)
+            .frame(height: 120)
             .onAppear { isLoading = false }
             
             Spacer()
-            
-//            Button {
-//                viewModel.tester(feedback: [
-//                    [.success, .success, .success, .success, .early, .late, .late, .late, .early, .success, .success, .success, .sticking, .success, .success, .missed],
-//                    [.success, .success, .success, .success, .early, .late, .missed, .late, .early, .success, nil, nil, nil, nil, nil, nil],
-//                    []
-//                ])
-//            } label: {
-//                Text("Show results")
-//            }
             
             // metronome
             Text("\(viewModel.metronome.beat)")
@@ -77,6 +70,13 @@ struct PracticeView: View {
             }
         }
         .navigationTitle(rudiment.name)
+        .toolbar {
+            Button {
+                isShowingKey.toggle()
+            } label: {
+                Image(systemName: "questionmark.circle")
+            }
+        }
     }
     
     private func startStopSymbol() -> String {

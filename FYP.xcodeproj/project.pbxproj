@@ -39,6 +39,7 @@
 		FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA04B4D2B7264900058C8B4 /* Extensions.swift */; };
 		FEA04B502B728D4B0058C8B4 /* single_stroke_roll.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */; };
 		FEA433222B98D3880002C4E9 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA433212B98D3880002C4E9 /* Modifiers.swift */; };
+		FEA433252B98F6140002C4E9 /* FeedbackKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA433242B98F6140002C4E9 /* FeedbackKeyView.swift */; };
 		FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = FEA7BDF02B694C480038B320 /* AudioKitEX */; };
 		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
@@ -148,6 +149,7 @@
 		FEA3B1F92B7D1FF900EE111E /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		FEA3B1FE2B7D236900EE111E /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.2.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		FEA433212B98D3880002C4E9 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		FEA433242B98F6140002C4E9 /* FeedbackKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackKeyView.swift; sourceTree = "<group>"; };
 		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
 		FEA7BDF62B69AE360038B320 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
 		FEAE515A2B7C0B18000DEEE0 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			children = (
 				FEB42BB82B586A6700772CC7 /* PracticeView.swift */,
 				FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */,
+				FEA433242B98F6140002C4E9 /* FeedbackKeyView.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */,
 				FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */,
 				FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */,
+				FEA433252B98F6140002C4E9 /* FeedbackKeyView.swift in Sources */,
 				FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */,
 				FEAF90942B77C0A300E01F27 /* MovementData.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,

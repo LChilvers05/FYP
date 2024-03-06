@@ -26,12 +26,16 @@ final class JavaScriptBuilder {
             switch elem {
             case .success, .nextSuccess:
                 result += colourChangeForNote(i, "green")
-            case .late, .early, .nextEarly:
+            case .early, .nextEarly:
+                result += colourChangeForNote(i, "yellow")
+            case .late:
                 result += colourChangeForNote(i, "orange")
-            case .missed, .sticking:
+            case .sticking:
                 result += colourChangeForNote(i, "red")
+            case .missed:
+                result += colourChangeForNote(i, "gray")
             case .error:
-                result += colourChangeForNote(i, "grey")
+                result += colourChangeForNote(i, "blue")
             default:
                 result += colourChangeForNote(i, "black")
             }
