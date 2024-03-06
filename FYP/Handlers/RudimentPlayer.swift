@@ -29,13 +29,12 @@ final class RudimentPlayer: ObservableObject {
     }
     
     init(_ rudiment: Rudiment,
-         _ tempo: Int,
          length: Duration = Duration(beats: 4.0),
          _ repository: Repository) {
         self.repository = repository
         sequencerLength = length.beats
         let midiFile = repository.getRudimentMIDI(rudiment.midi)
-        setupSequencer(rudiment, tempo, length)
+        setupSequencer(rudiment, length)
         createStrokes(from: rudiment, and: midiFile)
     }
     
@@ -57,6 +56,15 @@ final class RudimentPlayer: ObservableObject {
         Task {
             await compareSticking(for: userStroke)
         }
+    }
+    
+    func rewind() {
+        focus = -1
+        lookup = [:]
+        feedback = Array(
+            repeating: Array(repeating: nil, count: strokes.count),
+            count: 3
+        )
     }
     
     // mark feedback
@@ -191,12 +199,10 @@ final class RudimentPlayer: ObservableObject {
         )
     }
     
-    private func setupSequencer(_ rudiment: Rudiment, 
-                                _ tempo: Int,
+    private func setupSequencer(_ rudiment: Rudiment,
                                 _ length: Duration) {
         // plays at metronome start
         sequencer.loadMIDIFile(rudiment.midi)
-        sequencer.setTempo(Double(tempo))
         sequencer.setGlobalMIDIOutput(midiCallback.midiIn)
         sequencer.setLength(length)
         midiCallback.callback = playStroke

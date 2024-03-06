@@ -23,7 +23,6 @@ final class JavaScriptBuilder {
     func build(from feedback: [Feedback?]) -> String {
         var result = ""
         for (i, elem) in feedback.enumerated() {
-            guard let elem else { break } // note not played yet
             switch elem {
             case .success, .nextSuccess:
                 result += colourChangeForNote(i, "green")
@@ -33,6 +32,8 @@ final class JavaScriptBuilder {
                 result += colourChangeForNote(i, "red")
             case .error:
                 result += colourChangeForNote(i, "grey")
+            default:
+                result += colourChangeForNote(i, "black")
             }
         }
         

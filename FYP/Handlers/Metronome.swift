@@ -24,14 +24,14 @@ final class Metronome: ObservableObject {
     // used after first bar
     private(set) var isCountingIn = true
     
-    private var isPlaying: Bool {
-        get { sequencer.isPlaying }
-    }
     private var latency: Double {
         get { // TODO: let x = audioService.mic?.avAudioNode.latency
             let k = 1.9/1000
             return k*Double(sequencer.tempo)
         }
+    }
+    var isPlaying: Bool {
+        get { sequencer.isPlaying }
     }
     var positionInBeats: Double {
         get {
@@ -71,6 +71,10 @@ final class Metronome: ObservableObject {
         guard isPlaying else { return }
         instrument.stop()
         sequencer.stop()
+    }
+    
+    func update(_ tempo: Int) {
+        sequencer.setTempo(Double(tempo))
     }
     
     private func createTrack() {

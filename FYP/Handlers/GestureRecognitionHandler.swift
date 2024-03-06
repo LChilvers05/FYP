@@ -40,7 +40,7 @@ final class GestureRecognitionHandler {
         connectivityService.sendToWatch(["is_playing": true])
     }
     
-    func endRecognition() {
+    func stopRecognition() {
         connectivityService.sendToWatch(["is_playing": false])
     }
     

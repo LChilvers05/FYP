@@ -20,7 +20,6 @@ struct PracticeView: View {
     
     var body: some View {
         VStack {
-            
             // prev attempt
             RudimentRepresentable(
                 rudimentViewRequest: viewModel.rudimentViewRequest,
@@ -43,25 +42,59 @@ struct PracticeView: View {
             
             Spacer()
             
-            // metronome and playback controls
-            MetronomeView(metronome: viewModel.metronome)
-            ControlsView(
-                playAction: viewModel.startPractice,
-                stopAction: viewModel.endPractice
-            )
+//            Button {
+//                viewModel.tester(feedback: [
+//                    [.success, .success, .success, .success, .early, .late, .late, .late, .early, .success, .success, .success, .sticking, .success, .success, .missed],
+//                    [.success, .success, .success, .success, .early, .late, .missed, .late, .early, .success, nil, nil, nil, nil, nil, nil],
+//                    []
+//                ])
+//            } label: {
+//                Text("Show results")
+//            }
             
+            // metronome
+            Text("\(viewModel.metronome.beat)")
+                .font(.system(size: 50.0))
+                .padding()
+            
+            // start/stop
+            Button(action: viewModel.startStopTapped) {
+                Image(systemName: startStopSymbol())
+                    .animation(nil, value: UUID())
+                    .blueCircularStyle()
+            }
+            
+            // tempo
+            Stepper(
+                value: $viewModel.tempo,
+                in: 50...200,
+                step: 10,
+                label: { Text("Tempo: \(viewModel.tempo)") }
+            )
+            .padding(EdgeInsets(top: 20.0, leading: 80.0, bottom: 20.0, trailing: 80.0))
+            .onChange(of: viewModel.tempo) { _, newValue in
+                viewModel.update(newValue)
+            }
         }
         .navigationTitle(rudiment.name)
     }
+    
+    private func startStopSymbol() -> String {
+        viewModel.isPlaying ?
+        "stop.fill" : "play.fill"
+    }
 }
 
+
 #Preview {
-    PracticeView(rudiment: Rudiment(
-        id: 1,
-        name: "Single Stroke Roll",
-        midi: "single_stroke_roll",
-        view: "single_stroke_roll",
-        pattern: "RL",
-        patternRepeats: 8)
-    )
+    NavigationStack {
+        PracticeView(rudiment: Rudiment(
+            id: 1,
+            name: "Single Stroke Roll",
+            midi: "single_stroke_roll",
+            view: "single_stroke_roll",
+            pattern: "RL",
+            patternRepeats: 8)
+        )
+    }
 }
