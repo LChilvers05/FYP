@@ -42,14 +42,13 @@ final class Repository {
         return URLRequest(url: url)
     }
     
-    func savePractice(_ results: [Feedback?]) {
-        // TODO: save in some file or DB
+    func logPractice(_ results: [Feedback?]) {
         var printables: [Feedback] = []
         for result in results {
             guard let result else { break }
             printables.append(result)
         }
-//        print(printables)
+        print(printables)
     }
     
     func logGesture(snapshot: [MovementData]) {

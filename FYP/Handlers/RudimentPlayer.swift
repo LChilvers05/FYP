@@ -135,7 +135,7 @@ final class RudimentPlayer: ObservableObject {
                 if focus == strokes.count {
                     focus = 0
                     // save prev feedback
-                    repository.savePractice(feedback[0])
+                    repository.logPractice(feedback[0])
                     // shift along results buffer
                     feedback[0] = feedback[1]
                     feedback[1] = feedback[2]

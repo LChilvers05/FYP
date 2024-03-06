@@ -25,19 +25,19 @@ final class JavaScriptBuilder {
         for (i, elem) in feedback.enumerated() {
             switch elem {
             case .success, .nextSuccess:
-                result += colourChangeForNote(i, "green")
+                result += colourChangeForNote(i, "#34C759") // green
             case .early, .nextEarly:
-                result += colourChangeForNote(i, "yellow")
+                result += colourChangeForNote(i, "#FFCC00") // yellow
             case .late:
-                result += colourChangeForNote(i, "orange")
+                result += colourChangeForNote(i, "#FF9500") // orange
             case .sticking:
-                result += colourChangeForNote(i, "red")
+                result += colourChangeForNote(i, "#FF3B30") // red
             case .missed:
-                result += colourChangeForNote(i, "gray")
+                result += colourChangeForNote(i, "#8E8E93") // gray
             case .error:
-                result += colourChangeForNote(i, "blue")
+                result += colourChangeForNote(i, "blue") // blue
             default:
-                result += colourChangeForNote(i, "black")
+                result += colourChangeForNote(i, "black") // black
             }
         }
         
