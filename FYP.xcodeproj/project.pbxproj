@@ -10,7 +10,10 @@
 		FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */; };
 		FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */; };
 		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
+		FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */; };
 		FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
+		FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */; };
+		FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */; };
 		FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
 		FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B22B71427C00E42FBD /* RudimentStroke.swift */; };
 		FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4A2B49F34200274CD9 /* FYPApp.swift */; };
@@ -35,6 +38,8 @@
 		FEA04B4C2B724A580058C8B4 /* single_stroke_seven.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */; };
 		FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA04B4D2B7264900058C8B4 /* Extensions.swift */; };
 		FEA04B502B728D4B0058C8B4 /* single_stroke_roll.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */; };
+		FEA433222B98D3880002C4E9 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA433212B98D3880002C4E9 /* Modifiers.swift */; };
+		FEA433252B98F6140002C4E9 /* FeedbackKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA433242B98F6140002C4E9 /* FeedbackKeyView.swift */; };
 		FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = FEA7BDF02B694C480038B320 /* AudioKitEX */; };
 		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
@@ -108,7 +113,10 @@
 		FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnsetDetectionHandler.swift; sourceTree = "<group>"; };
 		FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentPlayer.swift; sourceTree = "<group>"; };
+		FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptBuilder.swift; sourceTree = "<group>"; };
 		FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingClassifierHandler.swift; sourceTree = "<group>"; };
+		FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentRepresentable.swift; sourceTree = "<group>"; };
+		FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = single_stroke_roll.html; sourceTree = "<group>"; };
 		FE7154B02B70F02300E42FBD /* UserStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStroke.swift; sourceTree = "<group>"; };
 		FE7154B22B71427C00E42FBD /* RudimentStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentStroke.swift; sourceTree = "<group>"; };
 		FE878EF42B7D31DE00190FA2 /* FYPWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FYPWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -140,6 +148,8 @@
 		FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = single_stroke_roll.mid; sourceTree = "<group>"; };
 		FEA3B1F92B7D1FF900EE111E /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		FEA3B1FE2B7D236900EE111E /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.2.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
+		FEA433212B98D3880002C4E9 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		FEA433242B98F6140002C4E9 /* FeedbackKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackKeyView.swift; sourceTree = "<group>"; };
 		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
 		FEA7BDF62B69AE360038B320 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
 		FEAE515A2B7C0B18000DEEE0 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -220,8 +230,37 @@
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
 				FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */,
 				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
+				FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */,
 			);
 			path = Handlers;
+			sourceTree = "<group>";
+		};
+		FE4448812B8E25B0002FF71A /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */,
+				FEA04B492B724A580058C8B4 /* single_stroke_four.mid */,
+				FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */,
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
+		FE4448822B8E25C0002FF71A /* WebViews */ = {
+			isa = PBXGroup;
+			children = (
+				FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */,
+			);
+			path = WebViews;
+			sourceTree = "<group>";
+		};
+		FE4448832B8E27CD002FF71A /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				FEB42BB82B586A6700772CC7 /* PracticeView.swift */,
+				FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */,
+				FEA433242B98F6140002C4E9 /* FeedbackKeyView.swift */,
+			);
+			path = Practice;
 			sourceTree = "<group>";
 		};
 		FE988B3E2B49F34200274CD9 = {
@@ -397,10 +436,9 @@
 			children = (
 				FEB42BB02B5840D900772CC7 /* Repository.swift */,
 				FEE465BF2B83889600C278A3 /* StickingClassifier.mlmodel */,
-				FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */,
-				FEA04B492B724A580058C8B4 /* single_stroke_four.mid */,
-				FEA04B4A2B724A580058C8B4 /* single_stroke_seven.mid */,
 				FEB42BB22B58457D00772CC7 /* rudiments.json */,
+				FE4448812B8E25B0002FF71A /* MIDI */,
+				FE4448822B8E25C0002FF71A /* WebViews */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -420,8 +458,9 @@
 		FEB42BB72B58640700772CC7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FEA433212B98D3880002C4E9 /* Modifiers.swift */,
 				FE988B4C2B49F34200274CD9 /* MenuView.swift */,
-				FEB42BB82B586A6700772CC7 /* PracticeView.swift */,
+				FE4448832B8E27CD002FF71A /* Practice */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -612,6 +651,7 @@
 				FE988B542B49F34400274CD9 /* Preview Assets.xcassets in Resources */,
 				FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */,
 				FEA04B4C2B724A580058C8B4 /* single_stroke_seven.mid in Resources */,
+				FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */,
 				FE988B512B49F34400274CD9 /* Assets.xcassets in Resources */,
 				FEA04B4B2B724A580058C8B4 /* single_stroke_four.mid in Resources */,
 				FEA04B502B728D4B0058C8B4 /* single_stroke_roll.mid in Resources */,
@@ -662,6 +702,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */,
 				FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */,
 				FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */,
 				FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */,
@@ -675,13 +716,16 @@
 				FEAF90922B77B92B00E01F27 /* GestureRecognitionHandler.swift in Sources */,
 				FEE465C02B83889600C278A3 /* StickingClassifier.mlmodel in Sources */,
 				FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */,
+				FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */,
 				FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */,
 				FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */,
+				FEA433252B98F6140002C4E9 /* FeedbackKeyView.swift in Sources */,
 				FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */,
 				FEAF90942B77C0A300E01F27 /* MovementData.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
 				FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */,
 				FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */,
+				FEA433222B98D3880002C4E9 /* Modifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

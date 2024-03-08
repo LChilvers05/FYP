@@ -13,30 +13,63 @@ import CoreMotion
 final class PracticeViewModel: ObservableObject {
     
     @Published var metronome: Metronome
+    @Published var isPlaying: Bool = false
+    @Published var attemptUpdates: String = ""
+    @Published var prevAttemptUpdates: String = ""
+    @Published var tempo = 70
     
+    let rudimentViewRequest: URLRequest?
+    
+    private let repository = Repository()
+    private let jsBuilder = JavaScriptBuilder()
     private lazy var onsetDetection = OnsetDetectionHandler()
-    private lazy var gestureRecognition = GestureRecognitionHandler()
+    private let gestureRecognition: GestureRecognitionHandler
     private let player: RudimentPlayer
-    private let tempo = 70
+    
+    private var cancellables: Set<AnyCancellable> = []
         
     init(_ rudiment: Rudiment) {
-        player = RudimentPlayer(rudiment, tempo)
+        player = RudimentPlayer(rudiment, repository)
         metronome = Metronome(sequencer: player.sequencer)
+        gestureRecognition = GestureRecognitionHandler(repository)
+        rudimentViewRequest = repository.getRudimentViewRequest(rudiment.view)
         
+        metronome.update(tempo)
         onsetDetection.didDetectOnset = self.didDetectOnset
         gestureRecognition.didGetSticking = self.didGetSticking
+        
+        player.$feedback
+            .sink { [weak self] feedback in
+                guard let self else { return }
+                // update rudiment view with JS
+                attemptUpdates = self.jsBuilder.build(from: feedback[1])
+                prevAttemptUpdates = self.jsBuilder.build(from: feedback[0])
+            }
+            .store(in: &cancellables)
     }
     
-    func startPractice() {
+    func update(_ tempo: Int) {
+        stopPractice()
+        metronome.update(tempo)
+    }
+    
+    func startStopTapped() {
+        metronome.isPlaying ? stopPractice() : startPractice()
+    }
+    
+    private func startPractice() {
+        player.rewind()
         gestureRecognition.startRecognition()
         onsetDetection.startDetecting()
         metronome.start() // starts player
+        isPlaying = true
     }
     
-    func endPractice() {
-        gestureRecognition.endRecognition()
+    private func stopPractice() {
+        gestureRecognition.stopRecognition()
         onsetDetection.stopDetecting()
         metronome.stop() // stops player
+        isPlaying = false
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {

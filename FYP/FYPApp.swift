@@ -18,6 +18,7 @@ struct FYPApp: App {
     var body: some Scene {
         WindowGroup {
             MenuView()
+                .preferredColorScheme(.light)
         }
     }
 }

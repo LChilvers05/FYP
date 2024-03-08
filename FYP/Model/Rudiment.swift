@@ -12,12 +12,12 @@ struct Rudiment: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
     let midi: String
-    let image: String
+    let view: String
     let pattern: String
     let patternRepeats: Int
     
     enum CodingKeys: String, CodingKey {
-        case id, name, midi, image, pattern
+        case id, name, midi, view, pattern
         case patternRepeats = "pattern_repeats"
     }
 }

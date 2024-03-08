@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.3/build/cjs/vexflow.js"></script>
+            
+    <style>
+        body,
+        html {
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #rudiment {
+            /* Set a max-width if needed */
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="rudiment"></canvas>
+    <script>
+        var vf = Vex.Flow
+        var WorkspaceInformation = {
+            canvas: document.getElementById("rudiment"),
+            canvasWidth: window.innerWidth,
+            canvasHeight: window.innerHeight
+        };
+        var renderer = new vf.Renderer(
+            WorkspaceInformation.canvas,
+            vf.Renderer.Backends.CANVAS
+        );
+        renderer.resize(WorkspaceInformation.canvasWidth, WorkspaceInformation.canvasHeight);
+        var context = renderer.getContext();
+        var stave = new vf.Stave(
+            0,
+            WorkspaceInformation.canvasHeight/2 - 40.0,
+            window.innerWidth
+        );
+
+        // all strokes
+        var notes = [
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1}),
+            new vf.StaveNote({keys: ["c/5"], duration: "16", stem_direction: 1})
+        ];
+
+        // annotate sticking
+        const stick = (text) => new vf.Annotation(text);
+        for (var i = 0; i < notes.length; i++) {
+            notes[i].addModifier((i % 2 === 0) ? stick("R") : stick("L"), 0);
+        }
+        
+        // group semiquavers
+        var beam1 = new vf.Beam([notes[0], notes[1], notes[2], notes[3]]);
+        var beam2 = new vf.Beam([notes[4], notes[5], notes[6], notes[7]]);
+        var beam3 = new vf.Beam([notes[8], notes[9], notes[10], notes[11]]);
+        var beam4 = new vf.Beam([notes[12], notes[13], notes[14], notes[15]]);
+        
+        function draw() {
+            // draw notes
+            stave.setContext(context).draw();
+            vf.Formatter.FormatAndDraw(context, stave, notes);
+            beam1.setContext(context).draw();
+            beam2.setContext(context).draw();
+            beam3.setContext(context).draw();
+            beam4.setContext(context).draw();
+        }
+        draw()
+
+    </script>
+</body>
+</html>
