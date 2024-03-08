@@ -156,9 +156,9 @@ final class RudimentPlayer: ObservableObject {
     }
     
     // initialise list of rudiment strokes from the rudiment data and MIDI events
-    private func createStrokes(from rudiment: Rudiment, and midiFile: MIDIFile?) {
+    private func createStrokes(from rudiment: Rudiment, and midiFile: MIDIFile) {
         // filter to note on events
-        guard let events = midiFile?.getEventsOf(type: .noteOn) else { return }
+        guard let events = midiFile.getEventsOf(type: .noteOn) else { return }
         
         let stickingPattern = rudiment.getStickingPattern()
         if stickingPattern.count != events.count {
