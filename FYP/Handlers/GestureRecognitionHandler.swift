@@ -42,6 +42,10 @@ final class GestureRecognitionHandler {
     
     func stopRecognition() {
         connectivityService.sendToWatch(["is_playing": false])
+        Task {
+            await strokeQueue.removeAll()
+            await buffer.removeAll()
+        }
     }
     
     // add onset waiting for sticking classification

@@ -31,4 +31,8 @@ actor Queue<T> {
     func peek() -> T? {
         return elements.first
     }
+    
+    func removeAll() {
+        elements.removeAll()
+    }
 }

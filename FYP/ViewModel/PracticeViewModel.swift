@@ -73,7 +73,7 @@ final class PracticeViewModel: ObservableObject {
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
-        guard !metronome.isCountingIn else { return }
+        guard isPlaying else { return }
         let stroke = UserStroke(
             positionInBeats: metronome.positionInBeats,
             amplitude: ampData,

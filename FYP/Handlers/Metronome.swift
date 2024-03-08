@@ -21,9 +21,6 @@ final class Metronome: ObservableObject {
     private let instrument = Oscillator()
     private let sequencer: AppleSequencer
     
-    // used after first bar
-    private(set) var isCountingIn = true
-    
     private var latency: Double {
         get { // TODO: let x = audioService.mic?.avAudioNode.latency
             let k = 1.9/1000
@@ -62,7 +59,6 @@ final class Metronome: ObservableObject {
     func start() {
         guard !isPlaying else { return }
         beat = 0
-        isCountingIn = true
         sequencer.rewind()
         sequencer.play()
     }
@@ -123,12 +119,7 @@ final class Metronome: ObservableObject {
     }
     
     private func countBeat() {
-        if beat == Int(sequencer.length.beats) {
-            beat = 1
-            isCountingIn = false
-        } else {
-            beat += 1
-        }
+        beat = (beat % Int(sequencer.length.beats)) + 1
     }
     
     deinit {
