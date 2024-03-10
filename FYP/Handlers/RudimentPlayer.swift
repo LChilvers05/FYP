@@ -84,22 +84,16 @@ final class RudimentPlayer: ObservableObject {
     // mark feedback
     @MainActor
     private func compareRhythm(for userStroke: UserStroke, curr: Int, next: Int) {
-        // results list pointer
+        // feedback list pointer
         var i = 1
         if curr < 0 { i = 0 }
-        if next >= strokes.count { i = 2 }
-        
-        // stroke pointers
         let curr = (curr + strokes.count) % strokes.count // wrap
-        let next = (next + strokes.count) % strokes.count
-        
-        // index in results
-        var resultsIndex = (i, curr)
-        
+        // index in feedback
+        var feedbackIndex = (i, curr)
+        // current midi stroke expected
         let stroke = strokes[curr]
         // compare rhythm
         let rhythm = stroke.checkRhythm(for: userStroke.positionInBeats)
-        
         switch rhythm {
         case .early:
             // feedback for previous stroke
@@ -108,14 +102,16 @@ final class RudimentPlayer: ObservableObject {
             // feedback for current stroke
             feedback[i][curr] = rhythm
         case .nextEarly, .nextSuccess:
+            if next >= strokes.count || i == 0 { i += 1 }
+            let next = (next + strokes.count) % strokes.count
             // feedback for next stroke
             feedback[i][next] = (rhythm == .nextEarly) ? .early : .success
-            resultsIndex.1 = next
+            feedbackIndex = (i, next)
         default:
             feedback[i][curr] = rhythm
         }
         // update lookup table to use when sticking predicted
-        lookup[userStroke.id] = (stroke.sticking, resultsIndex)
+        lookup[userStroke.id] = (stroke.sticking, feedbackIndex)
     }
     
     // shift focus stroke as sequencer plays rudiment
