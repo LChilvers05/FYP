@@ -41,13 +41,13 @@ final class Repository {
         return URLRequest(url: url)
     }
     
-    func logPractice(_ results: [Feedback?]) {
-        var printables: [Feedback] = []
+    func logPractice(_ results: [Annotation?]) {
+        var printables: [Annotation] = []
         for result in results {
             guard let result else { break }
             printables.append(result)
         }
-//        print(printables)
+        print(printables)
     }
     
     func logGesture(snapshot: [MovementData]) {

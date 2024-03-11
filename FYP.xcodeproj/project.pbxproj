@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */; };
 		FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */; };
+		FE08EB362B9E73CA00EDAD08 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE08EB352B9E73CA00EDAD08 /* Feedback.swift */; };
 		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
 		FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */; };
 		FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
@@ -114,6 +115,7 @@
 /* Begin PBXFileReference section */
 		FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnsetDetectionHandler.swift; sourceTree = "<group>"; };
 		FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
+		FE08EB352B9E73CA00EDAD08 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentPlayer.swift; sourceTree = "<group>"; };
 		FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptBuilder.swift; sourceTree = "<group>"; };
 		FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingClassifierHandler.swift; sourceTree = "<group>"; };
@@ -230,10 +232,10 @@
 			isa = PBXGroup;
 			children = (
 				FEA7BDF62B69AE360038B320 /* Metronome.swift */,
+				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
 				FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */,
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
 				FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */,
-				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
 				FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */,
 			);
 			path = Handlers;
@@ -457,6 +459,7 @@
 				FEAF90932B77C0A300E01F27 /* MovementData.swift */,
 				FE7154B02B70F02300E42FBD /* UserStroke.swift */,
 				FE7154B22B71427C00E42FBD /* RudimentStroke.swift */,
+				FE08EB352B9E73CA00EDAD08 /* Feedback.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */,
 				FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */,
 				FEAF90922B77B92B00E01F27 /* GestureRecognitionHandler.swift in Sources */,
+				FE08EB362B9E73CA00EDAD08 /* Feedback.swift in Sources */,
 				FEE465C02B83889600C278A3 /* StickingClassifier.mlmodel in Sources */,
 				FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */,
 				FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */,

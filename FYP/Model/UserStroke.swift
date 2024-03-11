@@ -9,7 +9,7 @@ import Foundation
 
 struct UserStroke {
     var id: Int = 0
-    var feedback: Feedback?
+    var feedback: Annotation?
     var sticking: Sticking?
     let positionInBeats: Double
     let amplitude: AmplitudeData
