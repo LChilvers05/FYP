@@ -23,7 +23,7 @@ final class PracticeViewModel: ObservableObject {
     private let repository = Repository()
     private let jsBuilder = JavaScriptBuilder()
     private lazy var onsetDetection = OnsetDetectionHandler()
-    private let gestureRecognition: StickingRecognitionHandler
+    private let stickingRecognition: StickingRecognitionHandler
     private let player: RudimentPlayer
     
     private var cancellables: Set<AnyCancellable> = []
@@ -31,12 +31,15 @@ final class PracticeViewModel: ObservableObject {
     init(_ rudiment: Rudiment) {
         player = RudimentPlayer(rudiment, repository)
         metronome = Metronome(sequencer: player.sequencer)
-        gestureRecognition = StickingRecognitionHandler(repository)
         rudimentViewRequest = repository.getRudimentViewRequest(rudiment.view)
+        stickingRecognition = StickingRecognitionHandler(
+            repository,
+            rudiment.getStrokeCount()
+        )
         
         metronome.update(tempo)
         onsetDetection.didDetectOnset = self.didDetectOnset
-        gestureRecognition.didGetSticking = self.didGetSticking
+        stickingRecognition.didGetSticking = self.didGetSticking
         
         Task {
             await player.feedback?.$annotations
@@ -63,14 +66,14 @@ final class PracticeViewModel: ObservableObject {
     
     private func startPractice() {
         player.rewind()
-        gestureRecognition.startRecognition()
+        stickingRecognition.startRecognition()
         onsetDetection.startDetecting()
         metronome.start() // starts player
         isPlaying = true
     }
     
     private func stopPractice() {
-        gestureRecognition.stopRecognition()
+        stickingRecognition.stopRecognition()
         onsetDetection.stopDetecting()
         metronome.stop() // stops player
         isPlaying = false
@@ -84,7 +87,7 @@ final class PracticeViewModel: ObservableObject {
             timestamp: metronome.timeElapsed
         )
         // register sticking request
-        gestureRecognition.enqueue(stroke)
+        stickingRecognition.enqueue(stroke)
         // do rhythm analysis
         player.scoreRhythm(for: stroke)
     }

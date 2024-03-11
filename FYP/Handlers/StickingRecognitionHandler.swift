@@ -17,14 +17,16 @@ final class StickingRecognitionHandler {
     private let state: MLState = .predict
     private let stickingHandler: StickingClassifierHandler?
     
+    private let strokeCount: Int
     private var strokes = Queue<UserStroke>() // thread safe
     private var buffer = Queue<MovementData>()
     private var prevOnsetTime = 0.0
     
     var didGetSticking: ((UserStroke) -> Void)?
     
-    init(_ repository: Repository) {
+    init(_ repository: Repository, _ strokeCount: Int) {
         self.repository = repository
+        self.strokeCount = strokeCount
         stickingHandler = try? StickingClassifierHandler()
         connectivityService.$stream
             .sink { [weak self] movementData in
@@ -50,7 +52,13 @@ final class StickingRecognitionHandler {
     
     // add onset waiting for sticking classification
     func enqueue(_ stroke: UserStroke) {
-        Task { await strokes.enqueue(stroke) }
+        Task {
+            await strokes.enqueue(stroke)
+            // fixed length backlog of classifications
+            if await strokes.count > strokeCount {
+                let _ = await strokes.dequeue()
+            }
+        }
     }
     
     // predict using model

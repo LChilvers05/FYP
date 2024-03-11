@@ -49,7 +49,7 @@ final class StickingClassifierHandler {
             )
             // make prediction
             let prediction = try model.prediction(input: input)
-            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
+//            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
             return (prediction.label == "right") ? .right
             : (prediction.label == "left") ? .left
             : nil

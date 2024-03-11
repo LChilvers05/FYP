@@ -47,7 +47,7 @@ final class Repository {
             guard let result else { break }
             printables.append(result)
         }
-        print(printables)
+//        print(printables)
     }
     
     func logGesture(snapshot: [MovementData]) {
