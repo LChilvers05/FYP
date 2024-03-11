@@ -9,14 +9,14 @@ import CoreML
 
 final class StickingClassifierHandler {
     
-    private let model: StickingClassifier
+    private let model: StickingClassifier2
     private let windowSize = 100
     private let accXML, accYML, accZML: MLMultiArray
     private let rotXML, rotYML, rotZML: MLMultiArray
     private let stateIn = Array(repeating: 0, count: 400)
     
     init() throws {
-        model = try StickingClassifier(configuration: MLModelConfiguration())
+        model = try StickingClassifier2(configuration: MLModelConfiguration())
         accXML = try multiArray(windowSize)
         accYML = try multiArray(windowSize)
         accZML = try multiArray(windowSize)
@@ -38,7 +38,7 @@ final class StickingClassifierHandler {
         }
         
         do {
-            let input = StickingClassifierInput(
+            let input = StickingClassifier2Input(
                 accelerationX: accXML,
                 accelerationY: accYML,
                 accelerationZ: accZML,

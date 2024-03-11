@@ -15,6 +15,7 @@
 		FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
 		FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */; };
 		FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */; };
+		FE4B29792B9F6E31005F19D3 /* StickingClassifier2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FE4B29782B9F6E31005F19D3 /* StickingClassifier2.mlmodel */; };
 		FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
 		FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B22B71427C00E42FBD /* RudimentStroke.swift */; };
 		FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4A2B49F34200274CD9 /* FYPApp.swift */; };
@@ -57,7 +58,6 @@
 		FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */ = {isa = PBXBuildFile; fileRef = FEB42BB22B58457D00772CC7 /* rudiments.json */; };
 		FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB52B5846B400772CC7 /* Rudiment.swift */; };
 		FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB82B586A6700772CC7 /* PracticeView.swift */; };
-		FEE465C02B83889600C278A3 /* StickingClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEE465BF2B83889600C278A3 /* StickingClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +121,7 @@
 		FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingClassifierHandler.swift; sourceTree = "<group>"; };
 		FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentRepresentable.swift; sourceTree = "<group>"; };
 		FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = single_stroke_roll.html; sourceTree = "<group>"; };
+		FE4B29782B9F6E31005F19D3 /* StickingClassifier2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier2.mlmodel; sourceTree = "<group>"; };
 		FE7154B02B70F02300E42FBD /* UserStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStroke.swift; sourceTree = "<group>"; };
 		FE7154B22B71427C00E42FBD /* RudimentStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentStroke.swift; sourceTree = "<group>"; };
 		FE878EF42B7D31DE00190FA2 /* FYPWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FYPWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -168,7 +169,6 @@
 		FEB42BB22B58457D00772CC7 /* rudiments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rudiments.json; sourceTree = "<group>"; };
 		FEB42BB52B5846B400772CC7 /* Rudiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rudiment.swift; sourceTree = "<group>"; };
 		FEB42BB82B586A6700772CC7 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
-		FEE465BF2B83889600C278A3 /* StickingClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = StickingClassifier.mlmodel; path = "../../../FYP-ML/StickingClassifier.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,7 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				FEB42BB02B5840D900772CC7 /* Repository.swift */,
-				FEE465BF2B83889600C278A3 /* StickingClassifier.mlmodel */,
+				FE4B29782B9F6E31005F19D3 /* StickingClassifier2.mlmodel */,
 				FEB42BB22B58457D00772CC7 /* rudiments.json */,
 				FE4448812B8E25B0002FF71A /* MIDI */,
 				FE4448822B8E25C0002FF71A /* WebViews */,
@@ -722,11 +722,11 @@
 				FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */,
 				FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */,
 				FEB42BB12B5840D900772CC7 /* Repository.swift in Sources */,
+				FE4B29792B9F6E31005F19D3 /* StickingClassifier2.mlmodel in Sources */,
 				FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */,
 				FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */,
 				FEAF90922B77B92B00E01F27 /* StickingRecognitionHandler.swift in Sources */,
 				FE08EB362B9E73CA00EDAD08 /* Feedback.swift in Sources */,
-				FEE465C02B83889600C278A3 /* StickingClassifier.mlmodel in Sources */,
 				FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */,
 				FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */,
 				FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */,

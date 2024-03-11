@@ -55,7 +55,7 @@ final class StickingRecognitionHandler {
         Task {
             await strokes.enqueue(stroke)
             // fixed length backlog of classifications
-            if await strokes.count > strokeCount {
+            if await strokes.count > (strokeCount * 2) {
                 let _ = await strokes.dequeue()
             }
         }
