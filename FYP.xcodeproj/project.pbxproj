@@ -231,8 +231,6 @@
 		FE0111792B63DC7C008F52D4 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				FEA7BDF62B69AE360038B320 /* Metronome.swift */,
-				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
 				FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */,
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
 				FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */,
@@ -460,6 +458,8 @@
 				FE7154B02B70F02300E42FBD /* UserStroke.swift */,
 				FE7154B22B71427C00E42FBD /* RudimentStroke.swift */,
 				FE08EB352B9E73CA00EDAD08 /* Feedback.swift */,
+				FEA7BDF62B69AE360038B320 /* Metronome.swift */,
+				FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
