@@ -17,7 +17,7 @@ struct RudimentStroke {
 }
 
 extension RudimentStroke {
-    func checkRhythm(for beat: Double) -> Feedback {
+    func checkRhythm(for beat: Double) -> Annotation {
         if beat >= positionInBeats && beat <= success {
             return .success
         } else if beat >= success && beat <= late {

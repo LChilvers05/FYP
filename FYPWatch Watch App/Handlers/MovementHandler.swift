@@ -27,7 +27,7 @@ final class MovementHandler: ObservableObject {
     }
     
     private func didStopPlaying() {
-        Task { await MainActor.run { isStreamingMovement = true }}
+        Task { await MainActor.run { isStreamingMovement = false }}
         startTimeStamp = nil
         motionManager.stopDeviceMotionUpdates()
     }

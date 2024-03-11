@@ -26,10 +26,9 @@ final class Repository {
         return rudiments
     }
     
-    func getRudimentMIDI(_ resource: String?) -> MIDIFile? {
+    func getRudimentMIDI(_ resource: String?) -> MIDIFile {
         guard let url = getFileURL(resource, "mid") else {
-            print("Failed to fetch rudiment MIDI file")
-            return nil
+            fatalError("Failed to fetch rudiment MIDI file")
         }
         return MIDIFile(url: url)
     }
@@ -42,8 +41,8 @@ final class Repository {
         return URLRequest(url: url)
     }
     
-    func logPractice(_ results: [Feedback?]) {
-        var printables: [Feedback] = []
+    func logPractice(_ results: [Annotation?]) {
+        var printables: [Annotation] = []
         for result in results {
             guard let result else { break }
             printables.append(result)

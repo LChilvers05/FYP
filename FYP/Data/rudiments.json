@@ -22,22 +22,6 @@
         "view": "paradiddle",
         "pattern": "RLRRLRLL",
         "pattern_repeats": 2
-    },
-    {
-        "id": 4,
-        "name": "Flam",
-        "midi": "flam",
-        "view": "flam",
-        "pattern": "none",
-        "pattern_repeats": 0
-    },
-    {
-        "id": 5,
-        "name": "Drag",
-        "midi": "drag",
-        "view": "drag",
-        "pattern": "none",
-        "pattern_repeats": 0
     }
 ]
  

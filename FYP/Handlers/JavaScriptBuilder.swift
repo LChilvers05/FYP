@@ -20,7 +20,7 @@ final class JavaScriptBuilder {
         """
     }
     
-    func build(from feedback: [Feedback?]) -> String {
+    func build(from feedback: [Annotation?]) -> String {
         var result = ""
         for (i, elem) in feedback.enumerated() {
             switch elem {

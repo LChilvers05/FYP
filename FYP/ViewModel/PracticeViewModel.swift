@@ -38,14 +38,18 @@ final class PracticeViewModel: ObservableObject {
         onsetDetection.didDetectOnset = self.didDetectOnset
         gestureRecognition.didGetSticking = self.didGetSticking
         
-        player.$feedback
-            .sink { [weak self] feedback in
-                guard let self else { return }
-                // update rudiment view with JS
-                attemptUpdates = self.jsBuilder.build(from: feedback[1])
-                prevAttemptUpdates = self.jsBuilder.build(from: feedback[0])
-            }
-            .store(in: &cancellables)
+        Task {
+            await player.feedback?.$annotations
+                .sink { [weak self] feedback in
+                    guard let self else { return }
+                    // update rudiment view with JS
+                    Task { await MainActor.run {
+                        self.attemptUpdates = self.jsBuilder.build(from: feedback[1])
+                        self.prevAttemptUpdates = self.jsBuilder.build(from: feedback[0])
+                    }}
+                }
+                .store(in: &cancellables)
+        }
     }
     
     func update(_ tempo: Int) {
@@ -73,7 +77,7 @@ final class PracticeViewModel: ObservableObject {
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
-        guard !metronome.isCountingIn else { return }
+        guard isPlaying else { return }
         let stroke = UserStroke(
             positionInBeats: metronome.positionInBeats,
             amplitude: ampData,
