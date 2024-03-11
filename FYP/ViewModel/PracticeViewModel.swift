@@ -23,7 +23,7 @@ final class PracticeViewModel: ObservableObject {
     private let repository = Repository()
     private let jsBuilder = JavaScriptBuilder()
     private lazy var onsetDetection = OnsetDetectionHandler()
-    private let gestureRecognition: GestureRecognitionHandler
+    private let gestureRecognition: StickingRecognitionHandler
     private let player: RudimentPlayer
     
     private var cancellables: Set<AnyCancellable> = []
@@ -31,7 +31,7 @@ final class PracticeViewModel: ObservableObject {
     init(_ rudiment: Rudiment) {
         player = RudimentPlayer(rudiment, repository)
         metronome = Metronome(sequencer: player.sequencer)
-        gestureRecognition = GestureRecognitionHandler(repository)
+        gestureRecognition = StickingRecognitionHandler(repository)
         rudimentViewRequest = repository.getRudimentViewRequest(rudiment.view)
         
         metronome.update(tempo)

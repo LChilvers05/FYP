@@ -44,7 +44,7 @@
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
 		FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAE515A2B7C0B18000DEEE0 /* Queue.swift */; };
 		FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
-		FEAF90922B77B92B00E01F27 /* GestureRecognitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */; };
+		FEAF90922B77B92B00E01F27 /* StickingRecognitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90912B77B92B00E01F27 /* StickingRecognitionHandler.swift */; };
 		FEAF90942B77C0A300E01F27 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
 		FEAFDD912B9B463100E69A67 /* double_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD902B9B463100E69A67 /* double_stroke_roll.html */; };
 		FEAFDD932B9B479100E69A67 /* paradiddle.html in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD922B9B479100E69A67 /* paradiddle.html */; };
@@ -155,7 +155,7 @@
 		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
 		FEA7BDF62B69AE360038B320 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
 		FEAE515A2B7C0B18000DEEE0 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureRecognitionHandler.swift; sourceTree = "<group>"; };
+		FEAF90912B77B92B00E01F27 /* StickingRecognitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingRecognitionHandler.swift; sourceTree = "<group>"; };
 		FEAF90932B77C0A300E01F27 /* MovementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementData.swift; sourceTree = "<group>"; };
 		FEAFDD902B9B463100E69A67 /* double_stroke_roll.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = double_stroke_roll.html; sourceTree = "<group>"; };
 		FEAFDD922B9B479100E69A67 /* paradiddle.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = paradiddle.html; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 			children = (
 				FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */,
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
-				FEAF90912B77B92B00E01F27 /* GestureRecognitionHandler.swift */,
+				FEAF90912B77B92B00E01F27 /* StickingRecognitionHandler.swift */,
 				FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */,
 			);
 			path = Handlers;
@@ -724,7 +724,7 @@
 				FEB42BB12B5840D900772CC7 /* Repository.swift in Sources */,
 				FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */,
 				FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */,
-				FEAF90922B77B92B00E01F27 /* GestureRecognitionHandler.swift in Sources */,
+				FEAF90922B77B92B00E01F27 /* StickingRecognitionHandler.swift in Sources */,
 				FE08EB362B9E73CA00EDAD08 /* Feedback.swift in Sources */,
 				FEE465C02B83889600C278A3 /* StickingClassifier.mlmodel in Sources */,
 				FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */,

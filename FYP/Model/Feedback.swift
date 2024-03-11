@@ -49,11 +49,12 @@ actor Feedback {
             var next = curr + 1
             if next >= strokes.count { i += 1 }
             next = (next + strokes.count) % strokes.count
+            let nextStroke = strokes[next]
             annotate(
                 (rhythm == .nextEarly) ? .early : .success,
                 at: i, next,
                 id: userStroke.id,
-                sticking: stroke.sticking
+                sticking: nextStroke.sticking
             )
         default: //.success, .late
             annotate(

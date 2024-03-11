@@ -8,7 +8,7 @@
 import CoreML
 import Combine
 
-final class GestureRecognitionHandler {
+final class StickingRecognitionHandler {
     
     private let connectivityService = PhoneConnectivityService.shared
     private var cancellables: Set<AnyCancellable> = []
@@ -17,7 +17,7 @@ final class GestureRecognitionHandler {
     private let state: MLState = .predict
     private let stickingHandler: StickingClassifierHandler?
     
-    private var strokeQueue = Queue<UserStroke>() // thread safe
+    private var strokes = Queue<UserStroke>() // thread safe
     private var buffer = Queue<MovementData>()
     private var prevOnsetTime = 0.0
     
@@ -43,14 +43,14 @@ final class GestureRecognitionHandler {
     func stopRecognition() {
         connectivityService.sendToWatch(["is_playing": false])
         Task {
-            await strokeQueue.removeAll()
+            await strokes.removeAll()
             await buffer.removeAll()
         }
     }
     
     // add onset waiting for sticking classification
     func enqueue(_ stroke: UserStroke) {
-        Task { await strokeQueue.enqueue(stroke) }
+        Task { await strokes.enqueue(stroke) }
     }
     
     // predict using model
@@ -75,9 +75,9 @@ final class GestureRecognitionHandler {
     
     // check if sufficient movement to dequeue stroke
     private func checkQueue(_ movementData: MovementData) async {
-        guard let peek = await strokeQueue.peek(),
+        guard let peek = await strokes.peek(),
               peek.timestamp <= movementData.timestamp,
-              let stroke = await strokeQueue.dequeue() else { return }
+              let stroke = await strokes.dequeue() else { return }
         
         // perform ML task
         switch state {
@@ -101,7 +101,7 @@ final class GestureRecognitionHandler {
     }
 }
 
-extension GestureRecognitionHandler {
+extension StickingRecognitionHandler {
     // console print for training data
     private func logGesture(for stroke: UserStroke) async  {
         let snapshot = await getSnapshot(onsetTime: stroke.timestamp)
