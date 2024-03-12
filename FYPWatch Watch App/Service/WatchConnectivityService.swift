@@ -39,7 +39,6 @@ final class WatchConnectivityService: NSObject {
     
     // receive phone messages
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        print(message)
         guard let isPlaying = message["is_playing"] as? Bool else { return }
         if isPlaying {
             didStartPlaying?()
@@ -50,7 +49,6 @@ final class WatchConnectivityService: NSObject {
 }
 
 extension WatchConnectivityService: WCSessionDelegate {
-    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error { debugPrint(error) }
     }
