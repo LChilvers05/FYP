@@ -15,22 +15,23 @@ final class StickingRecognitionHandler {
     private let repository: Repository
     
     private let state: MLState = .predict
-    private let stickingHandler: StickingClassifierHandler?
+    private var stickingHandler: StickingClassifierHandler?
     
     private let strokeCount: Int
     private var strokes = Queue<UserStroke>() // thread safe
+    private let bufferSize = 20
     private var buffer = Queue<MovementData>()
-    private var prevOnsetTime = 0.0
+    
+    private var isPlaying = false
     
     var didGetSticking: ((UserStroke) -> Void)?
     
     init(_ repository: Repository, _ strokeCount: Int) {
         self.repository = repository
         self.strokeCount = strokeCount
-        stickingHandler = try? StickingClassifierHandler()
         connectivityService.$stream
             .sink { [weak self] movementData in
-                guard let self else { return }
+                guard let self, self.isPlaying else { return }
                 Task {
                     await self.updateBuffer(movementData)
                 }
@@ -39,14 +40,18 @@ final class StickingRecognitionHandler {
     }
     
     func startRecognition() {
-        connectivityService.sendToWatch(["is_playing": true])
+        isPlaying = true
+        stickingHandler = try? StickingClassifierHandler(windowSize: bufferSize)
+        connectivityService.sendToWatch(["is_playing": isPlaying])
     }
     
     func stopRecognition() {
-        connectivityService.sendToWatch(["is_playing": false])
+        isPlaying = false
+        connectivityService.sendToWatch(["is_playing": isPlaying])
         Task {
             await strokes.removeAll()
             await buffer.removeAll()
+            await buffer.set(prevOnsetTime: 0.0)
         }
     }
     
@@ -65,7 +70,7 @@ final class StickingRecognitionHandler {
     private func getSticking(for stroke: UserStroke) async {
         let snapshot = await getSnapshot(onsetTime: stroke.timestamp)
         guard let stickingHandler,
-              let sticking = stickingHandler.classifySticking(from: snapshot)
+              let sticking = await stickingHandler.classifySticking(from: snapshot)
         else { return }
         var stroke = stroke; stroke.sticking = sticking
         didGetSticking?(stroke)
@@ -73,10 +78,11 @@ final class StickingRecognitionHandler {
     
     // movement snapshot for classification
     private func getSnapshot(onsetTime: Double) async -> [MovementData] {
+        let prevOnsetTime = await buffer.prevOnsetTime
         let snapshot = await buffer.elements.filter {
             $0.timestamp >= prevOnsetTime && $0.timestamp <= onsetTime
         }
-        prevOnsetTime = onsetTime
+        await buffer.set(prevOnsetTime: onsetTime)
         
         return snapshot
     }
@@ -99,7 +105,7 @@ final class StickingRecognitionHandler {
     // keep fixed length movement data buffer
     private func updateBuffer(_ movementData: MovementData?) async {
         guard let movementData else { return }
-        let bufferSize = 100
+        let bufferSize = 20
         await buffer.enqueue(movementData)
         if await buffer.count > bufferSize {
             let _ = await buffer.dequeue()

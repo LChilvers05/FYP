@@ -9,14 +9,15 @@ import CoreML
 
 final class StickingClassifierHandler {
     
-    private let model: StickingClassifier2
-    private let windowSize = 100
+    private let model: StickingClassifier1
+    private let windowSize: Int
     private let accXML, accYML, accZML: MLMultiArray
     private let rotXML, rotYML, rotZML: MLMultiArray
     private let stateIn = Array(repeating: 0, count: 400)
     
-    init() throws {
-        model = try StickingClassifier2(configuration: MLModelConfiguration())
+    init(windowSize: Int) throws {
+        self.windowSize = windowSize
+        model = try StickingClassifier1(configuration: MLModelConfiguration())
         accXML = try multiArray(windowSize)
         accYML = try multiArray(windowSize)
         accZML = try multiArray(windowSize)
@@ -25,7 +26,7 @@ final class StickingClassifierHandler {
         rotZML = try multiArray(windowSize)
     }
     
-    func classifySticking(from snapshot: [MovementData]) -> Sticking? {
+    func classifySticking(from snapshot: [MovementData]) async -> Sticking? {
         for i in 0..<windowSize {
             let zero = NSNumber(value: 0.0)
             let isPadding = (i >= snapshot.count)
@@ -38,7 +39,9 @@ final class StickingClassifierHandler {
         }
         
         do {
-            let input = StickingClassifier2Input(
+            try Task.checkCancellation()
+            
+            let input = StickingClassifier1Input(
                 accelerationX: accXML,
                 accelerationY: accYML,
                 accelerationZ: accZML,
@@ -47,9 +50,10 @@ final class StickingClassifierHandler {
                 rotationRateZ: rotZML,
                 stateIn: try MLMultiArray(stateIn)
             )
+            
             // make prediction
-            let prediction = try model.prediction(input: input)
-//            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
+            let prediction = try await model.prediction(input: input)
+            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
             return (prediction.label == "right") ? .right
             : (prediction.label == "left") ? .left
             : nil

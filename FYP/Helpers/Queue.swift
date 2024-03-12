@@ -11,6 +11,7 @@ import Foundation
 actor Queue<T> {
     
     private(set) var elements = [T]()
+    private(set) var prevOnsetTime = 0.0
 
     var isEmpty: Bool {
         return elements.isEmpty
@@ -34,5 +35,10 @@ actor Queue<T> {
     
     func removeAll() {
         elements.removeAll()
+    }
+    
+    // for movement buffer
+    func set(prevOnsetTime: TimeInterval) {
+        self.prevOnsetTime = prevOnsetTime
     }
 }
