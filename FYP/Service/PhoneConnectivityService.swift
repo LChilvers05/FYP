@@ -12,7 +12,6 @@ final class PhoneConnectivityService: NSObject {
     
     @Published var stream: MovementData? = nil
     
-    private var movement: MovementData? = nil
     private var session: WCSession?
     
     static let shared = PhoneConnectivityService()
