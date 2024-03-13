@@ -64,19 +64,19 @@ final class PracticeViewModel: ObservableObject {
         metronome.isPlaying ? stopPractice() : startPractice()
     }
     
+    func stopPractice() {
+        stickingRecognition.stopRecognition()
+        onsetDetection.stopDetecting()
+        metronome.stop() // stops player
+        isPlaying = false
+    }
+    
     private func startPractice() {
         player.rewind()
         stickingRecognition.startRecognition()
         onsetDetection.startDetecting()
         metronome.start() // starts player
         isPlaying = true
-    }
-    
-    private func stopPractice() {
-        stickingRecognition.stopRecognition()
-        onsetDetection.stopDetecting()
-        metronome.stop() // stops player
-        isPlaying = false
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
