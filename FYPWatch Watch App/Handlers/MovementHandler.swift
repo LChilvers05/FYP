@@ -15,7 +15,6 @@ final class MovementHandler: ObservableObject {
     private let motionManager = CMMotionManager()
     private let connectivityService = WatchConnectivityService.shared
     private let updateInterval = 1.0/100.0 //100hz
-    private var startTimeStamp: TimeInterval?
     
     init() {
         connectivityService.didStartPlaying = didStartPlaying
@@ -28,7 +27,6 @@ final class MovementHandler: ObservableObject {
     
     private func didStopPlaying() {
         Task { await MainActor.run { isStreamingMovement = false }}
-        startTimeStamp = nil
         motionManager.stopDeviceMotionUpdates()
     }
     
@@ -36,7 +34,7 @@ final class MovementHandler: ObservableObject {
         guard motionManager.isDeviceMotionAvailable else { return }
         motionManager.deviceMotionUpdateInterval = updateInterval
         Task { await MainActor.run { isStreamingMovement = true }}
-        
+        var startTimeStamp: TimeInterval? = nil
         // get acceleration, rotation and timestamp every interval
         motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (data, error) in
             guard let acceleration = data?.userAcceleration,
@@ -46,10 +44,10 @@ final class MovementHandler: ObservableObject {
             
             // get time since motion update started
             var timestamp = deviceTimestamp
-            if self.startTimeStamp == nil {
-                self.startTimeStamp = timestamp
+            if startTimeStamp == nil {
+                startTimeStamp = timestamp
             }
-            timestamp -= self.startTimeStamp ?? timestamp
+            timestamp -= startTimeStamp ?? timestamp
             
             // encode for iPhone
             do {

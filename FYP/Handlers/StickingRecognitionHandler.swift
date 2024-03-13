@@ -51,7 +51,6 @@ final class StickingRecognitionHandler {
         Task {
             await strokes.removeAll()
             await buffer.removeAll()
-            await buffer.set(prevOnsetTime: 0.0)
         }
     }
     
@@ -67,24 +66,13 @@ final class StickingRecognitionHandler {
     }
     
     // predict using model
-    private func getSticking(for stroke: UserStroke) async {
-        let snapshot = await getSnapshot(onsetTime: stroke.timestamp)
+    private func getSticking(for stroke: UserStroke,
+                             from snapshot: [MovementData]) async {
         guard let stickingHandler,
               let sticking = await stickingHandler.classifySticking(from: snapshot)
         else { return }
         var stroke = stroke; stroke.sticking = sticking
         didGetSticking?(stroke)
-    }
-    
-    // movement snapshot for classification
-    private func getSnapshot(onsetTime: Double) async -> [MovementData] {
-        let prevOnsetTime = await buffer.prevOnsetTime
-        let snapshot = await buffer.elements.filter {
-            $0.timestamp >= prevOnsetTime && $0.timestamp <= onsetTime
-        }
-        await buffer.set(prevOnsetTime: onsetTime)
-        
-        return snapshot
     }
     
     // check if sufficient movement to dequeue stroke
@@ -93,33 +81,27 @@ final class StickingRecognitionHandler {
               peek.timestamp <= movementData.timestamp,
               let stroke = await strokes.dequeue() else { return }
         
+        let snapshot = await buffer.elements
+        await buffer.removeAll()
+        
         // perform ML task
         switch state {
         case .train:
-            await logGesture(for: stroke)
+            repository.logGesture(snapshot: snapshot)
         case .predict:
-            await getSticking(for: stroke)
+            await getSticking(for: stroke, from: snapshot)
         }
     }
     
     // keep fixed length movement data buffer
     private func updateBuffer(_ movementData: MovementData?) async {
         guard let movementData else { return }
-        let bufferSize = 20
         await buffer.enqueue(movementData)
         if await buffer.count > bufferSize {
             let _ = await buffer.dequeue()
         }
         
         await checkQueue(movementData)
-    }
-}
-
-extension StickingRecognitionHandler {
-    // console print for training data
-    private func logGesture(for stroke: UserStroke) async  {
-        let snapshot = await getSnapshot(onsetTime: stroke.timestamp)
-        repository.logGesture(snapshot: snapshot)
     }
 }
 
