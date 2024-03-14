@@ -15,6 +15,7 @@ final class Repository {
     var didReceiveStroke: ((UserStroke) -> Void)?
     
     func set(_ didReceiveStroke: ((UserStroke) -> Void)?) {
+        // stroke with sticking received from watch
         self.didReceiveStroke = didReceiveStroke
         connectivityService.didReceiveStroke = self.didReceiveStroke
     }
