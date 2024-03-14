@@ -77,6 +77,9 @@ struct PracticeView: View {
                 Image(systemName: "questionmark.circle")
             }
         }
+        .onDisappear {
+            viewModel.stopPractice()
+        }
     }
     
     private func startStopSymbol() -> String {

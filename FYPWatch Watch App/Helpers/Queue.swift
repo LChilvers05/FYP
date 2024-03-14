@@ -33,6 +33,6 @@ actor Queue<T> {
     }
     
     func removeAll() {
-        elements.removeAll()
+        elements = []
     }
 }

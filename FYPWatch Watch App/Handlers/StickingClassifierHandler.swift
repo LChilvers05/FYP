@@ -9,14 +9,15 @@ import CoreML
 
 final class StickingClassifierHandler {
     
-    private let model: StickingClassifier
-    private let windowSize = 100
+    private let model: StickingClassifier1
+    private let windowSize: Int
     private let accXML, accYML, accZML: MLMultiArray
     private let rotXML, rotYML, rotZML: MLMultiArray
     private let stateIn = Array(repeating: 0, count: 400)
     
-    init() throws {
-        model = try StickingClassifier(configuration: MLModelConfiguration())
+    init(windowSize: Int) throws {
+        self.windowSize = windowSize
+        model = try StickingClassifier1(configuration: MLModelConfiguration())
         accXML = try multiArray(windowSize)
         accYML = try multiArray(windowSize)
         accZML = try multiArray(windowSize)
@@ -25,20 +26,22 @@ final class StickingClassifierHandler {
         rotZML = try multiArray(windowSize)
     }
     
-    func classifySticking(from snapshot: [MovementData]) -> Sticking? {
+    func predict(_ snapshot: [MovementData]) async -> Sticking? {
         for i in 0..<windowSize {
             let zero = NSNumber(value: 0.0)
             let isPadding = (i >= snapshot.count)
-            accXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].accX)
-            accYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].accY)
-            accZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].accZ)
-            rotXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotX)
-            rotYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotY)
-            rotZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotZ)
+            accXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.x)
+            accYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.y)
+            accZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.z)
+            rotXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.x)
+            rotYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.y)
+            rotZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.z)
         }
         
         do {
-            let input = StickingClassifierInput(
+            try Task.checkCancellation()
+            
+            let input = StickingClassifier1Input(
                 accelerationX: accXML,
                 accelerationY: accYML,
                 accelerationZ: accZML,
@@ -47,8 +50,9 @@ final class StickingClassifierHandler {
                 rotationRateZ: rotZML,
                 stateIn: try MLMultiArray(stateIn)
             )
+            
             // make prediction
-            let prediction = try model.prediction(input: input)
+            let prediction = try await model.prediction(input: input)
             print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
             return (prediction.label == "right") ? .right
             : (prediction.label == "left") ? .left

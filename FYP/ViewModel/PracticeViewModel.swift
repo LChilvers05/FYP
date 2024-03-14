@@ -23,7 +23,6 @@ final class PracticeViewModel: ObservableObject {
     private let repository = Repository()
     private let jsBuilder = JavaScriptBuilder()
     private lazy var onsetDetection = OnsetDetectionHandler()
-    private let gestureRecognition: StickingRecognitionHandler
     private let player: RudimentPlayer
     
     private var cancellables: Set<AnyCancellable> = []
@@ -31,12 +30,11 @@ final class PracticeViewModel: ObservableObject {
     init(_ rudiment: Rudiment) {
         player = RudimentPlayer(rudiment, repository)
         metronome = Metronome(sequencer: player.sequencer)
-        gestureRecognition = StickingRecognitionHandler(repository)
         rudimentViewRequest = repository.getRudimentViewRequest(rudiment.view)
         
         metronome.update(tempo)
-        onsetDetection.didDetectOnset = self.didDetectOnset
-        gestureRecognition.didGetSticking = self.didGetSticking
+        repository.set(didReceiveStroke)
+        onsetDetection.didDetectOnset = didDetectOnset
         
         Task {
             await player.feedback?.$annotations
@@ -61,19 +59,19 @@ final class PracticeViewModel: ObservableObject {
         metronome.isPlaying ? stopPractice() : startPractice()
     }
     
-    private func startPractice() {
-        player.rewind()
-        gestureRecognition.startRecognition()
-        onsetDetection.startDetecting()
-        metronome.start() // starts player
-        isPlaying = true
-    }
-    
-    private func stopPractice() {
-        gestureRecognition.stopRecognition()
+    func stopPractice() {
+        isPlaying = false
+        repository.didStartPlaying(isPlaying)
         onsetDetection.stopDetecting()
         metronome.stop() // stops player
-        isPlaying = false
+    }
+    
+    private func startPractice() {
+        isPlaying = true
+        player.rewind()
+        repository.didStartPlaying(isPlaying)
+        onsetDetection.startDetecting()
+        metronome.start() // starts player
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
@@ -84,12 +82,12 @@ final class PracticeViewModel: ObservableObject {
             timestamp: metronome.timeElapsed
         )
         // register sticking request
-        gestureRecognition.enqueue(stroke)
+        repository.requestSticking(for: stroke)
         // do rhythm analysis
         player.scoreRhythm(for: stroke)
     }
     
-    private func didGetSticking(for stroke: UserStroke) {
+    private func didReceiveStroke(_ stroke: UserStroke) {
         player.checkSticking(for: stroke)
     }
 }

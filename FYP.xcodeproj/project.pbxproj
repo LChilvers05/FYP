@@ -12,7 +12,6 @@
 		FE08EB362B9E73CA00EDAD08 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE08EB352B9E73CA00EDAD08 /* Feedback.swift */; };
 		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
 		FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */; };
-		FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
 		FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */; };
 		FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */; };
 		FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
@@ -25,7 +24,7 @@
 		FE988B682B49F34400274CD9 /* FYPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B672B49F34400274CD9 /* FYPUITests.swift */; };
 		FE988B6A2B49F34400274CD9 /* FYPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B692B49F34400274CD9 /* FYPUITestsLaunchTests.swift */; };
 		FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B7C2B4B188C00274CD9 /* FYPWatchApp.swift */; };
-		FE988B7F2B4B188C00274CD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B7E2B4B188C00274CD9 /* ContentView.swift */; };
+		FE988B7F2B4B188C00274CD9 /* WatchPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B7E2B4B188C00274CD9 /* WatchPracticeView.swift */; };
 		FE988B812B4B188E00274CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B802B4B188E00274CD9 /* Assets.xcassets */; };
 		FE988B842B4B188E00274CD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B832B4B188E00274CD9 /* Preview Assets.xcassets */; };
 		FE988B8E2B4B188F00274CD9 /* FYPWatch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B8D2B4B188F00274CD9 /* FYPWatch_Watch_AppTests.swift */; };
@@ -42,10 +41,7 @@
 		FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = FEA7BDF02B694C480038B320 /* AudioKitEX */; };
 		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
-		FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAE515A2B7C0B18000DEEE0 /* Queue.swift */; };
 		FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
-		FEAF90922B77B92B00E01F27 /* StickingRecognitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90912B77B92B00E01F27 /* StickingRecognitionHandler.swift */; };
-		FEAF90942B77C0A300E01F27 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
 		FEAFDD912B9B463100E69A67 /* double_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD902B9B463100E69A67 /* double_stroke_roll.html */; };
 		FEAFDD932B9B479100E69A67 /* paradiddle.html in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD922B9B479100E69A67 /* paradiddle.html */; };
 		FEAFDD952B9B493B00E69A67 /* double_stroke_roll.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD942B9B493B00E69A67 /* double_stroke_roll.mid */; };
@@ -57,10 +53,25 @@
 		FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */ = {isa = PBXBuildFile; fileRef = FEB42BB22B58457D00772CC7 /* rudiments.json */; };
 		FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB52B5846B400772CC7 /* Rudiment.swift */; };
 		FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB82B586A6700772CC7 /* PracticeView.swift */; };
-		FEE465C02B83889600C278A3 /* StickingClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEE465BF2B83889600C278A3 /* StickingClassifier.mlmodel */; };
+		FED518B62BA26F2A001C139D /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
+		FED518B72BA26F2F001C139D /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
+		FED518B82BA26F33001C139D /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAE515A2B7C0B18000DEEE0 /* Queue.swift */; };
+		FED518B92BA26F38001C139D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE67B2BA261970042D947 /* Enums.swift */; };
+		FEFEE66E2BA24B6F0042D947 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
+		FEFEE6712BA24D1B0042D947 /* WatchPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6702BA24D1B0042D947 /* WatchPracticeViewModel.swift */; };
+		FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6772BA25F370042D947 /* Extensions.swift */; };
+		FEFEE67A2BA260620042D947 /* StickingClassifier1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6792BA260620042D947 /* StickingClassifier1.mlmodel */; };
+		FEFEE67C2BA261970042D947 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE67B2BA261970042D947 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FE1E89C12BA30F980076D9CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE988B792B4B188C00274CD9;
+			remoteInfo = "FYPWatch Watch App";
+		};
 		FE988B5A2B49F34400274CD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
@@ -83,13 +94,6 @@
 			remoteInfo = "FYPWatch Watch App";
 		};
 		FE988B942B4B188F00274CD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE988B792B4B188C00274CD9;
-			remoteInfo = "FYPWatch Watch App";
-		};
-		FE988B9B2B4B188F00274CD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
 			proxyType = 1;
@@ -136,7 +140,7 @@
 		FE988B692B49F34400274CD9 /* FYPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FYPWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE988B7C2B4B188C00274CD9 /* FYPWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatchApp.swift; sourceTree = "<group>"; };
-		FE988B7E2B4B188C00274CD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FE988B7E2B4B188C00274CD9 /* WatchPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPracticeView.swift; sourceTree = "<group>"; };
 		FE988B802B4B188E00274CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE988B832B4B188E00274CD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FE988B892B4B188F00274CD9 /* FYPWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FYPWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +159,6 @@
 		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
 		FEA7BDF62B69AE360038B320 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
 		FEAE515A2B7C0B18000DEEE0 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		FEAF90912B77B92B00E01F27 /* StickingRecognitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingRecognitionHandler.swift; sourceTree = "<group>"; };
 		FEAF90932B77C0A300E01F27 /* MovementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementData.swift; sourceTree = "<group>"; };
 		FEAFDD902B9B463100E69A67 /* double_stroke_roll.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = double_stroke_roll.html; sourceTree = "<group>"; };
 		FEAFDD922B9B479100E69A67 /* paradiddle.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = paradiddle.html; sourceTree = "<group>"; };
@@ -168,7 +171,11 @@
 		FEB42BB22B58457D00772CC7 /* rudiments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rudiments.json; sourceTree = "<group>"; };
 		FEB42BB52B5846B400772CC7 /* Rudiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rudiment.swift; sourceTree = "<group>"; };
 		FEB42BB82B586A6700772CC7 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
-		FEE465BF2B83889600C278A3 /* StickingClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = StickingClassifier.mlmodel; path = "../../../FYP-ML/StickingClassifier.mlmodel"; sourceTree = "<group>"; };
+		FEFEE6702BA24D1B0042D947 /* WatchPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPracticeViewModel.swift; sourceTree = "<group>"; };
+		FEFEE6772BA25F370042D947 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FEFEE6792BA260620042D947 /* StickingClassifier1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier1.mlmodel; sourceTree = "<group>"; };
+		FEFEE67B2BA261970042D947 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		FEFEE6882BA263BA0042D947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,9 +238,7 @@
 		FE0111792B63DC7C008F52D4 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */,
 				FE01117B2B63DC9D008F52D4 /* OnsetDetectionHandler.swift */,
-				FEAF90912B77B92B00E01F27 /* StickingRecognitionHandler.swift */,
 				FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */,
 			);
 			path = Handlers;
@@ -303,10 +308,10 @@
 				FE0111792B63DC7C008F52D4 /* Handlers */,
 				FEB42BA42B52EBDE00772CC7 /* Service */,
 				FEB42BAC2B56AE1100772CC7 /* Data */,
-				FE988B522B49F34400274CD9 /* Preview Content */,
 				FEAE51592B7C0AF3000DEEE0 /* Helpers */,
-				FEB42BAF2B56D4E100772CC7 /* Info.plist */,
+				FE988B522B49F34400274CD9 /* Preview Content */,
 				FE988B502B49F34400274CD9 /* Assets.xcassets */,
+				FEB42BAF2B56D4E100772CC7 /* Info.plist */,
 			);
 			path = FYP;
 			sourceTree = "<group>";
@@ -339,11 +344,15 @@
 		FE988B7B2B4B188C00274CD9 /* FYPWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				FE878EF42B7D31DE00190FA2 /* FYPWatch-Watch-App-Info.plist */,
 				FE988B7C2B4B188C00274CD9 /* FYPWatchApp.swift */,
+				FEFEE6732BA254EB0042D947 /* Model */,
+				FE988BAB2B4B200000274CD9 /* View */,
+				FEFEE6742BA257D50042D947 /* ViewModel */,
 				FEAF90902B77AF1400E01F27 /* Handlers */,
 				FE988BAD2B4B220000274CD9 /* Service */,
-				FE988BAB2B4B200000274CD9 /* View */,
+				FEFEE66F2BA24B7D0042D947 /* Data */,
+				FEFEE6762BA25F060042D947 /* Helpers */,
+				FE878EF42B7D31DE00190FA2 /* FYPWatch-Watch-App-Info.plist */,
 				FE988B802B4B188E00274CD9 /* Assets.xcassets */,
 				FE988B822B4B188E00274CD9 /* Preview Content */,
 			);
@@ -389,7 +398,7 @@
 		FE988BAB2B4B200000274CD9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FE988B7E2B4B188C00274CD9 /* ContentView.swift */,
+				FE988B7E2B4B188C00274CD9 /* WatchPracticeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -405,6 +414,7 @@
 		FEA7BDEF2B694C480038B320 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FEFEE6882BA263BA0042D947 /* AudioToolbox.framework */,
 				FEA3B1FE2B7D236900EE111E /* WatchConnectivity.framework */,
 				FEA3B1F92B7D1FF900EE111E /* WatchConnectivity.framework */,
 			);
@@ -415,7 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				FEA04B4D2B7264900058C8B4 /* Extensions.swift */,
-				FEAE515A2B7C0B18000DEEE0 /* Queue.swift */,
+				FEFEE67B2BA261970042D947 /* Enums.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -423,6 +433,7 @@
 		FEAF90902B77AF1400E01F27 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */,
 				FE988BA92B4B1FEE00274CD9 /* MovementHandler.swift */,
 			);
 			path = Handlers;
@@ -441,7 +452,6 @@
 			isa = PBXGroup;
 			children = (
 				FEB42BB02B5840D900772CC7 /* Repository.swift */,
-				FEE465BF2B83889600C278A3 /* StickingClassifier.mlmodel */,
 				FEB42BB22B58457D00772CC7 /* rudiments.json */,
 				FE4448812B8E25B0002FF71A /* MIDI */,
 				FE4448822B8E25C0002FF71A /* WebViews */,
@@ -454,7 +464,6 @@
 			children = (
 				FEB42BB52B5846B400772CC7 /* Rudiment.swift */,
 				FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */,
-				FEAF90932B77C0A300E01F27 /* MovementData.swift */,
 				FE7154B02B70F02300E42FBD /* UserStroke.swift */,
 				FE7154B22B71427C00E42FBD /* RudimentStroke.swift */,
 				FE08EB352B9E73CA00EDAD08 /* Feedback.swift */,
@@ -474,6 +483,39 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		FEFEE66F2BA24B7D0042D947 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FEFEE6792BA260620042D947 /* StickingClassifier1.mlmodel */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FEFEE6732BA254EB0042D947 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FEAF90932B77C0A300E01F27 /* MovementData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FEFEE6742BA257D50042D947 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FEFEE6702BA24D1B0042D947 /* WatchPracticeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FEFEE6762BA25F060042D947 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FEAE515A2B7C0B18000DEEE0 /* Queue.swift */,
+				FEFEE6772BA25F370042D947 /* Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -489,7 +531,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				FE988B9C2B4B188F00274CD9 /* PBXTargetDependency */,
+				FE1E89C22BA30F980076D9CF /* PBXTargetDependency */,
 			);
 			name = FYP;
 			packageProductDependencies = (
@@ -550,6 +592,8 @@
 			dependencies = (
 			);
 			name = "FYPWatch Watch App";
+			packageProductDependencies = (
+			);
 			productName = "FYPWatch Watch App";
 			productReference = FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */;
 			productType = "com.apple.product-type.application";
@@ -715,28 +759,24 @@
 			files = (
 				FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */,
 				FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */,
-				FE3C4B202B8291910051A4E8 /* StickingClassifierHandler.swift in Sources */,
 				FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */,
 				FEB42BAB2B52FA4400772CC7 /* AudioService.swift in Sources */,
 				FE988B4D2B49F34200274CD9 /* MenuView.swift in Sources */,
 				FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */,
 				FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */,
 				FEB42BB12B5840D900772CC7 /* Repository.swift in Sources */,
-				FEAE515B2B7C0B18000DEEE0 /* Queue.swift in Sources */,
 				FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */,
-				FEAF90922B77B92B00E01F27 /* StickingRecognitionHandler.swift in Sources */,
 				FE08EB362B9E73CA00EDAD08 /* Feedback.swift in Sources */,
-				FEE465C02B83889600C278A3 /* StickingClassifier.mlmodel in Sources */,
 				FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */,
 				FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */,
 				FE01117C2B63DC9D008F52D4 /* OnsetDetectionHandler.swift in Sources */,
 				FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */,
 				FEA433252B98F6140002C4E9 /* FeedbackKeyView.swift in Sources */,
 				FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */,
-				FEAF90942B77C0A300E01F27 /* MovementData.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
 				FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */,
 				FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */,
+				FEFEE67C2BA261970042D947 /* Enums.swift in Sources */,
 				FEA433222B98D3880002C4E9 /* Modifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,10 +802,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FED518B92BA26F38001C139D /* Enums.swift in Sources */,
+				FED518B82BA26F33001C139D /* Queue.swift in Sources */,
+				FED518B72BA26F2F001C139D /* AmplitudeData.swift in Sources */,
+				FED518B62BA26F2A001C139D /* UserStroke.swift in Sources */,
+				FEFEE67A2BA260620042D947 /* StickingClassifier1.mlmodel in Sources */,
+				FEFEE66E2BA24B6F0042D947 /* StickingClassifierHandler.swift in Sources */,
+				FEFEE6712BA24D1B0042D947 /* WatchPracticeViewModel.swift in Sources */,
 				FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */,
+				FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */,
 				FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */,
 				FE988BAA2B4B1FEE00274CD9 /* MovementHandler.swift in Sources */,
-				FE988B7F2B4B188C00274CD9 /* ContentView.swift in Sources */,
+				FE988B7F2B4B188C00274CD9 /* WatchPracticeView.swift in Sources */,
 				FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -790,6 +838,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FE1E89C22BA30F980076D9CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
+			targetProxy = FE1E89C12BA30F980076D9CF /* PBXContainerItemProxy */;
+		};
 		FE988B5B2B49F34400274CD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FE988B462B49F34200274CD9 /* FYP */;
@@ -809,11 +862,6 @@
 			isa = PBXTargetDependency;
 			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
 			targetProxy = FE988B942B4B188F00274CD9 /* PBXContainerItemProxy */;
-		};
-		FE988B9C2B4B188F00274CD9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
-			targetProxy = FE988B9B2B4B188F00274CD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

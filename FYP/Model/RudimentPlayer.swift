@@ -121,14 +121,3 @@ final class RudimentPlayer {
         midiCallback.callback = playStroke
     }
 }
-
-enum Annotation {
-    case early,
-         success,
-         late,
-         nextEarly,
-         nextSuccess,
-         missed,
-         sticking,
-         error
-}

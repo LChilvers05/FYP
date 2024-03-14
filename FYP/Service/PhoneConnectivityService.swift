@@ -10,10 +10,9 @@ import CoreMotion
 
 final class PhoneConnectivityService: NSObject {
     
-    @Published var stream: MovementData? = nil
-    
-    private var movement: MovementData? = nil
     private var session: WCSession?
+    
+    var didReceiveStroke: ((UserStroke) -> Void)?
     
     static let shared = PhoneConnectivityService()
     private override init() {
@@ -30,21 +29,26 @@ final class PhoneConnectivityService: NSObject {
     
     // send message to watch
     func sendToWatch(_ message: [String: Any]) {
-        guard let session,
-              session.isReachable else { return }
-        
-        session.sendMessage(message, replyHandler: nil) { error in
-            print("Failed to send message to Apple Watch \(error.localizedDescription)")
+        guard let session else { return }
+        if session.isReachable {
+            session.sendMessage(message, replyHandler: nil) { error in
+                print("Failed to send message to Apple Watch \(error.localizedDescription)")
+            }
+        } else {
+            do {
+                try session.updateApplicationContext(message)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
     // receive watch motion data
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        guard let data = message["movement"] as? Data else { return }
+    private func didReceive(_ message: [String: Any]) {
+        guard let data = message["stroke"] as? Data else { return }
         do {
-            let movement = try JSONDecoder().decode(MovementData.self, from: data)
-            // update subscribers
-            stream = movement
+            let stroke = try JSONDecoder().decode(UserStroke.self, from: data)
+            didReceiveStroke?(stroke)
         } catch {
             print(error.localizedDescription)
         }
@@ -52,6 +56,14 @@ final class PhoneConnectivityService: NSObject {
 }
 
 extension PhoneConnectivityService: WCSessionDelegate {
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        didReceive(message)
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        didReceive(applicationContext)
+    }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error { debugPrint(error) }
