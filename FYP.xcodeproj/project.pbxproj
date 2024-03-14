@@ -42,7 +42,6 @@
 		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
 		FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
-		FEAF90942B77C0A300E01F27 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
 		FEAFDD912B9B463100E69A67 /* double_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD902B9B463100E69A67 /* double_stroke_roll.html */; };
 		FEAFDD932B9B479100E69A67 /* paradiddle.html in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD922B9B479100E69A67 /* paradiddle.html */; };
 		FEAFDD952B9B493B00E69A67 /* double_stroke_roll.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD942B9B493B00E69A67 /* double_stroke_roll.mid */; };
@@ -63,10 +62,16 @@
 		FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6772BA25F370042D947 /* Extensions.swift */; };
 		FEFEE67A2BA260620042D947 /* StickingClassifier1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6792BA260620042D947 /* StickingClassifier1.mlmodel */; };
 		FEFEE67C2BA261970042D947 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE67B2BA261970042D947 /* Enums.swift */; };
-		FEFEE6852BA262AA0042D947 /* FYP.app in Resources */ = {isa = PBXBuildFile; fileRef = FE988B472B49F34200274CD9 /* FYP.app */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FE1E89C12BA30F980076D9CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE988B792B4B188C00274CD9;
+			remoteInfo = "FYPWatch Watch App";
+		};
 		FE988B5A2B49F34400274CD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
@@ -89,13 +94,6 @@
 			remoteInfo = "FYPWatch Watch App";
 		};
 		FE988B942B4B188F00274CD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE988B792B4B188C00274CD9;
-			remoteInfo = "FYPWatch Watch App";
-		};
-		FE988B9B2B4B188F00274CD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FE988B3F2B49F34200274CD9 /* Project object */;
 			proxyType = 1;
@@ -533,7 +531,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				FE988B9C2B4B188F00274CD9 /* PBXTargetDependency */,
+				FE1E89C22BA30F980076D9CF /* PBXTargetDependency */,
 			);
 			name = FYP;
 			packageProductDependencies = (
@@ -733,7 +731,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEFEE6852BA262AA0042D947 /* FYP.app in Resources */,
 				FE988B842B4B188E00274CD9 /* Preview Assets.xcassets in Resources */,
 				FE988B812B4B188E00274CD9 /* Assets.xcassets in Resources */,
 			);
@@ -776,7 +773,6 @@
 				FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */,
 				FEA433252B98F6140002C4E9 /* FeedbackKeyView.swift in Sources */,
 				FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */,
-				FEAF90942B77C0A300E01F27 /* MovementData.swift in Sources */,
 				FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */,
 				FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */,
 				FEB42BA62B52EC3300772CC7 /* PhoneConnectivityService.swift in Sources */,
@@ -842,6 +838,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FE1E89C22BA30F980076D9CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
+			targetProxy = FE1E89C12BA30F980076D9CF /* PBXContainerItemProxy */;
+		};
 		FE988B5B2B49F34400274CD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FE988B462B49F34200274CD9 /* FYP */;
@@ -861,11 +862,6 @@
 			isa = PBXTargetDependency;
 			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
 			targetProxy = FE988B942B4B188F00274CD9 /* PBXContainerItemProxy */;
-		};
-		FE988B9C2B4B188F00274CD9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FE988B792B4B188C00274CD9 /* FYPWatch Watch App */;
-			targetProxy = FE988B9B2B4B188F00274CD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
