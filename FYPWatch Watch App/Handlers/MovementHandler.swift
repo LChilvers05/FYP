@@ -10,31 +10,19 @@ import WatchKit
 
 final class MovementHandler: ObservableObject {
     
-    @Published var isStreamingMovement = false
+    @Published private(set) var stream: MovementData? = nil
     
     private let motionManager = CMMotionManager()
-    private let connectivityService = WatchConnectivityService.shared
     private let updateInterval = 1.0/100.0 //100hz
     
-    init() {
-        connectivityService.didStartPlaying = didStartPlaying
-        connectivityService.didStopPlaying = didStopPlaying
-    }
-    
-    private func didStartPlaying() {
-        startMovementStream()
-    }
-    
-    private func didStopPlaying() {
-        Task { await MainActor.run { isStreamingMovement = false }}
+    func stopDeviceMotionUpdates() {
         motionManager.stopDeviceMotionUpdates()
     }
     
-    private func startMovementStream() {
+    func startDeviceMotionUpdates() {
         guard motionManager.isDeviceMotionAvailable else { return }
         motionManager.deviceMotionUpdateInterval = updateInterval
-        Task { await MainActor.run { isStreamingMovement = true }}
-        var startTimeStamp: TimeInterval? = nil
+        var startTimestamp: TimeInterval?
         // get acceleration, rotation and timestamp every interval
         motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (data, error) in
             guard let acceleration = data?.userAcceleration,
@@ -44,24 +32,17 @@ final class MovementHandler: ObservableObject {
             
             // get time since motion update started
             var timestamp = deviceTimestamp
-            if startTimeStamp == nil {
-                startTimeStamp = timestamp
+            if startTimestamp == nil {
+                startTimestamp = timestamp
             }
-            timestamp -= startTimeStamp ?? timestamp
+            timestamp -= startTimestamp ?? timestamp
             
-            // encode for iPhone
-            do {
-                let movement = try JSONEncoder().encode(
-                    MovementData(
-                        acceleration: acceleration,
-                        rotation: rotation,
-                        timestamp: timestamp
-                    )
-                )
-                self.connectivityService.sendToPhone(["movement": movement])
-            } catch {
-                print("Failed to encode MovementData: \(error.localizedDescription)")
-            }
+            // publish to listeners
+            self.stream = MovementData(
+                acceleration: acceleration,
+                rotation: rotation,
+                timestamp: timestamp
+            )
         }
     }
 }

@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WatchPracticeView: View {
     
-    @StateObject var motion = MovementHandler()
+    @StateObject var viewModel = WatchPracticeViewModel()
     
     var body: some View {
         VStack {
-            if motion.isStreamingMovement {
+            if viewModel.isStreamingMovement {
                 Text("Playing")
             } else {
                 Text("Start on iPhone")
@@ -24,5 +24,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    WatchPracticeView()
 }

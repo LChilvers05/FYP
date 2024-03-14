@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserStroke {
+struct UserStroke: Codable {
     var id: Int = 0
     var feedback: Annotation?
     var sticking: Sticking?
@@ -26,8 +26,4 @@ struct UserStroke {
         self.id = UserStroke.count
         UserStroke.count += 1
     }
-}
-
-enum Sticking {
-    case left, right
 }

@@ -10,6 +10,36 @@ import Foundation
 
 final class Repository {
     
+    private let connectivityService = PhoneConnectivityService.shared
+    
+    var didReceiveStroke: ((UserStroke) -> Void)?
+    
+    func set(_ didReceiveStroke: ((UserStroke) -> Void)?) {
+        self.didReceiveStroke = didReceiveStroke
+        connectivityService.didReceiveStroke = self.didReceiveStroke
+    }
+}
+
+// watch communication
+extension Repository {
+    
+    func didStartPlaying(_ isPlaying: Bool) {
+        connectivityService.sendToWatch(["is_playing": isPlaying])
+    }
+    
+    func requestSticking(for stroke: UserStroke) {
+        do {
+            let strokeData = try JSONEncoder().encode(stroke)
+            connectivityService.sendToWatch(["stroke": strokeData])
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+    }
+}
+
+// rudiment files
+extension Repository {
+    
     func getRudiments() -> [Rudiment] {
         guard let url = getFileURL("rudiments", "json") else { return [] }
         
@@ -41,6 +71,14 @@ final class Repository {
         return URLRequest(url: url)
     }
     
+    private func getFileURL(_ resource: String?, _ type: String?) -> URL? {
+        return Bundle.main.url(forResource: resource, withExtension: type)
+    }
+}
+
+// logging
+extension Repository {
+    
     func logPractice(_ results: [Annotation?]) {
         var printables: [Annotation] = []
         for result in results {
@@ -48,35 +86,5 @@ final class Repository {
             printables.append(result)
         }
 //        print(printables)
-    }
-    
-    func logGesture(snapshot: [MovementData]) {
-        let features = [
-            "timestamp",
-            "rotationRateX",
-            "rotationRateY",
-            "rotationRateZ",
-            "accelerationX",
-            "accelerationY",
-            "accelerationZ"
-        ]
-        
-        var contents = ""
-        
-        // write features
-        let featuresRow = features.joined(separator: ",")
-        contents.append(featuresRow + "\n")
-        
-        // write data
-        for datum in snapshot {
-            let row = "\(datum.timestamp),\(datum.rotX),\(datum.rotY),\(datum.rotZ),\(datum.accX),\(datum.accY),\(datum.accZ)"
-            contents.append(row + "\n")
-        }
-        // to train CoreML model with
-        print(contents)
-    }
-    
-    private func getFileURL(_ resource: String?, _ type: String?) -> URL? {
-        return Bundle.main.url(forResource: resource, withExtension: type)
     }
 }

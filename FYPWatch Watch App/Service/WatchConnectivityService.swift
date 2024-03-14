@@ -17,8 +17,8 @@ final class WatchConnectivityService: NSObject {
         activateSession()
     }
     
-    var didStartPlaying: (() -> Void)?
-    var didStopPlaying: (() -> Void)?
+    var didStartPlaying: ((Bool) -> Void)?
+    var didPlayStroke: ((UserStroke) -> Void)?
     
     private func activateSession() {
         guard WCSession.isSupported() else { return }
@@ -29,27 +29,47 @@ final class WatchConnectivityService: NSObject {
     
     // send message to phone
     func sendToPhone(_ message: [String: Any]) {
-        guard let session,
-              session.isReachable else { return }
-        
-        session.sendMessage(message, replyHandler: nil) { error in
-            print("Failed to send message to iPhone \(error.localizedDescription)")
+        guard let session else { return }
+        if session.isReachable {
+            session.sendMessage(message, replyHandler: nil) { error in
+                print("Failed to send message to iPhone \(error.localizedDescription)")
+            }
+        } else {
+            do {
+                try session.updateApplicationContext(message)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
     // receive phone messages
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        guard let isPlaying = message["is_playing"] as? Bool else { return }
-        if isPlaying {
-            didStartPlaying?()
-        } else {
-            didStopPlaying?()
+    private func didReceive(_ message: [String: Any]) {
+        // started rudiment practice
+        if let isPlaying = message["is_playing"] as? Bool {
+            didStartPlaying?(isPlaying)
+            
+        // user made stroke
+        } else if let data = message["stroke"] as? Data {
+            do {
+                let stroke = try JSONDecoder().decode(UserStroke.self, from: data)
+                didPlayStroke?(stroke)
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
         }
     }
 }
 
 extension WatchConnectivityService: WCSessionDelegate {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        didReceive(message)
+    }
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        didReceive(applicationContext)
+    }
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error { debugPrint(error) }
     }
 }
+

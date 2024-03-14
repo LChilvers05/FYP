@@ -23,7 +23,6 @@ final class PracticeViewModel: ObservableObject {
     private let repository = Repository()
     private let jsBuilder = JavaScriptBuilder()
     private lazy var onsetDetection = OnsetDetectionHandler()
-    private let stickingRecognition: StickingRecognitionHandler
     private let player: RudimentPlayer
     
     private var cancellables: Set<AnyCancellable> = []
@@ -32,14 +31,10 @@ final class PracticeViewModel: ObservableObject {
         player = RudimentPlayer(rudiment, repository)
         metronome = Metronome(sequencer: player.sequencer)
         rudimentViewRequest = repository.getRudimentViewRequest(rudiment.view)
-        stickingRecognition = StickingRecognitionHandler(
-            repository,
-            rudiment.getStrokeCount()
-        )
         
         metronome.update(tempo)
-        onsetDetection.didDetectOnset = self.didDetectOnset
-        stickingRecognition.didGetSticking = self.didGetSticking
+        repository.set(didReceiveStroke)
+        onsetDetection.didDetectOnset = didDetectOnset
         
         Task {
             await player.feedback?.$annotations
@@ -65,18 +60,18 @@ final class PracticeViewModel: ObservableObject {
     }
     
     func stopPractice() {
-        stickingRecognition.stopRecognition()
+        isPlaying = false
+        repository.didStartPlaying(isPlaying)
         onsetDetection.stopDetecting()
         metronome.stop() // stops player
-        isPlaying = false
     }
     
     private func startPractice() {
+        isPlaying = true
         player.rewind()
-        stickingRecognition.startRecognition()
+        repository.didStartPlaying(isPlaying)
         onsetDetection.startDetecting()
         metronome.start() // starts player
-        isPlaying = true
     }
     
     private func didDetectOnset(_ ampData: AmplitudeData) {
@@ -87,12 +82,12 @@ final class PracticeViewModel: ObservableObject {
             timestamp: metronome.timeElapsed
         )
         // register sticking request
-        stickingRecognition.enqueue(stroke)
+        repository.requestSticking(for: stroke)
         // do rhythm analysis
         player.scoreRhythm(for: stroke)
     }
     
-    private func didGetSticking(for stroke: UserStroke) {
+    private func didReceiveStroke(_ stroke: UserStroke) {
         player.checkSticking(for: stroke)
     }
 }

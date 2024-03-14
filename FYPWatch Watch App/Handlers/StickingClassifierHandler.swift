@@ -26,16 +26,16 @@ final class StickingClassifierHandler {
         rotZML = try multiArray(windowSize)
     }
     
-    func classifySticking(from snapshot: [MovementData]) async -> Sticking? {
+    func predict(_ snapshot: [MovementData]) async -> Sticking? {
         for i in 0..<windowSize {
             let zero = NSNumber(value: 0.0)
             let isPadding = (i >= snapshot.count)
-            accXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].accX)
-            accYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].accY)
-            accZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].accZ)
-            rotXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotX)
-            rotYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotY)
-            rotZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotZ)
+            accXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.x)
+            accYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.y)
+            accZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.z)
+            rotXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.x)
+            rotYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.y)
+            rotZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.z)
         }
         
         do {
