@@ -41,8 +41,4 @@ extension Rudiment {
             count: patternRepeats
         ).flatMap { $0 }
     }
-    
-    func getStrokeCount() -> Int {
-        pattern.count * patternRepeats
-    }
 }
