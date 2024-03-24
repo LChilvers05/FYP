@@ -80,12 +80,12 @@ extension Repository {
 // logging
 extension Repository {
     
-    func logPractice(_ results: [Annotation?]) {
-        var printables: [Annotation] = []
-        for result in results {
-            guard let result else { break }
-            printables.append(result)
+    func log(_ feedback: [Annotation?], _ attempt: Int) {
+        var log = "\(attempt)"
+        for annotation in feedback {
+            guard let annotation else { continue }
+            log += ",\(annotation)"
         }
-//        print(printables)
+        print(log)
     }
 }

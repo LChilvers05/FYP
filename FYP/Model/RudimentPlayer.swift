@@ -12,24 +12,23 @@ import AudioKit
 final class RudimentPlayer {
     
     private(set) var feedback: Feedback?
-    private let repository: Repository
     
     let sequencer = AppleSequencer() // play rudiment
     private let midiCallback = MIDICallbackInstrument()
     private let sequencerLength: Double // of sequencer
+    
+    var didAnnotateFeedback: (([Annotation?]) -> Void)?
     
     private var isPlaying: Bool {
         get { return sequencer.isPlaying }
     }
     
     init(_ rudiment: Rudiment,
-         length: Duration = Duration(beats: 4.0),
-         _ repository: Repository) {
-        self.repository = repository
+         _ midiFile: MIDIFile,
+         length: Duration = Duration(beats: 4.0)) {
         sequencerLength = length.beats
         setupSequencer(rudiment, length)
         
-        let midiFile = repository.getRudimentMIDI(rudiment.midi)
         let strokes = createStrokes(from: rudiment, and: midiFile)
         
         Task {
@@ -66,8 +65,11 @@ final class RudimentPlayer {
         Task {
             if let feedback,
                await feedback.ptr+1 == feedback.strokes.count {
-                // a complete attempt to log
-                repository.logPractice(await feedback.annotations[0])
+                let annotations = await feedback.annotations[0]
+                if annotations[0] != nil {
+                    // a complete attempt to log
+                    didAnnotateFeedback?(annotations)
+                }
             }
             await feedback?.shift()
         }
