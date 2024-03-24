@@ -22,6 +22,14 @@
         "view": "paradiddle",
         "pattern": "RLRRLRLL",
         "pattern_repeats": 2
+    },
+    {
+        "id": 4,
+        "name": "Paradiddle-diddle",
+        "midi": "paradiddle_diddle",
+        "view": "paradiddle_diddle",
+        "pattern": "RLRRLL",
+        "pattern_repeats": 2
     }
 ]
  
