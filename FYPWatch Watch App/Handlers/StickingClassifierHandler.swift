@@ -9,15 +9,15 @@ import CoreML
 
 final class StickingClassifierHandler {
     
-    private let model: StickingClassifier4
+    private let model: StickingClassifier5
     private let windowSize: Int
     private let accXML, accYML, accZML: MLMultiArray
     private let rotXML, rotYML, rotZML: MLMultiArray
     private let stateIn = Array(repeating: 0, count: 400)
     
-    init(windowSize: Int) throws {
+    init(_ windowSize: Int) throws {
         self.windowSize = windowSize
-        model = try StickingClassifier4(configuration: MLModelConfiguration())
+        model = try StickingClassifier5(configuration: MLModelConfiguration())
         accXML = try multiArray(windowSize)
         accYML = try multiArray(windowSize)
         accZML = try multiArray(windowSize)
@@ -26,7 +26,7 @@ final class StickingClassifierHandler {
         rotZML = try multiArray(windowSize)
     }
     
-    func predict(_ snapshot: [MovementData]) async -> Sticking? {
+    func predict(_ snapshot: [MotionData]) async -> Sticking? {
         for i in 0..<windowSize {
             let zero = NSNumber(value: 0.0)
             let isPadding = (i >= snapshot.count)
@@ -41,7 +41,7 @@ final class StickingClassifierHandler {
         do {
             try Task.checkCancellation()
             
-            let input = StickingClassifier4Input(
+            let input = StickingClassifier5Input(
                 accelerationX: accXML,
                 accelerationY: accYML,
                 accelerationZ: accZML,

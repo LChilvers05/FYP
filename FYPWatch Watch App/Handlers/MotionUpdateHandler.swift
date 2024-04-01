@@ -8,9 +8,9 @@
 import CoreMotion
 import WatchKit
 
-final class MovementHandler: ObservableObject {
+final class MotionUpdateHandler: ObservableObject {
     
-    @Published private(set) var stream: MovementData? = nil
+    @Published private(set) var stream: MotionData? = nil
     
     private let motionManager = CMMotionManager()
     private let updateInterval = 1.0/100.0 //100hz
@@ -35,10 +35,10 @@ final class MovementHandler: ObservableObject {
             if startTimestamp == nil {
                 startTimestamp = timestamp
             }
-            timestamp -= startTimestamp ?? timestamp
+            timestamp -= (startTimestamp ?? timestamp)
             
             // publish to listeners
-            self.stream = MovementData(
+            self.stream = MotionData(
                 acceleration: acceleration,
                 rotation: rotation,
                 timestamp: timestamp
