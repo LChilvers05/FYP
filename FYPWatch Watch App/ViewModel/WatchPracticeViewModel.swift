@@ -18,7 +18,7 @@ final class WatchPracticeViewModel: ObservableObject {
     
     private let buffer = MotionBuffer(size: 100)
     
-    private let state: MLState = .train
+    private let isLogging = true
     private let windowSize = 20
     private var stickingClassifier: StickingClassifierHandler?
     
@@ -52,12 +52,11 @@ final class WatchPracticeViewModel: ObservableObject {
                 size: windowSize,
                 with: stroke
             )
-            switch state {
-            case .train:
+            
+            if isLogging {
                 logGesture(snapshot: snapshot)
-            case .predict:
-                await getSticking(for: stroke, from: snapshot)
             }
+            await getSticking(for: stroke, from: snapshot)
         }
     }
     

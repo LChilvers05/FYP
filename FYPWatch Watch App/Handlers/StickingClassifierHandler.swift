@@ -9,7 +9,7 @@ import CoreML
 
 final class StickingClassifierHandler {
     
-    private let model: StickingClassifier5
+    private let model: StickingClassifier7
     private let windowSize: Int
     private let accXML, accYML, accZML: MLMultiArray
     private let rotXML, rotYML, rotZML: MLMultiArray
@@ -17,7 +17,7 @@ final class StickingClassifierHandler {
     
     init(_ windowSize: Int) throws {
         self.windowSize = windowSize
-        model = try StickingClassifier5(configuration: MLModelConfiguration())
+        model = try StickingClassifier7(configuration: MLModelConfiguration())
         accXML = try multiArray(windowSize)
         accYML = try multiArray(windowSize)
         accZML = try multiArray(windowSize)
@@ -41,7 +41,7 @@ final class StickingClassifierHandler {
         do {
             try Task.checkCancellation()
             
-            let input = StickingClassifier5Input(
+            let input = StickingClassifier7Input(
                 accelerationX: accXML,
                 accelerationY: accYML,
                 accelerationZ: accZML,
@@ -53,7 +53,7 @@ final class StickingClassifierHandler {
             
             // make prediction
             let prediction = try await model.prediction(input: input)
-            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
+//            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
             return (prediction.label == "right") ? .right
             : (prediction.label == "left") ? .left
             : nil
