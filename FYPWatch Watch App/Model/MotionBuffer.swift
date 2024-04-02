@@ -18,14 +18,17 @@ actor MotionBuffer {
     }
     
     func getSnapshot(size: Int, with stroke: UserStroke) -> [MotionData] {
-        let i = elements.firstIndex(
-            where: { $0.timestamp >= stroke.timestamp }
-        ) ?? elements.count-1
-        guard size > 0, i > 0 else { return [] }
+        guard !elements.isEmpty, size > 0 else { return [] }
+        // search for motion data end
+        var i = 0
+        for index in stride(from: elements.count-1, through: 0, by: -1) {
+            if elements[index].timestamp > stroke.timestamp { continue }
+            i = index; break
+        }
         // get snapshot of size
         let j = max(0, (i + 1) - size)
         let snapshot = Array(elements[j...i])
-        // trim to unused data
+        // cut off used data
         elements = Array(elements[i...])
         
         return snapshot
