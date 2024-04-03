@@ -7,21 +7,29 @@
 
 import CoreMotion
 
-class MotionData {
+class MotionData: Codable {
     var id: Int = 0
-    let acceleration: CMAcceleration
-    let rotation: CMRotationRate
     let timestamp: TimeInterval
+    let accelerationX: Double
+    let accelerationY: Double
+    let accelerationZ: Double
+    let rotationX: Double
+    let rotationY: Double
+    let rotationZ: Double
     
     private static var count: Int = 0
     
-    init(acceleration: CMAcceleration,
-         rotation: CMRotationRate,
-         timestamp: TimeInterval) {
+    init(timestamp: TimeInterval,
+         acceleration: CMAcceleration,
+         rotation: CMRotationRate) {
         
-        self.acceleration = acceleration
-        self.rotation = rotation
         self.timestamp = timestamp
+        self.accelerationX = acceleration.x
+        self.accelerationY = acceleration.y
+        self.accelerationZ = acceleration.z
+        self.rotationX = rotation.x
+        self.rotationY = rotation.y
+        self.rotationZ = rotation.z
         
         self.id = MotionData.count
         MotionData.count += 1

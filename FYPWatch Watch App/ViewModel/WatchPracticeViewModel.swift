@@ -18,10 +18,6 @@ final class WatchPracticeViewModel: ObservableObject {
     
     private let buffer = MotionBuffer(size: 100)
     
-    private let isLogging = false
-    private let windowSize = 20 // 2 tenths of a second
-    private var stickingClassifier: StickingClassifierHandler?
-    
     init() {
         connectivityService.didStartPlaying = didStartPlaying
         connectivityService.didPlayStroke = didPlayStroke
@@ -37,7 +33,6 @@ final class WatchPracticeViewModel: ObservableObject {
         Task { 
             await MainActor.run { isStreamingMovement = isPlaying }
             if isPlaying {
-                stickingClassifier = try? StickingClassifierHandler(windowSize)
                 motionHandler.startDeviceMotionUpdates()
             } else {
                 motionHandler.stopDeviceMotionUpdates()
@@ -51,30 +46,20 @@ final class WatchPracticeViewModel: ObservableObject {
         Task {
             // get snapshot of motion data
             let snapshot = await buffer.getSnapshot(
-                size: windowSize,
+                size: WINDOW_SIZE,
                 with: stroke
             )
             
-            if isLogging { logGesture(snapshot: snapshot) }
+            var stroke = stroke
+            stroke.motion = snapshot
             
-            await getSticking(for: stroke, from: snapshot)
-        }
-    }
-    
-    // predict using model
-    private func getSticking(for stroke: UserStroke,
-                             from snapshot: [MotionData]) async {
-        guard let stickingClassifier,
-              let sticking = await stickingClassifier.predict(snapshot)
-        else { return }
-        var stroke = stroke; stroke.sticking = sticking
-        
-        // send updated stroke to phone
-        do {
-            let strokeData = try JSONEncoder().encode(stroke)
-            connectivityService.sendToPhone(["stroke": strokeData])
-        } catch {
-            debugPrint(error.localizedDescription)
+            // send updated stroke to phone
+            do {
+                let strokeData = try JSONEncoder().encode(stroke)
+                connectivityService.sendToPhone(["stroke": strokeData])
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
         }
     }
 }

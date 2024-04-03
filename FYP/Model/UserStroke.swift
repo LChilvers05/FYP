@@ -9,11 +9,12 @@ import Foundation
 
 struct UserStroke: Codable {
     var id: Int = 0
-    var feedback: Annotation?
-    var sticking: Sticking?
     let positionInBeats: Double
     let amplitude: AmplitudeData
     let timestamp: TimeInterval
+    var feedback: Annotation?
+    var sticking: Sticking?
+    var motion: [MotionData]?
     
     static var count: Int = 0
     

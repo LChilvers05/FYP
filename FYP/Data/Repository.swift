@@ -9,15 +9,30 @@ import AudioKit
 import Foundation
 
 final class Repository {
-    
+
     private let connectivityService = PhoneConnectivityService.shared
+    private var stickingClassifier: StickingClassifierHandler?
     
     var didReceiveStroke: ((UserStroke) -> Void)?
     
     func set(_ didReceiveStroke: ((UserStroke) -> Void)?) {
-        // stroke with sticking received from watch
         self.didReceiveStroke = didReceiveStroke
-        connectivityService.didReceiveStroke = self.didReceiveStroke
+        // predict sticking with stroke motion from watch
+        connectivityService.didReceiveStroke = { stroke in
+            Task {
+                guard let motion = stroke.motion,
+                      let sticking = await self.stickingClassifier?.predict(motion)
+                else { return }
+                
+                self.log(motion)
+                
+                var stroke = stroke
+                stroke.sticking = sticking
+                stroke.motion = nil
+                
+                self.didReceiveStroke?(stroke)
+            }
+        }
     }
 }
 
@@ -25,7 +40,12 @@ final class Repository {
 extension Repository {
     
     func didStartPlaying(_ isPlaying: Bool) {
-        connectivityService.sendToWatch(["is_playing": isPlaying])
+        do { // init new sticking classifier
+            if isPlaying { stickingClassifier = try StickingClassifierHandler(WINDOW_SIZE) }
+            connectivityService.sendToWatch(["is_playing": isPlaying])
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
     }
     
     func requestSticking(for stroke: UserStroke) {
@@ -86,6 +106,32 @@ extension Repository {
             guard let annotation else { continue }
             log += ",\(annotation)"
         }
-        print(log)
+//        print(log)
+    }
+    
+    func log(_ motion: [MotionData]) {
+        let features = [
+            "timestamp",
+            "rotationRateX",
+            "rotationRateY",
+            "rotationRateZ",
+            "accelerationX",
+            "accelerationY",
+            "accelerationZ"
+        ]
+        
+        var contents = ""
+        
+        // write features
+        let featuresRow = features.joined(separator: ",")
+        contents.append(featuresRow + "\n")
+        
+        // write data
+        for datum in motion {
+            let row = "\(datum.timestamp),\(datum.rotationX),\(datum.rotationY),\(datum.rotationZ),\(datum.accelerationX),\(datum.accelerationY),\(datum.accelerationZ)"
+            contents.append(row + "\n")
+        }
+        // to train CoreML model with
+        print(contents)
     }
 }

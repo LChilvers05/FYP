@@ -39,9 +39,9 @@ final class MotionUpdateHandler: ObservableObject {
             
             // publish to listeners
             self.stream = MotionData(
+                timestamp: timestamp,
                 acceleration: acceleration,
-                rotation: rotation,
-                timestamp: timestamp
+                rotation: rotation
             )
         }
     }
