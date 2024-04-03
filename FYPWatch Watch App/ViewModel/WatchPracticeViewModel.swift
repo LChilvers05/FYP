@@ -18,8 +18,8 @@ final class WatchPracticeViewModel: ObservableObject {
     
     private let buffer = MotionBuffer(size: 100)
     
-    private let isLogging = true
-    private let windowSize = 20
+    private let isLogging = false
+    private let windowSize = 20 // 2 tenths of a second
     private var stickingClassifier: StickingClassifierHandler?
     
     init() {
@@ -34,13 +34,15 @@ final class WatchPracticeViewModel: ObservableObject {
     }
     
     private func didStartPlaying(_ isPlaying: Bool) {
-        Task { await MainActor.run { isStreamingMovement = isPlaying }}
-        if isPlaying {
-            stickingClassifier = try? StickingClassifierHandler(windowSize)
-            motionHandler.startDeviceMotionUpdates()
-        } else {
-            motionHandler.stopDeviceMotionUpdates()
-            Task { await buffer.removeAll() }
+        Task { 
+            await MainActor.run { isStreamingMovement = isPlaying }
+            if isPlaying {
+                stickingClassifier = try? StickingClassifierHandler(windowSize)
+                motionHandler.startDeviceMotionUpdates()
+            } else {
+                motionHandler.stopDeviceMotionUpdates()
+                await buffer.removeAll()
+            }
         }
     }
     
@@ -53,9 +55,8 @@ final class WatchPracticeViewModel: ObservableObject {
                 with: stroke
             )
             
-            if isLogging {
-                logGesture(snapshot: snapshot)
-            }
+            if isLogging { logGesture(snapshot: snapshot) }
+            
             await getSticking(for: stroke, from: snapshot)
         }
     }

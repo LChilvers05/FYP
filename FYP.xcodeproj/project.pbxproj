@@ -11,7 +11,7 @@
 		FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */; };
 		FE08EB362B9E73CA00EDAD08 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE08EB352B9E73CA00EDAD08 /* Feedback.swift */; };
 		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
-		FE1A53DE2BBCB2FB003D47F0 /* StickingClassifier7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FE1A53DD2BBCB2FB003D47F0 /* StickingClassifier7.mlmodel */; };
+		FE1A53E02BBDA8E9003D47F0 /* StickingClassifier8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FE1A53DF2BBDA8E9003D47F0 /* StickingClassifier8.mlmodel */; };
 		FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */; };
 		FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */; };
 		FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */; };
@@ -123,7 +123,7 @@
 		FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		FE08EB352B9E73CA00EDAD08 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentPlayer.swift; sourceTree = "<group>"; };
-		FE1A53DD2BBCB2FB003D47F0 /* StickingClassifier7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier7.mlmodel; sourceTree = "<group>"; };
+		FE1A53DF2BBDA8E9003D47F0 /* StickingClassifier8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier8.mlmodel; sourceTree = "<group>"; };
 		FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptBuilder.swift; sourceTree = "<group>"; };
 		FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingClassifierHandler.swift; sourceTree = "<group>"; };
 		FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentRepresentable.swift; sourceTree = "<group>"; };
@@ -492,7 +492,7 @@
 		FEFEE66F2BA24B7D0042D947 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				FE1A53DD2BBCB2FB003D47F0 /* StickingClassifier7.mlmodel */,
+				FE1A53DF2BBDA8E9003D47F0 /* StickingClassifier8.mlmodel */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -816,12 +816,12 @@
 				FED518B62BA26F2A001C139D /* UserStroke.swift in Sources */,
 				FEFEE66E2BA24B6F0042D947 /* StickingClassifierHandler.swift in Sources */,
 				FEFEE6712BA24D1B0042D947 /* WatchPracticeViewModel.swift in Sources */,
-				FE1A53DE2BBCB2FB003D47F0 /* StickingClassifier7.mlmodel in Sources */,
 				FEAE515D2B7C0FB7000DEEE0 /* MotionData.swift in Sources */,
 				FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */,
 				FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */,
 				FE988BAA2B4B1FEE00274CD9 /* MotionUpdateHandler.swift in Sources */,
 				FE988B7F2B4B188C00274CD9 /* WatchPracticeView.swift in Sources */,
+				FE1A53E02BBDA8E9003D47F0 /* StickingClassifier8.mlmodel in Sources */,
 				FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

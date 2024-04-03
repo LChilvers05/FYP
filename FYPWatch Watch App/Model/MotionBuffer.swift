@@ -27,7 +27,16 @@ actor MotionBuffer {
         }
         // get snapshot of size
         let j = max(0, (i + 1) - size)
-        let snapshot = Array(elements[j...i])
+        var snapshot = Array(elements[j...i])
+        // pad if smaller than size
+        if snapshot.count < size,
+           let first = snapshot.first {
+            snapshot = Array(
+                repeating: first,
+                count: size - snapshot.count
+            ) + snapshot
+        }
+        
         // cut off used data
         elements = Array(elements[i...])
         
