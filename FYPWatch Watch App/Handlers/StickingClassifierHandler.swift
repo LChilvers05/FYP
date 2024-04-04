@@ -11,54 +11,51 @@ final class StickingClassifierHandler {
     
     private let model: StickingClassifier9
     private let windowSize: Int
-    private let stateIn: MLMultiArray
+    private let accXML, accYML, accZML: MLMultiArray
+    private let rotXML, rotYML, rotZML: MLMultiArray
+    private let stateIn = Array(repeating: 0, count: 400)
     
     init(_ windowSize: Int) throws {
         self.windowSize = windowSize
-        let configuration = MLModelConfiguration()
-        configuration.computeUnits = .all // use CPU, GPU or Neural Engine
-        model = try StickingClassifier9(configuration: configuration)
-        stateIn = try MLMultiArray(Array(repeating: 0, count: 400))
+        model = try StickingClassifier9(configuration: MLModelConfiguration())
+        accXML = try multiArray(windowSize)
+        accYML = try multiArray(windowSize)
+        accZML = try multiArray(windowSize)
+        rotXML = try multiArray(windowSize)
+        rotYML = try multiArray(windowSize)
+        rotZML = try multiArray(windowSize)
     }
     
-    func predict(_ motion: [MotionData]) async -> Sticking? {
-        guard motion.count == windowSize else { return nil }
+    func predict(_ snapshot: [MotionData]) async -> Sticking? {
+        guard snapshot.count == windowSize else { return nil }
+        for i in 0..<windowSize {
+            accXML[i] = NSNumber(value: snapshot[i].acceleration.x)
+            accYML[i] = NSNumber(value: snapshot[i].acceleration.y)
+            accZML[i] = NSNumber(value: snapshot[i].acceleration.z)
+            rotXML[i] = NSNumber(value: snapshot[i].rotation.x)
+            rotYML[i] = NSNumber(value: snapshot[i].rotation.y)
+            rotZML[i] = NSNumber(value: snapshot[i].rotation.z)
+        }
         
         do {
-            let accelerationX = try multiArray(windowSize)
-            let accelerationY = try multiArray(windowSize)
-            let accelerationZ = try multiArray(windowSize)
-            let rotationX = try multiArray(windowSize)
-            let rotationY = try multiArray(windowSize)
-            let rotationZ = try multiArray(windowSize)
-            
-            for i in 0..<windowSize {
-                accelerationX[i] = NSNumber(value: motion[i].acceleration.x)
-                accelerationY[i] = NSNumber(value: motion[i].acceleration.y)
-                accelerationZ[i] = NSNumber(value: motion[i].acceleration.z)
-                rotationX[i] = NSNumber(value: motion[i].rotation.x)
-                rotationY[i] = NSNumber(value: motion[i].rotation.y)
-                rotationZ[i] = NSNumber(value: motion[i].rotation.z)
-            }
-            
             try Task.checkCancellation()
             
             let input = StickingClassifier9Input(
-                accelerationX: accelerationX,
-                accelerationY: accelerationY,
-                accelerationZ: accelerationZ,
-                rotationRateX: rotationX,
-                rotationRateY: rotationY,
-                rotationRateZ: rotationZ,
-                stateIn: stateIn
+                accelerationX: accXML,
+                accelerationY: accYML,
+                accelerationZ: accZML,
+                rotationRateX: rotXML,
+                rotationRateY: rotYML,
+                rotationRateZ: rotZML,
+                stateIn: try MLMultiArray(stateIn)
             )
             
+            // make prediction
             let prediction = try await model.prediction(input: input)
-            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
+//            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
             return (prediction.label == "right") ? .right
             : (prediction.label == "left") ? .left
             : nil
-            
         } catch {
             debugPrint(error.localizedDescription)
             return nil
