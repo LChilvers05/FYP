@@ -29,6 +29,8 @@ final class WatchPracticeViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    // TODO: rights predicted when playing left singles. (Stuck Buffer?? or motion updates failing?)
+//    once solved, bring change to train branch
     private func didStartPlaying(_ isPlaying: Bool) {
         Task { 
             await MainActor.run { isStreamingMovement = isPlaying }

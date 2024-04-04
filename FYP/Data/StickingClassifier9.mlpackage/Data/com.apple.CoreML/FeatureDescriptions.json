@@ -1,0 +1,39 @@
+{
+  "Outputs" : {
+    "label" : {
+      "MLFeatureShortDescription" : "Class label of top prediction"
+    },
+    "stateOut" : {
+      "MLFeatureShortDescription" : "LSTM state output"
+    },
+    "labelProbability" : {
+      "MLFeatureShortDescription" : "Activity prediction probabilities"
+    }
+  },
+  "Inputs" : {
+    "accelerationY" : {
+      "MLFeatureShortDescription" : "accelerationY window input"
+    },
+    "stateIn" : {
+      "MLFeatureShortDescription" : "LSTM state input"
+    },
+    "accelerationZ" : {
+      "MLFeatureShortDescription" : "accelerationZ window input"
+    },
+    "rotationRateX" : {
+      "MLFeatureShortDescription" : "rotationRateX window input"
+    },
+    "rotationRateY" : {
+      "MLFeatureShortDescription" : "rotationRateY window input"
+    },
+    "accelerationX" : {
+      "MLFeatureShortDescription" : "accelerationX window input"
+    },
+    "rotationRateZ" : {
+      "MLFeatureShortDescription" : "rotationRateZ window input"
+    }
+  },
+  "TrainingInputs" : {
+
+  }
+}

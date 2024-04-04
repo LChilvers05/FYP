@@ -41,7 +41,7 @@ extension Repository {
     
     func didStartPlaying(_ isPlaying: Bool) {
         do { // init new sticking classifier
-            if isPlaying { stickingClassifier = try StickingClassifierHandler(WINDOW_SIZE) }
+            if isPlaying { stickingClassifier = try StickingClassifierHandler() }
             connectivityService.sendToWatch(["is_playing": isPlaying])
         } catch {
             debugPrint(error.localizedDescription)
@@ -132,6 +132,6 @@ extension Repository {
             contents.append(row + "\n")
         }
         // to train CoreML model with
-        print(contents)
+//        print(contents)
     }
 }

@@ -1,0 +1,19 @@
+{
+  "MLModelVersionStringKey" : "--",
+  "MLModelDescriptionKey" : "--",
+  "MLModelCreatorDefinedKey" : {
+    "target" : "label",
+    "com.apple.coreml.model.preview.type" : "activityClassifier",
+    "com.apple.createml.version" : "14.2.1",
+    "com.apple.createml.app.tag" : "121.4",
+    "session_id" : "session_id",
+    "max_iterations" : "30",
+    "version" : "2",
+    "type" : "activity_classifier",
+    "features" : "accelerationX,accelerationY,accelerationZ,rotationRateX,rotationRateY,rotationRateZ",
+    "com.apple.createml.app.version" : "5.0",
+    "prediction_window" : "20"
+  },
+  "MLModelAuthorKey" : "Lee Chilvers",
+  "MLModelLicenseKey" : "--"
+}

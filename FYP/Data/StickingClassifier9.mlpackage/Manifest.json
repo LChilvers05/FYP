@@ -1,0 +1,24 @@
+{
+    "fileFormatVersion": "1.0.0",
+    "itemInfoEntries": {
+        "247C42F8-B8B7-4F05-BB8A-BDC7FD30583B": {
+            "author": "com.apple.CoreML",
+            "description": "CoreML Model Specification",
+            "name": "StickingClassifier9.mlmodel",
+            "path": "com.apple.CoreML/StickingClassifier9.mlmodel"
+        },
+        "B0F40670-336E-450C-8167-D352240BE749": {
+            "author": "com.apple.CoreML",
+            "description": "External FeatureDescription Overlay",
+            "name": "FeatureDescriptions.json",
+            "path": "com.apple.CoreML/FeatureDescriptions.json"
+        },
+        "E6CEDBEF-794B-460F-9864-0B318486E8FB": {
+            "author": "com.apple.CoreML",
+            "description": "External Metadata Overlay",
+            "name": "Metadata.json",
+            "path": "com.apple.CoreML/Metadata.json"
+        }
+    },
+    "rootModelIdentifier": "247C42F8-B8B7-4F05-BB8A-BDC7FD30583B"
+}
