@@ -11,7 +11,7 @@ import Foundation
 actor MotionBuffer {
     
     private let size: Int
-    private var elements: [MotionData] = []
+    private(set) var elements: [MotionData] = []
     
     init(size: Int) {
         self.size = size

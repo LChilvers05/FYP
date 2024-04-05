@@ -11,7 +11,6 @@
 		FE01117E2B63E947008F52D4 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */; };
 		FE08EB362B9E73CA00EDAD08 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE08EB352B9E73CA00EDAD08 /* Feedback.swift */; };
 		FE1040602B6841E500A71AF9 /* RudimentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */; };
-		FE1A53E22BBDED38003D47F0 /* StickingClassifier9.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FE1A53E12BBDED38003D47F0 /* StickingClassifier9.mlmodel */; };
 		FE28C79D2B95FD25000A5857 /* JavaScriptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */; };
 		FE44487E2B8E1ADB002FF71A /* RudimentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */; };
 		FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */; };
@@ -60,6 +59,8 @@
 		FED518B72BA26F2F001C139D /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FED518B82BA26F33001C139D /* MotionBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAE515A2B7C0B18000DEEE0 /* MotionBuffer.swift */; };
 		FED518B92BA26F38001C139D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE67B2BA261970042D947 /* Enums.swift */; };
+		FEE097632BC04DC8007F9D52 /* StickingClassifier1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEE097622BC04DC8007F9D52 /* StickingClassifier1.mlmodel */; };
+		FEE097652BC06A61007F9D52 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE097642BC06A61007F9D52 /* Queue.swift */; };
 		FEFEE66E2BA24B6F0042D947 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
 		FEFEE6712BA24D1B0042D947 /* WatchPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6702BA24D1B0042D947 /* WatchPracticeViewModel.swift */; };
 		FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6772BA25F370042D947 /* Extensions.swift */; };
@@ -123,7 +124,6 @@
 		FE01117D2B63E947008F52D4 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		FE08EB352B9E73CA00EDAD08 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		FE10405F2B6841E500A71AF9 /* RudimentPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentPlayer.swift; sourceTree = "<group>"; };
-		FE1A53E12BBDED38003D47F0 /* StickingClassifier9.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier9.mlmodel; sourceTree = "<group>"; };
 		FE28C79C2B95FD25000A5857 /* JavaScriptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptBuilder.swift; sourceTree = "<group>"; };
 		FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickingClassifierHandler.swift; sourceTree = "<group>"; };
 		FE44487D2B8E1ADB002FF71A /* RudimentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentRepresentable.swift; sourceTree = "<group>"; };
@@ -176,6 +176,8 @@
 		FEB42BB22B58457D00772CC7 /* rudiments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rudiments.json; sourceTree = "<group>"; };
 		FEB42BB52B5846B400772CC7 /* Rudiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rudiment.swift; sourceTree = "<group>"; };
 		FEB42BB82B586A6700772CC7 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		FEE097622BC04DC8007F9D52 /* StickingClassifier1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier1.mlmodel; sourceTree = "<group>"; };
+		FEE097642BC06A61007F9D52 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		FEFEE6702BA24D1B0042D947 /* WatchPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPracticeViewModel.swift; sourceTree = "<group>"; };
 		FEFEE6772BA25F370042D947 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FEFEE67B2BA261970042D947 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -492,7 +494,7 @@
 		FEFEE66F2BA24B7D0042D947 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				FE1A53E12BBDED38003D47F0 /* StickingClassifier9.mlmodel */,
+				FEE097622BC04DC8007F9D52 /* StickingClassifier1.mlmodel */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -518,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				FEFEE6772BA25F370042D947 /* Extensions.swift */,
+				FEE097642BC06A61007F9D52 /* Queue.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -811,11 +814,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FED518B92BA26F38001C139D /* Enums.swift in Sources */,
+				FEE097652BC06A61007F9D52 /* Queue.swift in Sources */,
 				FED518B82BA26F33001C139D /* MotionBuffer.swift in Sources */,
 				FED518B72BA26F2F001C139D /* AmplitudeData.swift in Sources */,
-				FE1A53E22BBDED38003D47F0 /* StickingClassifier9.mlmodel in Sources */,
 				FED518B62BA26F2A001C139D /* UserStroke.swift in Sources */,
 				FEFEE66E2BA24B6F0042D947 /* StickingClassifierHandler.swift in Sources */,
+				FEE097632BC04DC8007F9D52 /* StickingClassifier1.mlmodel in Sources */,
 				FEFEE6712BA24D1B0042D947 /* WatchPracticeViewModel.swift in Sources */,
 				FEAE515D2B7C0FB7000DEEE0 /* MotionData.swift in Sources */,
 				FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */,
