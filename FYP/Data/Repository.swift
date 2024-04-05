@@ -25,7 +25,9 @@ final class Repository {
 extension Repository {
     
     func didStartPlaying(_ isPlaying: Bool) {
-        connectivityService.sendToWatch(["is_playing": isPlaying])
+        var message: [String: Any] = ["is_playing": isPlaying]
+        if isPlaying { message["start"] = Date() }
+        connectivityService.sendToWatch(message)
     }
     
     func requestSticking(for stroke: UserStroke) {

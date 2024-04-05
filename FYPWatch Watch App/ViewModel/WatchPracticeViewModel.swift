@@ -24,44 +24,39 @@ final class WatchPracticeViewModel: ObservableObject {
     
     init() {
         connectivityService.didStartPlaying = didStartPlaying
+        connectivityService.didStopPlaying = didStopPlaying
         connectivityService.didPlayStroke = didPlayStroke
-        motionHandler.$stream
-            .sink { [weak self] movementData in
-                guard let self, let movementData else { return }
-                Task { await self.buffer.add(movementData) }
-            }
-            .store(in: &cancellables)
+        motionHandler.didUpdateMotion = didUpdateMotion
     }
     
-    private func didStartPlaying(_ isPlaying: Bool) {
-        Task { 
-            await MainActor.run { isStreamingMovement = isPlaying }
-            if isPlaying {
-                stickingClassifier = try? StickingClassifierHandler(windowSize)
-                motionHandler.startDeviceMotionUpdates()
-            } else {
-                motionHandler.stopDeviceMotionUpdates()
-                await buffer.removeAll()
-            }
+    private func didStartPlaying(_ start: Date) async {
+        stickingClassifier = try? StickingClassifierHandler(windowSize)
+        motionHandler.startDeviceMotionUpdates(start)
+        await MainActor.run {
+            isStreamingMovement = motionHandler.isDeviceMotionActive
         }
     }
     
-    // perform ML task for stroke request
-    private func didPlayStroke(_ stroke: UserStroke) {
-        Task {
-            // get snapshot of motion data
-            let snapshot = await buffer.getSnapshot(
-                size: windowSize,
-                with: stroke
-            )
-            
-            if isLogging { logGesture(snapshot: snapshot) }
-            
-            await getSticking(for: stroke, from: snapshot)
+    private func didStopPlaying() async {
+        motionHandler.stopDeviceMotionUpdates()
+        await buffer.removeAll()
+        await MainActor.run {
+            isStreamingMovement = motionHandler.isDeviceMotionActive
         }
     }
     
-    // predict using model
+    private func didPlayStroke(_ stroke: UserStroke) async {
+        // get snapshot of motion data
+        let snapshot = await buffer.getSnapshot(
+            size: windowSize,
+            with: stroke
+        )
+        
+        if isLogging { logGesture(snapshot: snapshot) }
+        
+        await getSticking(for: stroke, from: snapshot)
+    }
+    
     private func getSticking(for stroke: UserStroke,
                              from snapshot: [MotionData]) async {
         guard let stickingClassifier,
@@ -76,5 +71,9 @@ final class WatchPracticeViewModel: ObservableObject {
         } catch {
             debugPrint(error.localizedDescription)
         }
+    }
+    
+    private func didUpdateMotion(_ motionData: MotionData) {
+        Task { await self.buffer.add(motionData) }
     }
 }
