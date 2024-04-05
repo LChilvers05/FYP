@@ -9,7 +9,7 @@ import CoreML
 
 final class StickingClassifierHandler {
     
-    private let model: StickingClassifier1
+    private let model: StickingClassifier
     private let windowSize: Int
     private let stateIn: MLMultiArray
     
@@ -17,7 +17,7 @@ final class StickingClassifierHandler {
         self.windowSize = windowSize
         let configuration = MLModelConfiguration()
         configuration.computeUnits = .all // use CPU, GPU or Neural Engine
-        model = try StickingClassifier1(configuration: configuration)
+        model = try StickingClassifier(configuration: configuration)
         stateIn = try MLMultiArray(Array(repeating: 0, count: 400))
     }
     
@@ -43,7 +43,7 @@ final class StickingClassifierHandler {
             
             try Task.checkCancellation()
             
-            let input = StickingClassifier1Input(
+            let input = StickingClassifierInput(
                 accelerationX: accelerationX,
                 accelerationY: accelerationY,
                 accelerationZ: accelerationZ,
@@ -54,7 +54,7 @@ final class StickingClassifierHandler {
             )
             
             let prediction = try await model.prediction(input: input)
-            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
+//            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
             return (prediction.label == "right") ? .right
             : (prediction.label == "left") ? .left
             : nil

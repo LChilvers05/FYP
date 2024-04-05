@@ -74,7 +74,6 @@ final class WatchPracticeViewModel: ObservableObject {
               peek.timestamp <= lastMotion.timestamp,
               let stroke = await strokes.dequeue() else { return }
         
-        // get snapshot of motion data
         let snapshot = await buffer.getSnapshot(
             size: windowSize,
             with: stroke
@@ -82,7 +81,6 @@ final class WatchPracticeViewModel: ObservableObject {
         
         if isLogging { logGesture(snapshot: snapshot) }
         
-        // classify
         await getSticking(for: stroke, from: snapshot)
     }
     
