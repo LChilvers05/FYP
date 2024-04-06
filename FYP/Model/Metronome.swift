@@ -75,7 +75,7 @@ final class Metronome: ObservableObject {
     
     private func createTrack() {
         guard let track = sequencer.newTrack() else { return }
-        let beatVelocity = MIDIVelocity(100)
+        let beatVelocity = MIDIVelocity(127)
         
         track.clear()
         track.setMIDIOutput(midiCallback.midiIn)
