@@ -9,7 +9,7 @@ import CoreML
 
 final class StickingClassifierHandler {
     
-    private let model: CreateStickingClassifier
+    private let model: TestModel
     private let windowSize: Int
     private let stateIn: MLMultiArray
     
@@ -17,7 +17,7 @@ final class StickingClassifierHandler {
         self.windowSize = windowSize
         let configuration = MLModelConfiguration()
         configuration.computeUnits = .all // use CPU, GPU or Neural Engine
-        model = try CreateStickingClassifier(configuration: configuration)
+        model = try TestModel(configuration: configuration)
         stateIn = try MLMultiArray(Array(repeating: 0, count: 400))
     }
     
@@ -43,7 +43,7 @@ final class StickingClassifierHandler {
             
             try Task.checkCancellation()
             
-            let input = CreateStickingClassifierInput(
+            let input = TestModelInput(
                 accelerationX: accelerationX,
                 accelerationY: accelerationY,
                 accelerationZ: accelerationZ,
