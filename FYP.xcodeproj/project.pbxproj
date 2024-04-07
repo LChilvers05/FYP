@@ -36,6 +36,7 @@
 		FE988BAA2B4B1FEE00274CD9 /* MotionUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MotionUpdateHandler.swift */; };
 		FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */; };
 		FE99073F2B6C412400A4DA76 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = FE99073E2B6C412400A4DA76 /* SoundpipeAudioKit */; };
+		FE9BFA5E2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FE9BFA5D2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel */; };
 		FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA04B4D2B7264900058C8B4 /* Extensions.swift */; };
 		FEA04B502B728D4B0058C8B4 /* single_stroke_roll.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */; };
 		FEA433222B98D3880002C4E9 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA433212B98D3880002C4E9 /* Modifiers.swift */; };
@@ -55,7 +56,6 @@
 		FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */ = {isa = PBXBuildFile; fileRef = FEB42BB22B58457D00772CC7 /* rudiments.json */; };
 		FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB52B5846B400772CC7 /* Rudiment.swift */; };
 		FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB82B586A6700772CC7 /* PracticeView.swift */; };
-		FEBC274B2BC1759C006D8C54 /* StickingClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEBC274A2BC1759C006D8C54 /* StickingClassifier.mlmodel */; };
 		FEBC274D2BC17721006D8C54 /* StickingClassifier2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEBC274C2BC17721006D8C54 /* StickingClassifier2.mlmodel */; };
 		FED518B62BA26F2A001C139D /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
 		FED518B72BA26F2F001C139D /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
@@ -156,6 +156,7 @@
 		FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FE988BA92B4B1FEE00274CD9 /* MotionUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionUpdateHandler.swift; sourceTree = "<group>"; };
 		FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
+		FE9BFA5D2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CreateStickingClassifier.mlmodel; sourceTree = "<group>"; };
 		FEA04B4D2B7264900058C8B4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = single_stroke_roll.mid; sourceTree = "<group>"; };
 		FEA3B1F92B7D1FF900EE111E /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
@@ -177,7 +178,6 @@
 		FEB42BB22B58457D00772CC7 /* rudiments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rudiments.json; sourceTree = "<group>"; };
 		FEB42BB52B5846B400772CC7 /* Rudiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rudiment.swift; sourceTree = "<group>"; };
 		FEB42BB82B586A6700772CC7 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
-		FEBC274A2BC1759C006D8C54 /* StickingClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier.mlmodel; sourceTree = "<group>"; };
 		FEBC274C2BC17721006D8C54 /* StickingClassifier2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier2.mlmodel; sourceTree = "<group>"; };
 		FEE097642BC06A61007F9D52 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		FEFEE6702BA24D1B0042D947 /* WatchPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPracticeViewModel.swift; sourceTree = "<group>"; };
@@ -496,8 +496,8 @@
 		FEFEE66F2BA24B7D0042D947 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				FEBC274A2BC1759C006D8C54 /* StickingClassifier.mlmodel */,
 				FEBC274C2BC17721006D8C54 /* StickingClassifier2.mlmodel */,
+				FE9BFA5D2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -825,8 +825,8 @@
 				FEFEE6712BA24D1B0042D947 /* WatchPracticeViewModel.swift in Sources */,
 				FEAE515D2B7C0FB7000DEEE0 /* MotionData.swift in Sources */,
 				FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */,
-				FEBC274B2BC1759C006D8C54 /* StickingClassifier.mlmodel in Sources */,
 				FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */,
+				FE9BFA5E2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel in Sources */,
 				FE988BAA2B4B1FEE00274CD9 /* MotionUpdateHandler.swift in Sources */,
 				FE988B7F2B4B188C00274CD9 /* WatchPracticeView.swift in Sources */,
 				FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */,
