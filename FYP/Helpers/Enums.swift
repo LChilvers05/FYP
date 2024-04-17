@@ -21,7 +21,3 @@ enum Annotation: Codable {
          sticking,
          error
 }
-
-enum MLState {
-    case train, predict
-}

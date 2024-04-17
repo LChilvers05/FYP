@@ -9,7 +9,7 @@ import Foundation
 
 extension WatchPracticeViewModel {
     
-    func logGesture(snapshot: [MovementData]) {
+    func logGesture(snapshot: [MotionData]) {
         let features = [
             "timestamp",
             "rotationRateX",

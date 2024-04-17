@@ -19,6 +19,7 @@ final class PracticeViewModel: ObservableObject {
     @Published var tempo = 70
     
     let rudimentViewRequest: URLRequest?
+    var attemptCount = 0
     
     private let repository = Repository()
     private let jsBuilder = JavaScriptBuilder()
@@ -28,12 +29,14 @@ final class PracticeViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
         
     init(_ rudiment: Rudiment) {
-        player = RudimentPlayer(rudiment, repository)
+        let midiFile = repository.getRudimentMIDI(rudiment.midi)
+        player = RudimentPlayer(rudiment, midiFile)
         metronome = Metronome(sequencer: player.sequencer)
         rudimentViewRequest = repository.getRudimentViewRequest(rudiment.view)
         
         metronome.update(tempo)
         repository.set(didReceiveStroke)
+        player.didAnnotateFeedback = didAnnotate
         onsetDetection.didDetectOnset = didDetectOnset
         
         Task {
@@ -53,6 +56,7 @@ final class PracticeViewModel: ObservableObject {
     func update(_ tempo: Int) {
         stopPractice()
         metronome.update(tempo)
+        attemptCount = 0
     }
     
     func startStopTapped() {
@@ -89,5 +93,10 @@ final class PracticeViewModel: ObservableObject {
     
     private func didReceiveStroke(_ stroke: UserStroke) {
         player.checkSticking(for: stroke)
+    }
+    
+    private func didAnnotate(_ feedback: [Annotation?]) {
+        repository.log(feedback, attemptCount)
+        attemptCount += 1
     }
 }

@@ -16,6 +16,8 @@
 		FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */; };
 		FE7154B12B70F02300E42FBD /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
 		FE7154B32B71427C00E42FBD /* RudimentStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B22B71427C00E42FBD /* RudimentStroke.swift */; };
+		FE94EA7D2BB0864B00A784D8 /* paradiddle_diddle.html in Resources */ = {isa = PBXBuildFile; fileRef = FE94EA7C2BB0864B00A784D8 /* paradiddle_diddle.html */; };
+		FE94EA7F2BB086B400A784D8 /* paradiddle_diddle.mid in Resources */ = {isa = PBXBuildFile; fileRef = FE94EA7E2BB086B400A784D8 /* paradiddle_diddle.mid */; };
 		FE988B4B2B49F34200274CD9 /* FYPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4A2B49F34200274CD9 /* FYPApp.swift */; };
 		FE988B4D2B49F34200274CD9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B4C2B49F34200274CD9 /* MenuView.swift */; };
 		FE988B512B49F34400274CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE988B502B49F34400274CD9 /* Assets.xcassets */; };
@@ -31,9 +33,11 @@
 		FE988B982B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */; };
 		FE988B9A2B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */; };
 		FE988B9D2B4B188F00274CD9 /* FYPWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE988B7A2B4B188C00274CD9 /* FYPWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FE988BAA2B4B1FEE00274CD9 /* MovementHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MovementHandler.swift */; };
+		FE988BAA2B4B1FEE00274CD9 /* MotionUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BA92B4B1FEE00274CD9 /* MotionUpdateHandler.swift */; };
 		FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */; };
 		FE99073F2B6C412400A4DA76 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = FE99073E2B6C412400A4DA76 /* SoundpipeAudioKit */; };
+		FE9BFA5E2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FE9BFA5D2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel */; };
+		FE9BFA602BC33E35002E3293 /* Candidate2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FE9BFA5F2BC33E35002E3293 /* Candidate2.mlmodel */; };
 		FEA04B4E2B7264900058C8B4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA04B4D2B7264900058C8B4 /* Extensions.swift */; };
 		FEA04B502B728D4B0058C8B4 /* single_stroke_roll.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */; };
 		FEA433222B98D3880002C4E9 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA433212B98D3880002C4E9 /* Modifiers.swift */; };
@@ -41,7 +45,7 @@
 		FEA7BDF12B694C480038B320 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = FEA7BDF02B694C480038B320 /* AudioKitEX */; };
 		FEA7BDF32B69532A0038B320 /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
 		FEA7BDF72B69AE360038B320 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF62B69AE360038B320 /* Metronome.swift */; };
-		FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MovementData.swift */; };
+		FEAE515D2B7C0FB7000DEEE0 /* MotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF90932B77C0A300E01F27 /* MotionData.swift */; };
 		FEAFDD912B9B463100E69A67 /* double_stroke_roll.html in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD902B9B463100E69A67 /* double_stroke_roll.html */; };
 		FEAFDD932B9B479100E69A67 /* paradiddle.html in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD922B9B479100E69A67 /* paradiddle.html */; };
 		FEAFDD952B9B493B00E69A67 /* double_stroke_roll.mid in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDD942B9B493B00E69A67 /* double_stroke_roll.mid */; };
@@ -53,14 +57,16 @@
 		FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */ = {isa = PBXBuildFile; fileRef = FEB42BB22B58457D00772CC7 /* rudiments.json */; };
 		FEB42BB62B5846B400772CC7 /* Rudiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB52B5846B400772CC7 /* Rudiment.swift */; };
 		FEB42BB92B586A6700772CC7 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB42BB82B586A6700772CC7 /* PracticeView.swift */; };
+		FEBC274D2BC17721006D8C54 /* StickingClassifier2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEBC274C2BC17721006D8C54 /* StickingClassifier2.mlmodel */; };
 		FED518B62BA26F2A001C139D /* UserStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7154B02B70F02300E42FBD /* UserStroke.swift */; };
 		FED518B72BA26F2F001C139D /* AmplitudeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */; };
-		FED518B82BA26F33001C139D /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAE515A2B7C0B18000DEEE0 /* Queue.swift */; };
+		FED518B82BA26F33001C139D /* MotionBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAE515A2B7C0B18000DEEE0 /* MotionBuffer.swift */; };
 		FED518B92BA26F38001C139D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE67B2BA261970042D947 /* Enums.swift */; };
+		FEE097652BC06A61007F9D52 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE097642BC06A61007F9D52 /* Queue.swift */; };
+		FEFC14632BC3549600A5F272 /* TestModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEFC14622BC3549600A5F272 /* TestModel.mlmodel */; };
 		FEFEE66E2BA24B6F0042D947 /* StickingClassifierHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */; };
 		FEFEE6712BA24D1B0042D947 /* WatchPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6702BA24D1B0042D947 /* WatchPracticeViewModel.swift */; };
 		FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6772BA25F370042D947 /* Extensions.swift */; };
-		FEFEE67A2BA260620042D947 /* StickingClassifier1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE6792BA260620042D947 /* StickingClassifier1.mlmodel */; };
 		FEFEE67C2BA261970042D947 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE67B2BA261970042D947 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +134,8 @@
 		FE7154B02B70F02300E42FBD /* UserStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStroke.swift; sourceTree = "<group>"; };
 		FE7154B22B71427C00E42FBD /* RudimentStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RudimentStroke.swift; sourceTree = "<group>"; };
 		FE878EF42B7D31DE00190FA2 /* FYPWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FYPWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FE94EA7C2BB0864B00A784D8 /* paradiddle_diddle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = paradiddle_diddle.html; sourceTree = "<group>"; };
+		FE94EA7E2BB086B400A784D8 /* paradiddle_diddle.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = paradiddle_diddle.mid; sourceTree = "<group>"; };
 		FE988B472B49F34200274CD9 /* FYP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE988B4A2B49F34200274CD9 /* FYPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPApp.swift; sourceTree = "<group>"; };
 		FE988B4C2B49F34200274CD9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -148,8 +156,10 @@
 		FE988B932B4B188F00274CD9 /* FYPWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FYPWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE988B972B4B188F00274CD9 /* FYPWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		FE988B992B4B188F00274CD9 /* FYPWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FE988BA92B4B1FEE00274CD9 /* MovementHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementHandler.swift; sourceTree = "<group>"; };
+		FE988BA92B4B1FEE00274CD9 /* MotionUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionUpdateHandler.swift; sourceTree = "<group>"; };
 		FE988BAE2B4B224300274CD9 /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
+		FE9BFA5D2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CreateStickingClassifier.mlmodel; sourceTree = "<group>"; };
+		FE9BFA5F2BC33E35002E3293 /* Candidate2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Candidate2.mlmodel; sourceTree = "<group>"; };
 		FEA04B4D2B7264900058C8B4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = single_stroke_roll.mid; sourceTree = "<group>"; };
 		FEA3B1F92B7D1FF900EE111E /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
@@ -158,8 +168,8 @@
 		FEA433242B98F6140002C4E9 /* FeedbackKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackKeyView.swift; sourceTree = "<group>"; };
 		FEA7BDF22B69532A0038B320 /* AmplitudeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeData.swift; sourceTree = "<group>"; };
 		FEA7BDF62B69AE360038B320 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
-		FEAE515A2B7C0B18000DEEE0 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		FEAF90932B77C0A300E01F27 /* MovementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementData.swift; sourceTree = "<group>"; };
+		FEAE515A2B7C0B18000DEEE0 /* MotionBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBuffer.swift; sourceTree = "<group>"; };
+		FEAF90932B77C0A300E01F27 /* MotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionData.swift; sourceTree = "<group>"; };
 		FEAFDD902B9B463100E69A67 /* double_stroke_roll.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = double_stroke_roll.html; sourceTree = "<group>"; };
 		FEAFDD922B9B479100E69A67 /* paradiddle.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = paradiddle.html; sourceTree = "<group>"; };
 		FEAFDD942B9B493B00E69A67 /* double_stroke_roll.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = double_stroke_roll.mid; sourceTree = "<group>"; };
@@ -171,9 +181,11 @@
 		FEB42BB22B58457D00772CC7 /* rudiments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rudiments.json; sourceTree = "<group>"; };
 		FEB42BB52B5846B400772CC7 /* Rudiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rudiment.swift; sourceTree = "<group>"; };
 		FEB42BB82B586A6700772CC7 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		FEBC274C2BC17721006D8C54 /* StickingClassifier2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier2.mlmodel; sourceTree = "<group>"; };
+		FEE097642BC06A61007F9D52 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		FEFC14622BC3549600A5F272 /* TestModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TestModel.mlmodel; sourceTree = "<group>"; };
 		FEFEE6702BA24D1B0042D947 /* WatchPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPracticeViewModel.swift; sourceTree = "<group>"; };
 		FEFEE6772BA25F370042D947 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		FEFEE6792BA260620042D947 /* StickingClassifier1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StickingClassifier1.mlmodel; sourceTree = "<group>"; };
 		FEFEE67B2BA261970042D947 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FEFEE6882BA263BA0042D947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -250,6 +262,7 @@
 				FEA04B4F2B728D4B0058C8B4 /* single_stroke_roll.mid */,
 				FEAFDD942B9B493B00E69A67 /* double_stroke_roll.mid */,
 				FEAFDD962B9B494500E69A67 /* paradiddle.mid */,
+				FE94EA7E2BB086B400A784D8 /* paradiddle_diddle.mid */,
 			);
 			path = MIDI;
 			sourceTree = "<group>";
@@ -260,6 +273,7 @@
 				FE44487F2B8E25A4002FF71A /* single_stroke_roll.html */,
 				FEAFDD902B9B463100E69A67 /* double_stroke_roll.html */,
 				FEAFDD922B9B479100E69A67 /* paradiddle.html */,
+				FE94EA7C2BB0864B00A784D8 /* paradiddle_diddle.html */,
 			);
 			path = WebViews;
 			sourceTree = "<group>";
@@ -434,7 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				FE3C4B1F2B8291910051A4E8 /* StickingClassifierHandler.swift */,
-				FE988BA92B4B1FEE00274CD9 /* MovementHandler.swift */,
+				FE988BA92B4B1FEE00274CD9 /* MotionUpdateHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -486,7 +500,10 @@
 		FEFEE66F2BA24B7D0042D947 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				FEFEE6792BA260620042D947 /* StickingClassifier1.mlmodel */,
+				FEBC274C2BC17721006D8C54 /* StickingClassifier2.mlmodel */,
+				FE9BFA5D2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel */,
+				FE9BFA5F2BC33E35002E3293 /* Candidate2.mlmodel */,
+				FEFC14622BC3549600A5F272 /* TestModel.mlmodel */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -494,7 +511,8 @@
 		FEFEE6732BA254EB0042D947 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FEAF90932B77C0A300E01F27 /* MovementData.swift */,
+				FEAE515A2B7C0B18000DEEE0 /* MotionBuffer.swift */,
+				FEAF90932B77C0A300E01F27 /* MotionData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -510,8 +528,8 @@
 		FEFEE6762BA25F060042D947 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FEAE515A2B7C0B18000DEEE0 /* Queue.swift */,
 				FEFEE6772BA25F370042D947 /* Extensions.swift */,
+				FEE097642BC06A61007F9D52 /* Queue.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -703,10 +721,12 @@
 			files = (
 				FEAFDD952B9B493B00E69A67 /* double_stroke_roll.mid in Resources */,
 				FE988B542B49F34400274CD9 /* Preview Assets.xcassets in Resources */,
+				FE94EA7F2BB086B400A784D8 /* paradiddle_diddle.mid in Resources */,
 				FEB42BB32B58457D00772CC7 /* rudiments.json in Resources */,
 				FEAFDD932B9B479100E69A67 /* paradiddle.html in Resources */,
 				FE4448802B8E25A4002FF71A /* single_stroke_roll.html in Resources */,
 				FEAFDD912B9B463100E69A67 /* double_stroke_roll.html in Resources */,
+				FE94EA7D2BB0864B00A784D8 /* paradiddle_diddle.html in Resources */,
 				FE988B512B49F34400274CD9 /* Assets.xcassets in Resources */,
 				FEAFDD972B9B494500E69A67 /* paradiddle.mid in Resources */,
 				FEA04B502B728D4B0058C8B4 /* single_stroke_roll.mid in Resources */,
@@ -803,18 +823,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				FED518B92BA26F38001C139D /* Enums.swift in Sources */,
-				FED518B82BA26F33001C139D /* Queue.swift in Sources */,
+				FEFC14632BC3549600A5F272 /* TestModel.mlmodel in Sources */,
+				FEE097652BC06A61007F9D52 /* Queue.swift in Sources */,
+				FED518B82BA26F33001C139D /* MotionBuffer.swift in Sources */,
 				FED518B72BA26F2F001C139D /* AmplitudeData.swift in Sources */,
 				FED518B62BA26F2A001C139D /* UserStroke.swift in Sources */,
-				FEFEE67A2BA260620042D947 /* StickingClassifier1.mlmodel in Sources */,
 				FEFEE66E2BA24B6F0042D947 /* StickingClassifierHandler.swift in Sources */,
 				FEFEE6712BA24D1B0042D947 /* WatchPracticeViewModel.swift in Sources */,
-				FEAE515D2B7C0FB7000DEEE0 /* MovementData.swift in Sources */,
+				FEAE515D2B7C0FB7000DEEE0 /* MotionData.swift in Sources */,
 				FEFEE6782BA25F370042D947 /* Extensions.swift in Sources */,
+				FE9BFA602BC33E35002E3293 /* Candidate2.mlmodel in Sources */,
 				FE988BAF2B4B224300274CD9 /* WatchConnectivityService.swift in Sources */,
-				FE988BAA2B4B1FEE00274CD9 /* MovementHandler.swift in Sources */,
+				FE9BFA5E2BC2CA3A002E3293 /* CreateStickingClassifier.mlmodel in Sources */,
+				FE988BAA2B4B1FEE00274CD9 /* MotionUpdateHandler.swift in Sources */,
 				FE988B7F2B4B188C00274CD9 /* WatchPracticeView.swift in Sources */,
 				FE988B7D2B4B188C00274CD9 /* FYPWatchApp.swift in Sources */,
+				FEBC274D2BC17721006D8C54 /* StickingClassifier2.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

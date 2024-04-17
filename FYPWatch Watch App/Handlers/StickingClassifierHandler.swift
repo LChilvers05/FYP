@@ -9,54 +9,56 @@ import CoreML
 
 final class StickingClassifierHandler {
     
-    private let model: StickingClassifier1
+    private let model: TestModel
     private let windowSize: Int
-    private let accXML, accYML, accZML: MLMultiArray
-    private let rotXML, rotYML, rotZML: MLMultiArray
-    private let stateIn = Array(repeating: 0, count: 400)
+    private let stateIn: MLMultiArray
     
-    init(windowSize: Int) throws {
+    init(_ windowSize: Int) throws {
         self.windowSize = windowSize
-        model = try StickingClassifier1(configuration: MLModelConfiguration())
-        accXML = try multiArray(windowSize)
-        accYML = try multiArray(windowSize)
-        accZML = try multiArray(windowSize)
-        rotXML = try multiArray(windowSize)
-        rotYML = try multiArray(windowSize)
-        rotZML = try multiArray(windowSize)
+        let configuration = MLModelConfiguration()
+        configuration.computeUnits = .all // use CPU, GPU or Neural Engine
+        model = try TestModel(configuration: configuration)
+        stateIn = try MLMultiArray(Array(repeating: 0, count: 400))
     }
     
-    func predict(_ snapshot: [MovementData]) async -> Sticking? {
-        for i in 0..<windowSize {
-            let zero = NSNumber(value: 0.0)
-            let isPadding = (i >= snapshot.count)
-            accXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.x)
-            accYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.y)
-            accZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].acceleration.z)
-            rotXML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.x)
-            rotYML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.y)
-            rotZML[i] = isPadding ? zero : NSNumber(value: snapshot[i].rotation.z)
-        }
+    func predict(_ motion: [MotionData]) async -> Sticking? {
+        guard motion.count == windowSize else { return nil }
         
         do {
+            let accelerationX = try multiArray(windowSize)
+            let accelerationY = try multiArray(windowSize)
+            let accelerationZ = try multiArray(windowSize)
+            let rotationX = try multiArray(windowSize)
+            let rotationY = try multiArray(windowSize)
+            let rotationZ = try multiArray(windowSize)
+            
+            for i in 0..<windowSize {
+                accelerationX[i] = NSNumber(value: motion[i].acceleration.x)
+                accelerationY[i] = NSNumber(value: motion[i].acceleration.y)
+                accelerationZ[i] = NSNumber(value: motion[i].acceleration.z)
+                rotationX[i] = NSNumber(value: motion[i].rotation.x)
+                rotationY[i] = NSNumber(value: motion[i].rotation.y)
+                rotationZ[i] = NSNumber(value: motion[i].rotation.z)
+            }
+            
             try Task.checkCancellation()
             
-            let input = StickingClassifier1Input(
-                accelerationX: accXML,
-                accelerationY: accYML,
-                accelerationZ: accZML,
-                rotationRateX: rotXML,
-                rotationRateY: rotYML,
-                rotationRateZ: rotZML,
-                stateIn: try MLMultiArray(stateIn)
+            let input = TestModelInput(
+                accelerationX: accelerationX,
+                accelerationY: accelerationY,
+                accelerationZ: accelerationZ,
+                rotationRateX: rotationX,
+                rotationRateY: rotationY,
+                rotationRateZ: rotationZ,
+                stateIn: stateIn
             )
             
-            // make prediction
             let prediction = try await model.prediction(input: input)
-            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
+//            print("\(prediction.label): \(String(describing: prediction.labelProbability[prediction.label]))")
             return (prediction.label == "right") ? .right
             : (prediction.label == "left") ? .left
             : nil
+            
         } catch {
             debugPrint(error.localizedDescription)
             return nil

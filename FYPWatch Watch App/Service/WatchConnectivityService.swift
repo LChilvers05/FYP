@@ -17,8 +17,9 @@ final class WatchConnectivityService: NSObject {
         activateSession()
     }
     
-    var didStartPlaying: ((Bool) -> Void)?
-    var didPlayStroke: ((UserStroke) -> Void)?
+    var didStartPlaying: ((Date) async -> Void)?
+    var didStopPlaying: (() async -> Void)?
+    var didPlayStroke: ((UserStroke) async -> Void)?
     
     private func activateSession() {
         guard WCSession.isSupported() else { return }
@@ -44,16 +45,20 @@ final class WatchConnectivityService: NSObject {
     }
     
     // receive phone messages
-    private func didReceive(_ message: [String: Any]) {
-        // started rudiment practice
+    private func didReceive(_ message: [String: Any]) async {
+        // started/stopped rudiment practice
         if let isPlaying = message["is_playing"] as? Bool {
-            didStartPlaying?(isPlaying)
+            if isPlaying, let start = message["start"] as? Date {
+                await didStartPlaying?(start)
+            } else {
+                await didStopPlaying?()
+            }
             
-        // user made stroke
+            // user made stroke
         } else if let data = message["stroke"] as? Data {
             do {
                 let stroke = try JSONDecoder().decode(UserStroke.self, from: data)
-                didPlayStroke?(stroke)
+                await didPlayStroke?(stroke)
             } catch {
                 debugPrint(error.localizedDescription)
             }
@@ -63,10 +68,10 @@ final class WatchConnectivityService: NSObject {
 
 extension WatchConnectivityService: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        didReceive(message)
+        Task { await didReceive(message) }
     }
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        didReceive(applicationContext)
+        Task { await didReceive(applicationContext) }
     }
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error { debugPrint(error) }

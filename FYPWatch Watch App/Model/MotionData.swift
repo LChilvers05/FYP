@@ -7,7 +7,7 @@
 
 import CoreMotion
 
-class MovementData {
+class MotionData {
     var id: Int = 0
     let acceleration: CMAcceleration
     let rotation: CMRotationRate
@@ -23,7 +23,7 @@ class MovementData {
         self.rotation = rotation
         self.timestamp = timestamp
         
-        self.id = MovementData.count
-        MovementData.count += 1
+        self.id = MotionData.count
+        MotionData.count += 1
     }
 }
